@@ -25,7 +25,7 @@
             pkgs.bashInteractive
             pkgs.nixfmt-rfc-style
             pkgs.just
-	    pkgs.gh
+            pkgs.gh
 
             pkgs.talosctl
             pkgs.kubectl
@@ -37,9 +37,9 @@
           ];
 
           shellHook = ''
-          [[ -f $FLUENCE_SECRETS ]] && source $FLUENCE_SECRETS
-          [[ -f ./kubeconfig ]] && export KUBECONFIG=$(realpath ./kubeconfig)
-          [[ -f ./talosconfig ]] && export TALOSCONFIG=$(realpath ./talosconfig)
+            [[ -f $FLUENCE_SECRETS ]] && source $FLUENCE_SECRETS
+            [[ -f ./kubeconfig ]] && export KUBECONFIG=$(realpath ./kubeconfig)
+            [[ -f ./talosconfig ]] && export TALOSCONFIG=$(realpath ./talosconfig)
           '';
         };
       }
