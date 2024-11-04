@@ -6,7 +6,7 @@ on:
 
 jobs:
   help:
-    runs-on: linux-amd64-t-small
+    runs-on: ubuntu-latest
     steps:
       - name: Update comment
         uses: peter-evans/create-or-update-comment@v4
