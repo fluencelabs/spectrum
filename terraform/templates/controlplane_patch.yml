@@ -162,4 +162,4 @@ cluster:
           name: loadbalancer-ip
           namespace: ingress-nginx
         data:
-          externalIP: "${loadbalancerip}"
+          externalIP: ${loadbalancerip}
