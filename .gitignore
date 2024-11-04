@@ -1,0 +1,7 @@
+.tfstate*
+.terraform/
+**lock.hcl
+**.pyc
+.direnv
+kubeconfig
+talosconfig

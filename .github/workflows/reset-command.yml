@@ -1,0 +1,15 @@
+name: reset-command
+
+on:
+  repository_dispatch:
+    types: [reset-command]
+
+jobs:
+  reset:
+    uses: ./.github/workflows/terraform.yml
+    with:
+      command: ${{ github.event.client_payload.slash_command.command }}
+      branch: ${{ github.event.client_payload.pull_request.head.ref }}
+      sha: ${{ github.event.client_payload.pull_request.head.sha }}
+    secrets:
+      PAT: ${{ secrets.FLUENCEBOT_RELEASE_PLEASE_PAT }}
