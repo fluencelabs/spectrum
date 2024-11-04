@@ -71,7 +71,6 @@ data "talos_machine_configuration" "cp" {
       hostdns         = "${each.key}.${local.prefix}.fluence.dev",
       subnet          = data.digitalocean_vpc.spectrum.ip_range,
       branch          = var.github_branch
-      loadbalancerip  = digitalocean_loadbalancer.cp.ip
     })
   ]
 }
