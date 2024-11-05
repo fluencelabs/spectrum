@@ -72,6 +72,7 @@ data "talos_machine_configuration" "cp" {
       hostdns         = "${each.key}.${local.prefix}.fluence.dev",
       subnet          = data.digitalocean_vpc.spectrum.ip_range,
       branch          = var.github_branch
+      dotoken = base64encode(data.vault_generic_secret.spectrum.data.token)
     })
   ]
 }

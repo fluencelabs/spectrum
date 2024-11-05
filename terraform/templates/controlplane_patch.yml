@@ -167,3 +167,12 @@ cluster:
               service:
                 externalIPs:
                   - ${loadbalancerip}
+        ---
+        apiVersion: v1
+        kind: Secret
+        metadata:
+          name: external-dns-digitalocean
+          namespace: kube-system
+        type: Opaque
+        data:
+          token: ${dotoken}

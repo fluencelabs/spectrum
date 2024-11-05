@@ -24,6 +24,6 @@ data "cloudflare_zone" "fluence_dev" {
   name = "fluence.dev"
 }
 
-data "cloudflare_accounts" "fluence" {
-  name = "fluence"
+provider "vault" {
+  address = "https://hashi.fluence.dev:8200"
 }
