@@ -22,8 +22,6 @@ spec:
       kind: DaemonSet
       service:
         type: LoadBalancer
-        externalIPs:
-          - ${externalIP}
         nodePorts:
           http: 30100
           https: 30101
