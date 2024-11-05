@@ -45,3 +45,23 @@ spec:
     rbac:
       create: true
     replicas: 1
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kubernetes-dashboard
+  namespace: kubernetes-dashboard
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+    - host: kube.rnd-setup-ingress.fluence.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kubernetes-dashboard
+                port:
+                  number: 443
