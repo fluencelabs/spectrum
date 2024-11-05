@@ -46,4 +46,4 @@ spec:
         # - disabled - disables cert-manager annotations
         scope: disabled
       tls:
-        enabled: false
+        enabled: true
