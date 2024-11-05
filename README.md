@@ -29,6 +29,8 @@ to see all available commands.
 
 #### Download and export kubeconfig
 
+After cluster is setup run
+
 ```
 just download
 export KUBECONFIG=./kubeconfig
