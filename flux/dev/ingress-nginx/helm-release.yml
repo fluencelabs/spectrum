@@ -26,3 +26,24 @@ spec:
           http: 30100
           https: 30101
         externalTrafficPolicy: Local
+    ingress:
+      enabled: true
+      hosts:
+        - kube.rnd-setup-ingress.fluence.dev
+      ingressClassName: nginx
+      # This will append our Ingress with annotations required by our default configuration.
+      #    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+      #    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+      #    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      useDefaultAnnotations: true
+      pathType: ImplementationSpecific
+      path: /
+      issuer:
+        name: selfsigned
+        # Scope determines what kind of issuer annotation will be used on ingress resource
+        # - default - adds 'cert-manager.io/issuer'
+        # - cluster - adds 'cert-manager.io/cluster-issuer'
+        # - disabled - disables cert-manager annotations
+        scope: disabled
+      tls:
+        enabled: false
