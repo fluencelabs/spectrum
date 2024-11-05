@@ -54,9 +54,10 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    external-dns.alpha.kubernetes.io/hostname: "dashboard.rnd-setup-ingress.fluence.dev"
 spec:
   rules:
-    - host: kube.rnd-setup-ingress.fluence.dev
+    - host: "dashboard.rnd-setup-ingress.fluence.dev"
       http:
         paths:
           - path: /
