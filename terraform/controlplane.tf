@@ -46,11 +46,11 @@ resource "digitalocean_loadbalancer" "cp" {
   droplet_tag = "${local.prefix}-controlplane"
 }
 
-resource "cloudflare_record" "endpoint" {
-  zone_id = data.cloudflare_zone.fluence_dev.zone_id
-  name    = "kube.${local.prefix}.fluence.dev"
-  content = digitalocean_loadbalancer.cp.ip
-  type    = "A"
+resource "digitalocean_record" "endpoint" {
+  domain = digitalocean_domain.spectrum.id
+  type   = "A"
+  name   = "kube"
+  value  = digitalocean_loadbalancer.cp.ip
 }
 
 resource "talos_machine_secrets" "this" {
@@ -67,11 +67,11 @@ data "talos_machine_configuration" "cp" {
   talos_version    = "v1.8"
   config_patches = [
     templatefile("${path.module}/templates/controlplane_patch.yml", {
-      loadbalancerdns = "${local.loadbalancer_dns}",
+      loadbalancerdns = digitalocean_record.endpoint.fqdn
+      loadbalancerip  = digitalocean_loadbalancer.cp.ip
       hostdns         = "${each.key}.${local.prefix}.fluence.dev",
       subnet          = data.digitalocean_vpc.spectrum.ip_range,
       branch          = var.github_branch
-      loadbalancerip  = digitalocean_loadbalancer.cp.ip
     })
   ]
 }
@@ -80,7 +80,7 @@ data "talos_client_configuration" "this" {
   cluster_name         = terraform.workspace
   client_configuration = talos_machine_secrets.this.client_configuration
   endpoints = [
-    local.loadbalancer_dns,
+    digitalocean_record.endpoint.fqdn,
   ]
 }
 
