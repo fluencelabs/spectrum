@@ -17,13 +17,13 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: loadbalancer-ip
-      valuesKey: externalIP
-      targetPath: controller.service.externalIPs
   values:
     controller:
       kind: DaemonSet
       service:
         type: LoadBalancer
+        externalIPs:
+          - ${externalIP}
         nodePorts:
           http: 30100
           https: 30101
