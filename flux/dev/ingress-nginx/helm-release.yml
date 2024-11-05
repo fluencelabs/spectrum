@@ -24,7 +24,7 @@ spec:
       service:
         type: LoadBalancer
         externalIPs:
-          - '{{ values.externalIP }}'
+          - '{{ valuesFrom.externalIP }}'
         nodePorts:
           http: 30100
           https: 30101
