@@ -20,6 +20,8 @@ spec:
   values:
     controller:
       kind: DaemonSet
+      publishService:
+        enabled: true
       service:
         type: LoadBalancer
         nodePorts:
