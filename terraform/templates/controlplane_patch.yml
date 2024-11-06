@@ -150,3 +150,29 @@ cluster:
             namespace: default
           validation: client
           timeout: 2m
+        ---
+        apiVersion: v1
+        kind: Namespace
+        metadata:
+          name: ingress-nginx
+        ---
+        apiVersion: v1
+        kind: ConfigMap
+        metadata:
+          name: loadbalancer-ip
+          namespace: ingress-nginx
+        data:
+          values.yaml: |
+            controller:
+              service:
+                externalIPs:
+                  - ${loadbalancerip}
+        ---
+        apiVersion: v1
+        kind: Secret
+        metadata:
+          name: external-dns-digitalocean
+          namespace: default
+        type: Opaque
+        data:
+          token: ${dotoken}

@@ -32,7 +32,7 @@
             pkgs.kubernetes-helm
             pkgs.kubevirt
             pkgs.cilium-cli
-            pkgs.flux
+            pkgs.fluxcd
             pkgs.terraform
           ];
 
