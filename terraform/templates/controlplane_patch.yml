@@ -172,7 +172,7 @@ cluster:
         kind: Secret
         metadata:
           name: external-dns-digitalocean
-          namespace: kube-system
+          namespace: default
         type: Opaque
         data:
           token: ${dotoken}
