@@ -16,6 +16,7 @@ on:
         description: "Branch to checkout to"
         required: true
         type: string
+        default: "main"
       sha:
         description: "Last commit in the branch"
         required: false
