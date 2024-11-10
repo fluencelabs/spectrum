@@ -9,7 +9,7 @@ on:
         type: string
       workspace:
         description: "Workspace to use"
-        required: true
+        required: false
         type: string
         default: "spectrum-${{ inputs.branch }}"
       branch:
