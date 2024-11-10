@@ -7,6 +7,11 @@ on:
         description: "The terraform command to run (create, destroy, reset)"
         required: true
         type: string
+      repository:
+        description: "Which repo is calling"
+        required: true
+        type: string
+        default: "spectrum"
       branch:
         description: "Branch to checkout to"
         required: true
@@ -47,6 +52,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          repository: fluencelabs/spectrum
           ref: ${{ inputs.command == 'destroy' && 'main' || inputs.branch }}
 
       - name: Get Vault token
@@ -65,15 +71,18 @@ jobs:
             kv/ci/spectrum-ci id | AWS_ACCESS_KEY_ID ;
             kv/ci/spectrum-ci secret | AWS_SECRET_ACCESS_KEY ;
 
-      - name: Sanitize branch name
+      - name: Sanitize prefix name
         id: sanitize
         run: |
           BRANCH="${{ inputs.branch }}"
+          REPO="${{ inputs.repo }}"
           # Sanitize branch name for DNS compatibility
           BRANCH="${BRANCH//[^a-zA-Z0-9-]/-}"
           BRANCH="${BRANCH//+(-)/-}"
           BRANCH="${BRANCH,,}" # Convert to lowercase
           echo "branch=${BRANCH}" >> $GITHUB_OUTPUT
+          echo "repo=${REPO}" >> $GITHUB_OUTPUT
+          echo "workspace=${REPO}-${BRANCH} >> $GITHUB_OUTPUT
 
       - name: Setup terraform
         uses: hashicorp/setup-terraform@v3
@@ -83,7 +92,7 @@ jobs:
 
       - name: terraform workspace
         run: |
-          terraform workspace select -or-create=true ${{ steps.sanitize.outputs.branch }}
+          terraform workspace select -or-create=true ${{ steps.sanitize.outputs.workspace }}
 
       - name: Run terraform command
         run: |
