@@ -7,11 +7,11 @@ on:
         description: "The terraform command to run (create, destroy, reset)"
         required: true
         type: string
-      repository:
-        description: "Which repo is calling"
+      workspace:
+        description: "Workspace to use"
         required: true
         type: string
-        default: "spectrum"
+        default: "spectrum-${{ inputs.branch }}"
       branch:
         description: "Branch to checkout to"
         required: true
@@ -74,15 +74,12 @@ jobs:
       - name: Sanitize prefix name
         id: sanitize
         run: |
-          BRANCH="${{ inputs.branch }}"
-          REPO="${{ inputs.repo }}"
-          # Sanitize branch name for DNS compatibility
-          BRANCH="${BRANCH//[^a-zA-Z0-9-]/-}"
-          BRANCH="${BRANCH//+(-)/-}"
-          BRANCH="${BRANCH,,}" # Convert to lowercase
-          echo "branch=${BRANCH}" >> $GITHUB_OUTPUT
-          echo "repo=${REPO}" >> $GITHUB_OUTPUT
-          echo "workspace=${REPO}-${BRANCH}" >> $GITHUB_OUTPUT
+          WORKSPACE="${{ inputs.workspace }}"
+          # Sanitize for DNS compatibility
+          WORKSPACE="${WORKSPACE//[^a-zA-Z0-9-]/-}"
+          WORKSPACE="${WORKSPACE//+(-)/-}"
+          WORKSPACE="${WORKSPACE,,}" # Convert to lowercase
+          echo "workspace=${WORKSPACE}" >> $GITHUB_OUTPUT
 
       - name: Setup terraform
         uses: hashicorp/setup-terraform@v3
