@@ -82,7 +82,7 @@ jobs:
           BRANCH="${BRANCH,,}" # Convert to lowercase
           echo "branch=${BRANCH}" >> $GITHUB_OUTPUT
           echo "repo=${REPO}" >> $GITHUB_OUTPUT
-          echo "workspace=${REPO}-${BRANCH} >> $GITHUB_OUTPUT
+          echo "workspace=${REPO}-${BRANCH}" >> $GITHUB_OUTPUT
 
       - name: Setup terraform
         uses: hashicorp/setup-terraform@v3
