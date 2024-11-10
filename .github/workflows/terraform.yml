@@ -9,9 +9,8 @@ on:
         type: string
       workspace:
         description: "Workspace to use"
-        required: false
+        required: true
         type: string
-        default: "spectrum-${{ inputs.branch }}"
       branch:
         description: "Branch to checkout to"
         required: false

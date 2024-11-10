@@ -10,5 +10,6 @@ jobs:
     with:
       command: "destroy"
       branch: ${{ github.event.pull_request.head.ref }}
+      workspace: "spectrum-${{ github.event.pull_request.head.ref }}"
     secrets:
       PAT: ${{ secrets.FLUENCEBOT_RELEASE_PLEASE_PAT }}
