@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - external-dns
   - ingress-nginx
+  - cert-manager
+  - cert-issuer-do.yml
   - kubernetes-dashboard
   - kubevirt
-  - kubevirt-manager

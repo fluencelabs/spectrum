@@ -1,35 +1,11 @@
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: kubernetes-dashboard
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: kubernetes-dashboard-admin
-  namespace: kubernetes-dashboard
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: kubernetes-dashboard-admin
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: cluster-admin
-subjects:
-  - kind: ServiceAccount
-    name: kubernetes-dashboard-admin
-    namespace: kubernetes-dashboard
----
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: kubernetes-dashboard
-  namespace: kubernetes-dashboard
+  namespace: kube-system
 spec:
   releaseName: kubernetes-dashboard
+  interval: 5m
   chart:
     spec:
       chart: kubernetes-dashboard
@@ -38,32 +14,22 @@ spec:
         kind: HelmRepository
         name: kubernetes-dashboard
         namespace: flux-system
-  interval: 5m
+  valuesFrom:
+    - configMapRef:
+        name: terraformConfig
   values:
     serviceAccount:
       create: true
     rbac:
       create: true
     replicas: 1
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: kubernetes-dashboard
-  namespace: kubernetes-dashboard
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-    external-dns.alpha.kubernetes.io/hostname: "dashboard.rnd-setup-ingress.fluence.dev"
-spec:
-  rules:
-    - host: "dashboard.rnd-setup-ingress.fluence.dev"
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: kubernetes-dashboard-kong-proxy
-                port:
-                  number: 443
+    ingress:
+      enabled: true
+      hosts:
+        - dashboard.{{ .Values.domain }}
+      ingressClassName: nginx
+      issuer: 
+        name: letsencrypt
+        scope: cluster
+      tls:
+        enabled: true

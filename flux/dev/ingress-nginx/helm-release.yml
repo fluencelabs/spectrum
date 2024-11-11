@@ -2,7 +2,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: ingress-nginx
-  namespace: ingress-nginx
+  namespace: kube-system
 spec:
   interval: 30m
   chart:
@@ -12,11 +12,11 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: ingress-nginx
-        namespace: ingress-nginx
+        namespace: flux-system
       interval: 12h
   valuesFrom:
     - kind: ConfigMap
-      name: loadbalancer-ip
+      name: terraformConfig
   values:
     controller:
       kind: DaemonSet
@@ -24,6 +24,8 @@ spec:
         enabled: true
       service:
         type: LoadBalancer
+        externalIPs:
+          - {{ .Values.loadbalancerIP }}
         nodePorts:
           http: 30100
           https: 30101
@@ -31,21 +33,13 @@ spec:
     ingress:
       enabled: true
       hosts:
-        - kube.rnd-setup-ingress.fluence.dev
+        - kube.{{ .Values.domain }}
       ingressClassName: nginx
-      # This will append our Ingress with annotations required by our default configuration.
-      #    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-      #    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-      #    nginx.ingress.kubernetes.io/ssl-redirect: "true"
       useDefaultAnnotations: true
       pathType: ImplementationSpecific
       path: /
       issuer:
-        name: selfsigned
-        # Scope determines what kind of issuer annotation will be used on ingress resource
-        # - default - adds 'cert-manager.io/issuer'
-        # - cluster - adds 'cert-manager.io/cluster-issuer'
-        # - disabled - disables cert-manager annotations
-        scope: disabled
+        name: letsencrypt
+        scope: cluster
       tls:
         enabled: true
