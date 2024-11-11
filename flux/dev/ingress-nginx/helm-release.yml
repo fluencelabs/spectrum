@@ -17,6 +17,9 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: terraform-config
+    - kind: ConfigMap
+      name: terraform-config
+      targetPath: controller.service.externalIPs[0]
   values:
     controller:
       kind: DaemonSet
@@ -24,8 +27,6 @@ spec:
         enabled: true
       service:
         type: LoadBalancer
-        externalIPs:
-          - ${loadbalancerip}
         nodePorts:
           http: 30100
           https: 30101
