@@ -15,8 +15,8 @@ spec:
         name: kubernetes-dashboard
         namespace: flux-system
   valuesFrom:
-    - configMapRef:
-        name: terraform-config
+    - kind: ConfigMap
+      name: terraform-config
   values:
     serviceAccount:
       create: true
