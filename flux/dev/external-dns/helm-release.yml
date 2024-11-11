@@ -16,13 +16,13 @@ spec:
       interval: 5m
   valuesFrom:
     - kind: ConfigMap
-      name: terraformConfig
+      name: terraform-config
   values:
     env:
       - name: DO_TOKEN
         valueFrom:
           secretKeyRef:
-            name: terraformSecrets
+            name: terraform-secrets
             key: dotoken
     txtOwnerId: "{{ Values.prefix }}"
     sources:

@@ -51,6 +51,7 @@ resource "digitalocean_record" "endpoint" {
   type   = "A"
   name   = "kube"
   value  = digitalocean_loadbalancer.cp.ip
+  ttl    = 30
 }
 
 resource "talos_machine_secrets" "this" {
@@ -67,7 +68,7 @@ data "talos_machine_configuration" "cp" {
   talos_version    = "v1.8"
   config_patches = [
     templatefile("${path.module}/templates/controlplane_patch.yml", {
-      loadbalancerdns = digitalocean_record.endpoint.fqdn
+      loadbalancerdns = "kube.${local.prefix}.fluence.dev"
       loadbalancerip  = digitalocean_loadbalancer.cp.ip
       hostdns         = "${each.key}.${local.prefix}.fluence.dev",
       subnet          = data.digitalocean_vpc.spectrum.ip_range,
@@ -83,7 +84,7 @@ data "talos_client_configuration" "this" {
   cluster_name         = terraform.workspace
   client_configuration = talos_machine_secrets.this.client_configuration
   endpoints = [
-    digitalocean_record.endpoint.fqdn,
+    "kube.${local.prefix}.fluence.dev"
   ]
 }
 

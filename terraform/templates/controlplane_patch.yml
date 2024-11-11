@@ -154,7 +154,7 @@ cluster:
         apiVersion: v1
         kind: Secret
         metadata:
-          name: terraformSecrets
+          name: terraform-secrets
           namespace: kube-system
         type: Opaque
         data:
@@ -163,10 +163,10 @@ cluster:
         apiVersion: v1
         kind: ConfigMap
         metadata:
-          name: terraformConfig
+          name: terraform-config
           namespace: kube-system
         data:
           domain: ${domain}
-          loadbalancerIP: ${loadbalancerip}
+          loadbalancerip: ${loadbalancerip}
           branch: ${branch}
           prefix: ${prefix}

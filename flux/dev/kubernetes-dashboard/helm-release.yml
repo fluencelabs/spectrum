@@ -16,7 +16,7 @@ spec:
         namespace: flux-system
   valuesFrom:
     - configMapRef:
-        name: terraformConfig
+        name: terraform-config
   values:
     serviceAccount:
       create: true
