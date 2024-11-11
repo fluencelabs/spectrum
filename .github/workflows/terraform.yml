@@ -64,7 +64,7 @@ jobs:
           method: jwt
           jwtGithubAudience: "https://github.com/fluencelabs"
           jwtTtl: 300
-          exportToken: false
+          exportToken: true
           secrets: |
             kv/digitalocean/gitops token | DIGITALOCEAN_TOKEN ;
             kv/cloudflare/gitops token | CLOUDFLARE_API_TOKEN ;
