@@ -167,5 +167,6 @@ cluster:
           namespace: kube-system
         data:
           domain: ${domain}
-          loadbalancerIP: ${locabalancerip}
+          loadbalancerIP: ${loadbalancerip}
           branch: ${branch}
+          prefix: ${prefix}
