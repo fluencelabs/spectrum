@@ -128,7 +128,7 @@ cluster:
         kind: GitRepository
         metadata:
           name: spectrum
-          namespace: default
+          namespace: flux-system
         spec:
           interval: 1m0s
           url: https://github.com/fluencelabs/spectrum.git
@@ -152,27 +152,20 @@ cluster:
           timeout: 2m
         ---
         apiVersion: v1
-        kind: Namespace
+        kind: Secret
         metadata:
-          name: ingress-nginx
+          name: terraformSecrets
+          namespace: kube-system
+        type: Opaque
+        data:
+          dotoken: ${dotoken}
         ---
         apiVersion: v1
         kind: ConfigMap
         metadata:
-          name: loadbalancer-ip
-          namespace: ingress-nginx
+          name: terraformConfig
+          namespace: kube-system
         data:
-          values.yaml: |
-            controller:
-              service:
-                externalIPs:
-                  - ${loadbalancerip}
-        ---
-        apiVersion: v1
-        kind: Secret
-        metadata:
-          name: external-dns-digitalocean
-          namespace: default
-        type: Opaque
-        data:
-          token: ${dotoken}
+          domain: ${domain}
+          loadbalancerIP: ${locabalancerip}
+          branch: ${branch}
