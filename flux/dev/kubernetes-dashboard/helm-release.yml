@@ -14,9 +14,6 @@ spec:
         kind: HelmRepository
         name: kubernetes-dashboard
         namespace: flux-system
-  valuesFrom:
-    - kind: ConfigMap
-      name: terraform-config
   values:
     serviceAccount:
       create: true
@@ -27,7 +24,7 @@ spec:
       ingress:
         enabled: true
         hosts:
-          - dashboard.${domain}
+          - dashboard.${DOMAIN}
         ingressClassName: nginx
         issuer: 
           name: letsencrypt
