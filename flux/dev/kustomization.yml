@@ -4,6 +4,6 @@ resources:
   - external-dns
   - ingress-nginx
   - cert-manager
-  - cert-issuer-do.yml
+  - cert-issuer
   - kubernetes-dashboard
   - kubevirt
