@@ -135,6 +135,37 @@ cluster:
           ref:
             branch: ${branch}
         ---
+        apiVersion: v1
+        kind: Secret
+        metadata:
+          name: terraform-secrets
+          namespace: flux-system
+        type: Opaque
+        data:
+          dotoken: ${dotoken}
+        ---
+        apiVersion: v1
+        kind: ConfigMap
+        metadata:
+          name: terraform-config
+          namespace: flux-system
+        data:
+          domain: ${domain}
+          loadbalancerip: ${loadbalancerip}
+          branch: ${branch}
+          prefix: ${prefix}
+        ---
+        apiVersion: source.toolkit.fluxcd.io/v1
+        kind: GitRepository
+        metadata:
+          name: spectrum
+          namespace: flux-system
+        spec:
+          interval: 1m0s
+          url: https://github.com/fluencelabs/spectrum.git
+          ref:
+            branch: ${branch}
+        ---
         apiVersion: kustomize.toolkit.fluxcd.io/v1
         kind: Kustomization
         metadata:
@@ -150,6 +181,12 @@ cluster:
             namespace: flux-system
           validation: client
           timeout: 2m
+        postBuild:
+          substituteFrom:
+          - kind: ConfigMap
+            name: terraform-config
+          - kind: Secret
+            name: terraform-secrets
         ---
         apiVersion: v1
         kind: Secret
