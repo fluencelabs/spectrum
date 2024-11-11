@@ -136,24 +136,15 @@ cluster:
             branch: ${branch}
         ---
         apiVersion: v1
-        kind: Secret
-        metadata:
-          name: terraform-secrets
-          namespace: flux-system
-        type: Opaque
-        data:
-          dotoken: ${dotoken}
-        ---
-        apiVersion: v1
         kind: ConfigMap
         metadata:
           name: terraform-config
           namespace: flux-system
         data:
-          domain: ${domain}
-          loadbalancerip: ${loadbalancerip}
-          branch: ${branch}
-          prefix: ${prefix}
+          DOMAIN: ${domain}
+          LOADBALANCER_IP: ${loadbalancerip}
+          BRANCH: ${branch}
+          PREFIX: ${prefix}
         ---
         apiVersion: source.toolkit.fluxcd.io/v1
         kind: GitRepository
@@ -181,31 +172,16 @@ cluster:
             namespace: flux-system
           validation: client
           timeout: 2m
-        postBuild:
-          substituteFrom:
-          - kind: ConfigMap
-            name: terraform-config
-          - kind: Secret
-            name: terraform-secrets
+          postBuild:
+            substituteFrom:
+            - kind: ConfigMap
+              name: terraform-config
         ---
         apiVersion: v1
         kind: Secret
         metadata:
-          name: terraform-secrets
+          name: digitalocean-token
           namespace: kube-system
         type: Opaque
         data:
-          dotoken: ${dotoken}
-        ---
-        apiVersion: v1
-        kind: ConfigMap
-        metadata:
-          name: terraform-config
-          namespace: kube-system
-        data:
-          loadbalancerip: ${loadbalancerip}
-          values.yaml: |
-            domain: ${domain}
-            loadbalancerip: ${loadbalancerip}
-            branch: ${branch}
-            prefix: ${prefix}
+          token: ${dotoken}

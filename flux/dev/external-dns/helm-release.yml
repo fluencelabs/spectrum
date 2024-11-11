@@ -14,17 +14,14 @@ spec:
         name: external-dns-charts
         namespace: flux-system
       interval: 5m
-  valuesFrom:
-    - kind: ConfigMap
-      name: terraform-config
   values:
     env:
       - name: DO_TOKEN
         valueFrom:
           secretKeyRef:
-            name: terraform-secrets
-            key: dotoken
-    txtOwnerId: "${prefix}"
+            name: digitalocean-token
+            key: token
+    txtOwnerId: "${PREFIX}"
     sources:
       - ingress
     policy: sync

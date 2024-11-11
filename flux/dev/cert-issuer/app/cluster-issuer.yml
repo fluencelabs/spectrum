@@ -14,5 +14,5 @@ spec:
       - dns01:
           digitalocean:
             tokenSecretRef:
-              name: terraform-secrets
-              key: dotoken
+              name: digitalocean-token
+              key: token
