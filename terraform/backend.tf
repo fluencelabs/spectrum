@@ -24,3 +24,6 @@ data "cloudflare_zone" "fluence_dev" {
   name = "fluence.dev"
 }
 
+provider "vault" {
+  address = "https://vault.fluence.dev"
+}
