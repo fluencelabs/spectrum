@@ -23,13 +23,14 @@ spec:
     rbac:
       create: true
     replicas: 1
-    ingress:
-      enabled: true
-      hosts:
-        - dashboard.${domain}
-      ingressClassName: nginx
-      issuer: 
-        name: letsencrypt
-        scope: cluster
-      tls:
+    app:
+      ingress:
         enabled: true
+        hosts:
+          - dashboard.${domain}
+        ingressClassName: nginx
+        issuer: 
+          name: letsencrypt
+          scope: cluster
+        tls:
+          enabled: true
