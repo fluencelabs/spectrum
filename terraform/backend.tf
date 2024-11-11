@@ -25,5 +25,5 @@ data "cloudflare_zone" "fluence_dev" {
 }
 
 provider "vault" {
-  address = "https://vault.nahsi.dev"
+  address = "https://vault.fluence.dev"
 }
