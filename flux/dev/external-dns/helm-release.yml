@@ -24,7 +24,7 @@ spec:
           secretKeyRef:
             name: terraform-secrets
             key: dotoken
-    txtOwnerId: "{{ Values.prefix }}"
+    txtOwnerId: "${prefix}"
     sources:
       - ingress
     policy: sync

@@ -26,7 +26,7 @@ spec:
     ingress:
       enabled: true
       hosts:
-        - dashboard.{{ .Values.domain }}
+        - dashboard.${domain}
       ingressClassName: nginx
       issuer: 
         name: letsencrypt
