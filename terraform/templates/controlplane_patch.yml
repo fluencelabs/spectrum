@@ -166,7 +166,9 @@ cluster:
           name: terraform-config
           namespace: kube-system
         data:
-          domain: ${domain}
           loadbalancerip: ${loadbalancerip}
-          branch: ${branch}
-          prefix: ${prefix}
+          values.yaml: |
+            domain: ${domain}
+            loadbalancerip: ${loadbalancerip}
+            branch: ${branch}
+            prefix: ${prefix}

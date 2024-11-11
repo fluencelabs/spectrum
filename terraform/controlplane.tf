@@ -1,6 +1,6 @@
 locals {
   cp = [
-    for i in range(1) : format("%s-%d", "cp", i)
+    for i in range(3) : format("%s-%d", "cp", i)
   ]
 }
 
