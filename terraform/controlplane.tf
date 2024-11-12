@@ -76,6 +76,7 @@ data "talos_machine_configuration" "cp" {
       dotoken         = base64encode(data.vault_generic_secret.spectrum.data.token)
       domain          = "${local.prefix}.fluence.dev"
       prefix          = local.prefix
+      docker = base64encode(local.docker_config_json)
     })
   ]
 }
@@ -140,18 +141,18 @@ resource "talos_cluster_kubeconfig" "this" {
 #  endpoints            = data.talos_client_configuration.this.endpoints
 #}
 
-#data "http" "talos_health" {
-#  for_each = toset([
-#    "cp-0.${local.prefix}.fluence.dev",
-#    "cp-1.${local.prefix}.fluence.dev",
-#    "cp-2.${local.prefix}.fluence.dev",
-#  ])
-#  url      = "https://${each.key}:6443/version"
-#  insecure = true
-#  retry {
-#    attempts     = 60
-#    min_delay_ms = 5000
-#    max_delay_ms = 5000
-#  }
-#  depends_on = [talos_machine_bootstrap.this]
-#}
+data "http" "talos_health" {
+  for_each = toset([
+    "cp-0.${local.prefix}.fluence.dev",
+    "cp-1.${local.prefix}.fluence.dev",
+    "cp-2.${local.prefix}.fluence.dev",
+  ])
+  url      = "https://${each.key}:6443/version"
+  insecure = true
+  retry {
+    attempts     = 60
+    min_delay_ms = 5000
+    max_delay_ms = 5000
+  }
+  depends_on = [talos_machine_bootstrap.this]
+}
