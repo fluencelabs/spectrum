@@ -1,6 +1,6 @@
 locals {
   cp = [
-    for i in range(1) : format("%s-%d", "cp", i)
+    for i in range(3) : format("%s-%d", "cp", i)
   ]
 }
 
@@ -46,11 +46,12 @@ resource "digitalocean_loadbalancer" "cp" {
   droplet_tag = "${local.prefix}-controlplane"
 }
 
-resource "cloudflare_record" "endpoint" {
-  zone_id = data.cloudflare_zone.fluence_dev.zone_id
-  name    = "kube.${local.prefix}.fluence.dev"
-  content = digitalocean_loadbalancer.cp.ip
-  type    = "A"
+resource "digitalocean_record" "endpoint" {
+  domain = digitalocean_domain.spectrum.id
+  type   = "A"
+  name   = "kube"
+  value  = digitalocean_loadbalancer.cp.ip
+  ttl    = 30
 }
 
 resource "talos_machine_secrets" "this" {
@@ -67,10 +68,14 @@ data "talos_machine_configuration" "cp" {
   talos_version    = "v1.8"
   config_patches = [
     templatefile("${path.module}/templates/controlplane_patch.yml", {
-      loadbalancerdns = "${local.loadbalancer_dns}",
+      loadbalancerdns = "kube.${local.prefix}.fluence.dev"
+      loadbalancerip  = digitalocean_loadbalancer.cp.ip
       hostdns         = "${each.key}.${local.prefix}.fluence.dev",
       subnet          = data.digitalocean_vpc.spectrum.ip_range,
       branch          = var.github_branch
+      dotoken         = base64encode(data.vault_generic_secret.spectrum.data.token)
+      domain          = "${local.prefix}.fluence.dev"
+      prefix          = local.prefix
     })
   ]
 }
@@ -79,7 +84,7 @@ data "talos_client_configuration" "this" {
   cluster_name         = terraform.workspace
   client_configuration = talos_machine_secrets.this.client_configuration
   endpoints = [
-    local.loadbalancer_dns,
+    "kube.${local.prefix}.fluence.dev"
   ]
 }
 
@@ -112,7 +117,7 @@ resource "cloudflare_record" "cp" {
   type    = "A"
 }
 
-resource "talos_machine_bootstrap" "bootstrap" {
+resource "talos_machine_bootstrap" "this" {
   client_configuration = talos_machine_secrets.this.client_configuration
   endpoint             = digitalocean_droplet.cp["cp-0"].ipv4_address
   node                 = digitalocean_droplet.cp["cp-0"].ipv4_address
@@ -133,4 +138,20 @@ resource "talos_cluster_kubeconfig" "this" {
 #  client_configuration = data.talos_client_configuration.this.client_configuration
 #  control_plane_nodes  = [for droplet in digitalocean_droplet.cp : droplet.ipv4_address]
 #  endpoints            = data.talos_client_configuration.this.endpoints
+#}
+
+#data "http" "talos_health" {
+#  for_each = toset([
+#    "cp-0.${local.prefix}.fluence.dev",
+#    "cp-1.${local.prefix}.fluence.dev",
+#    "cp-2.${local.prefix}.fluence.dev",
+#  ])
+#  url      = "https://${each.key}:6443/version"
+#  insecure = true
+#  retry {
+#    attempts     = 60
+#    min_delay_ms = 5000
+#    max_delay_ms = 5000
+#  }
+#  depends_on = [talos_machine_bootstrap.this]
 #}

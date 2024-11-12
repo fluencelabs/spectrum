@@ -39,3 +39,10 @@ export KUBECONFIG=./kubeconfig
 #### Start using the cluster
 
 https://kubernetes.io/docs/reference/kubectl/quick-reference/
+
+
+## Misc
+### Accessing kubernetes dashboard
+```
+kubectl -n kubernetes-dashboard create token kubernetes-dashboard-admin
+```

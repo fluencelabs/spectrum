@@ -3,4 +3,3 @@ kind: Kustomization
 resources:
   - helm-repository.yml
   - helm-release.yml
-  - serviceaccount.yml
