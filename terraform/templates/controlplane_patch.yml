@@ -185,3 +185,12 @@ cluster:
         type: Opaque
         data:
           token: ${dotoken}
+        ---
+        apiVersion: v1
+        kind: Secret
+        metadata:
+          name: docker-auth
+          namespace: default
+        type: kubernetes.io/dockerconfigjson
+        data:
+          .dockerconfigjson: ${docker}

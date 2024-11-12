@@ -76,6 +76,7 @@ data "talos_machine_configuration" "cp" {
       dotoken         = base64encode(data.vault_generic_secret.spectrum.data.token)
       domain          = "${local.prefix}.fluence.dev"
       prefix          = local.prefix
+      docker = base64encode(local.docker_config_json)
     })
   ]
 }
