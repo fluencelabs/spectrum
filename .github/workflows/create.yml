@@ -13,6 +13,7 @@ jobs:
     if: >
         contains(github.event.pull_request.labels.*.name, 'ephemeral') &&
         !github.event.pull_request.head.repo.fork
+    uses: ./.github/workflows/terraform.yml
     with:
       command: create
       workspace: "spectrum-${{ github.head_ref }}"
