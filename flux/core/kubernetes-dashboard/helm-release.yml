@@ -30,6 +30,8 @@ spec:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/group: Home
           gethomepage.dev/name: kube-dashboard
+          gethomepage.dev/icon: kubernetes.png
+          gethomepage.dev/description: "kubectl -n kubernetes-dashboard create token kubernetes-dashboard-admin"
         issuer: 
           name: letsencrypt
           scope: cluster
