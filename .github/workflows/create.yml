@@ -17,5 +17,6 @@ jobs:
     with:
       command: create
       workspace: "spectrum-${{ github.head_ref }}"
+      branch: ${{ github.event.pull_request.head.ref }}
     secrets:
       PAT: ${{ secrets.FLUENCEBOT_RELEASE_PLEASE_PAT }}
