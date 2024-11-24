@@ -11,7 +11,7 @@ on:
 jobs:
   k8s:
     if: >
-        contains(github.event.pull_request.labels.*.name, 'ephemeral') &&
+        contains(github.event.pull_request.labels.*.name, 'create') &&
         !github.event.pull_request.head.repo.fork
     uses: ./.github/workflows/terraform.yml
     with:
