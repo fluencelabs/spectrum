@@ -81,6 +81,26 @@ jobs:
           WORKSPACE="${WORKSPACE,,}" # Convert to lowercase
           echo "workspace=${WORKSPACE}" >> $GITHUB_OUTPUT
 
+      - name: Find comment
+        if: inputs.command == 'create' || inputs.command == 'reset'
+        uses: peter-evans/find-comment@v3
+        id: comment
+        with:
+          issue-number: "${{ github.event.pull_request.number || github.event.client_payload.pull_request.head.sha }}"
+          comment-author: github-actions[bot]
+          body-includes: "## ephemeral: ${{ steps.sanitize.outputs.workspace }}"
+
+      - name: Add comment
+        if: steps.comment.outputs.comment-id == null
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          comment-id: "${{ steps.comment.outputs.comment-id }}"
+          issue-number: "${{ github.event.pull_request.number || github.event.client_payload.pull_request.head.sha }}"
+          body: |
+            ## ephemeral: ${{ steps.sanitize.outputs.workspace }}
+            Your instance is getting ready. Please wait.
+          edit-mode: replace
+
       - name: Setup terraform
         uses: hashicorp/setup-terraform@v3
 
@@ -111,6 +131,7 @@ jobs:
       - name: Upload Artifacts
         if: inputs.command == 'create' || inputs.command == 'reset'
         uses: actions/upload-artifact@v4
+        id: artifact
         with:
           name: configs
           path: |
@@ -124,3 +145,28 @@ jobs:
           sha: ${{ inputs.sha }}
           token: ${{ secrets.PAT }}
           status: ${{ job.status }}
+
+      - name: Update comment
+        if: inputs.command == 'create' || inputs.command == 'reset'
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          comment-id: "${{ steps.comment.outputs.comment-id }}"
+          issue-number: "${{ github.event.pull_request.number || github.event.client_payload.pull_request.head.sha }}"
+          body: |
+            ## ephemeral: ${{ steps.sanitize.outputs.workspace }}
+            Your ephemeral k8s cluster is ready.
+
+            Visit the dashboard at https://home.${{ steps.sanitize.outputs.workspace }}.fluence.dev
+
+            You can obtain kubeconfig and talos config from this (artifact)[${{ steps.artifact.outputs.artifact-url }}].
+            Download and unarchive the artifact, then run this command to export variables:
+            ```shell
+            [[ -f ./kubeconfig ]] && export KUBECONFIG=$(realpath ./kubeconfig)
+            [[ -f ./talosconfig ]] && export TALOSCONFIG=$(realpath ./talosconfig)
+            ```
+
+            To get the token for kubernetes-dashboard auth run:
+            ```shell
+            kubectl -n kubernetes-dashboard create token kubernetes-dashboard-admin
+            ```
+          edit-mode: replace
