@@ -146,6 +146,15 @@ cluster:
           BRANCH: ${branch}
           PREFIX: ${prefix}
         ---
+        apiVersion: v1
+        kind: Secret
+        metadata:
+          name: terraform-secrets
+          namespace: flux-system
+        type: Opaque
+        data:
+          DOTOKEN: ${dotoken}
+        ---
         apiVersion: source.toolkit.fluxcd.io/v1
         kind: GitRepository
         metadata:
@@ -164,7 +173,7 @@ cluster:
           namespace: flux-system
         spec:
           interval: 1m0s
-          path: "./flux/dev"
+          path: "./flux/clusters/ephemeral"
           prune: true
           sourceRef:
             kind: GitRepository
@@ -176,15 +185,8 @@ cluster:
             substituteFrom:
             - kind: ConfigMap
               name: terraform-config
-        ---
-        apiVersion: v1
-        kind: Secret
-        metadata:
-          name: digitalocean-token
-          namespace: kube-system
-        type: Opaque
-        data:
-          token: ${dotoken}
+            - kind: Secret
+              name: terraform-secrets
         ---
         apiVersion: v1
         kind: Secret
