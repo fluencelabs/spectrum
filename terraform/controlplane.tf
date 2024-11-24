@@ -1,6 +1,6 @@
 locals {
   cp = [
-    for i in range(3) : format("%s-%d", "cp", i)
+    for i in range(1) : format("%s-%d", "cp", i)
   ]
 }
 
@@ -93,7 +93,7 @@ resource "digitalocean_droplet" "cp" {
   for_each = { for index, name in local.cp : name => index }
 
   name      = "${local.prefix}-spectrum-${each.key}"
-  size      = "s-2vcpu-4gb"
+  size      = "s-4vcpu-8gb"
   image     = data.digitalocean_image.talos.id
   region    = "fra1"
   vpc_uuid  = data.digitalocean_vpc.spectrum.id
