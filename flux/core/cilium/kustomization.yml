@@ -6,6 +6,5 @@ resources:
 
 configMapGenerator:
   - name: cilium-values
-    namespace: cilium
     files:
       - values.yml
