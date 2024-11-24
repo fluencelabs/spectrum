@@ -6,5 +6,6 @@ resources:
 
 configMapGenerator:
   - name: cilium-values
+    namespace: kube-system
     files:
       - values.yml
