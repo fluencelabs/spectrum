@@ -20,7 +20,7 @@ spec:
         valueFrom:
           secretKeyRef:
             name: digitalocean-token
-            key: token
+            key: access-token
     txtOwnerId: "${PREFIX}"
     sources:
       - ingress
