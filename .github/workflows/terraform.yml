@@ -141,7 +141,7 @@ jobs:
             ## ephemeral: ${{ steps.sanitize.outputs.workspace }}
             Your ephemeral k8s cluster is ready.
 
-            Visit the dashboard at https://home.${{ steps.sanitize.outputs.workspace }}.fluence.dev
+            Visit the dashboard at https://home.rnd-${{ steps.sanitize.outputs.workspace }}.fluence.dev
 
             You can obtain kubeconfig and talos config from this [artifact](${{ steps.artifact.outputs.artifact-url }}).
             Download and unarchive the artifact, then run this command to export variables:
