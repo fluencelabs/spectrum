@@ -17,6 +17,9 @@ spec:
     image:
       repository: ghcr.io/gethomepage/homepage
       tag: v0.9.12
+    serviceAccount:
+      create: true
+      name: homepage
     enableRbac: true
     ingress:
       main:

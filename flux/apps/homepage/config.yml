@@ -6,9 +6,12 @@ metadata:
 data:
   bookmarks.yaml: |
     ---
-    - Github:
-        - abbr: GH
-          href: https://github.com/
+    - Developer:
+      - Github:
+          - abbr: GH
+            href: https://github.com/
+  services.yaml: |
+    ---
   widgets.yaml: |
     ---
     - search:
