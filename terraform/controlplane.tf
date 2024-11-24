@@ -144,8 +144,6 @@ data "talos_cluster_health" "health" {
  data "http" "talos_health" {
    for_each = toset([
      "cp-0.${local.prefix}.fluence.dev",
-     "cp-1.${local.prefix}.fluence.dev",
-     "cp-2.${local.prefix}.fluence.dev",
    ])
    url      = "https://${each.key}:6443/version"
    insecure = true
