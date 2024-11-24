@@ -16,10 +16,6 @@ on:
         required: false
         type: string
         default: "main"
-      sha:
-        description: "Last commit in the branch"
-        required: false
-        type: string
     secrets:
       PAT:
         description: "Used in Flux to clone the repo"
@@ -41,14 +37,6 @@ jobs:
       TF_VAR_github_branch: ${{ inputs.branch }}
 
     steps:
-      - name: Set latest commit status as pending
-        if: inputs.sha
-        uses: myrotvorets/set-commit-status-action@v2.0.1
-        with:
-          sha: ${{ inputs.sha }}
-          token: ${{ secrets.PAT }}
-          status: pending
-
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -138,14 +126,6 @@ jobs:
           path: |
             terraform/kubeconfig
             terraform/talosconfig
-
-      - name: Set latest commit status as ${{ job.status }}
-        uses: myrotvorets/set-commit-status-action@master
-        if: inputs.sha && always()
-        with:
-          sha: ${{ inputs.sha }}
-          token: ${{ secrets.PAT }}
-          status: ${{ job.status }}
 
       - name: Update comment
         if: inputs.command == 'create' || inputs.command == 'reset'
