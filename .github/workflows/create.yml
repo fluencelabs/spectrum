@@ -1,0 +1,22 @@
+name: "create"
+
+on:
+  pull_request:
+    types:
+      - "labeled"
+      - "synchronize"
+      - "opened"
+      - "reopened"
+
+jobs:
+  k8s:
+    if: >
+        contains(github.event.pull_request.labels.*.name, 'create') &&
+        !github.event.pull_request.head.repo.fork
+    uses: ./.github/workflows/terraform.yml
+    with:
+      command: create
+      workspace: "spectrum-${{ github.head_ref }}"
+      branch: ${{ github.event.pull_request.head.ref }}
+    secrets:
+      PAT: ${{ secrets.FLUENCEBOT_RELEASE_PLEASE_PAT }}

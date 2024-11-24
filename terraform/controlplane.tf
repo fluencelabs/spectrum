@@ -1,6 +1,6 @@
 locals {
   cp = [
-    for i in range(3) : format("%s-%d", "cp", i)
+    for i in range(1) : format("%s-%d", "cp", i)
   ]
 }
 
@@ -76,7 +76,7 @@ data "talos_machine_configuration" "cp" {
       dotoken         = base64encode(data.vault_generic_secret.spectrum.data.token)
       domain          = "${local.prefix}.fluence.dev"
       prefix          = local.prefix
-      docker = base64encode(local.docker_config_json)
+      docker          = base64encode(local.docker_config_json)
     })
   ]
 }
@@ -93,7 +93,7 @@ resource "digitalocean_droplet" "cp" {
   for_each = { for index, name in local.cp : name => index }
 
   name      = "${local.prefix}-spectrum-${each.key}"
-  size      = "s-2vcpu-4gb"
+  size      = "s-4vcpu-8gb"
   image     = data.digitalocean_image.talos.id
   region    = "fra1"
   vpc_uuid  = data.digitalocean_vpc.spectrum.id
@@ -135,17 +135,15 @@ resource "talos_cluster_kubeconfig" "this" {
   node                 = digitalocean_droplet.cp["cp-0"].ipv4_address
 }
 
-#data "talos_cluster_health" "health" {
-#  client_configuration = data.talos_client_configuration.this.client_configuration
-#  control_plane_nodes  = [for droplet in digitalocean_droplet.cp : droplet.ipv4_address]
-#  endpoints            = data.talos_client_configuration.this.endpoints
-#}
+# data "talos_cluster_health" "health" {
+#   client_configuration = data.talos_client_configuration.this.client_configuration
+#   control_plane_nodes  = [for droplet in digitalocean_droplet.cp : droplet.ipv4_address]
+#   endpoints            = data.talos_client_configuration.this.endpoints
+# }
 
 data "http" "talos_health" {
   for_each = toset([
     "cp-0.${local.prefix}.fluence.dev",
-    "cp-1.${local.prefix}.fluence.dev",
-    "cp-2.${local.prefix}.fluence.dev",
   ])
   url      = "https://${each.key}:6443/version"
   insecure = true

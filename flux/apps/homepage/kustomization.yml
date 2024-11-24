@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ./helm-repository.yml
+  - ./helm-release.yml
+
+configMapGenerator:
+  - name: homepage-values
+    namespace: default
+    files:
+      - ./configs/bookmarks.yaml
+      - ./configs/docker.yaml
+      - ./configs/kubernetes.yaml
+      - ./configs/services.yaml
+      - ./configs/settings.yaml
+      - ./configs/widgets.yaml
+
+configurations:
+  - kustomize-config.yml
