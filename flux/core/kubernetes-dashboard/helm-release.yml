@@ -26,6 +26,10 @@ spec:
         hosts:
           - dashboard.${DOMAIN}
         ingressClassName: nginx
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: Main
+          gethomepage.dev/name: kube-dashboard
         issuer: 
           name: letsencrypt
           scope: cluster
