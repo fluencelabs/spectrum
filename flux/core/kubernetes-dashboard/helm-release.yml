@@ -28,7 +28,7 @@ spec:
         ingressClassName: nginx
         annotations:
           gethomepage.dev/enabled: "true"
-          gethomepage.dev/group: Main
+          gethomepage.dev/group: Home
           gethomepage.dev/name: kube-dashboard
         issuer: 
           name: letsencrypt
