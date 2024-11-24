@@ -29,5 +29,5 @@ spec:
     - name: cert-manager
   postBuild:
     substituteFrom:
-    - kind: Secret
+    - kind: ConfigMap
       name: terraform-config
