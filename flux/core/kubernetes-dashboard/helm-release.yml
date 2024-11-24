@@ -28,10 +28,9 @@ spec:
         ingressClassName: nginx
         annotations:
           gethomepage.dev/enabled: "true"
-          gethomepage.dev/group: Home
           gethomepage.dev/name: kube-dashboard
           gethomepage.dev/icon: kubernetes.png
-          gethomepage.dev/description: "kubectl -n kubernetes-dashboard create token kubernetes-dashboard-admin"
+          gethomepage.dev/pod-selector: "app.kubernetes.io/name=kubernetes-dashboard-web"
         issuer: 
           name: letsencrypt
           scope: cluster
