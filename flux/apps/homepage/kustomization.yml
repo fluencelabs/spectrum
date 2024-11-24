@@ -8,7 +8,12 @@ configMapGenerator:
   - name: homepage-values
     namespace: default
     files:
-      - ./config.yml
+      - ./configs/bookmarks.yaml
+      - ./configs/docker.yaml
+      - ./configs/kubernetes.yaml
+      - ./configs/services.yaml
+      - ./configs/settings.yaml
+      - ./configs/widgets.yaml
 
 configurations:
   - kustomize-config.yml
