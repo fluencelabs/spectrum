@@ -42,19 +42,6 @@ cgroup:
 
 hubble:
   enabled: true
-  metrics:
-    enabled:
-      - dns:query
-      - drop
-      - tcp
-      - flow
-      - port-distribution
-      - icmp
-      - http
-    serviceMonitor:
-      enabled: true
-    dashboards:
-      enabled: true
   relay:
     enabled: true
     rollOutPods: true
