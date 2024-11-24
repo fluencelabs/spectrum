@@ -88,7 +88,6 @@ jobs:
         with:
           token: ${{ secrets.PAT }}
           issue-number: "${{ github.event.pull_request.number }}"
-          comment-author: fluencebot
           body-includes: "## ephemeral: ${{ steps.sanitize.outputs.workspace }}"
 
       - name: Add comment
@@ -98,7 +97,6 @@ jobs:
           comment-id: "${{ steps.comment.outputs.comment-id }}"
           token: ${{ secrets.PAT }}
           issue-number: "${{ github.event.pull_request.number }}"
-          comment-author: fluencebot
           body: |
             ## ephemeral: ${{ steps.sanitize.outputs.workspace }}
             Your instance is getting ready. Please wait.
@@ -156,7 +154,6 @@ jobs:
           comment-id: "${{ steps.comment.outputs.comment-id }}"
           token: ${{ secrets.PAT }}
           issue-number: "${{ github.event.pull_request.number }}"
-          comment-author: fluencebot
           body: |
             ## ephemeral: ${{ steps.sanitize.outputs.workspace }}
             Your ephemeral k8s cluster is ready.
