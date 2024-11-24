@@ -20,16 +20,14 @@ spec:
     rbac:
       create: true
     replicas: 1
-    {{- if .Values.DOMAIN }}
     app:
       ingress:
-        enabled: true
+        enabled: ${DOMAIN:+true}
         hosts:
-          - dashboard.{{ .Values.DOMAIN }}
+          - dashboard.${DOMAIN}
         ingressClassName: nginx
         issuer: 
           name: letsencrypt
           scope: cluster
         tls:
           enabled: true
-    {{- end }}
