@@ -56,7 +56,7 @@ cgroup:
       dashboards:
         enabled: true
     relay:
-      enabled: false
+      enabled: true
       rollOutPods: true
     ui:
       enabled: ${DOMAIN:+true}
