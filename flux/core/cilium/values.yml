@@ -39,3 +39,38 @@ cgroup:
   autoMount:
     enabled: false
   hostRoot: /sys/fs/cgroup
+
+  hubble:
+    enabled: ${DOMAIN:+true}
+    metrics:
+      enabled:
+        - dns:query
+        - drop
+        - tcp
+        - flow
+        - port-distribution
+        - icmp
+        - http
+      serviceMonitor:
+        enabled: true
+      dashboards:
+        enabled: true
+    relay:
+      enabled: false
+      rollOutPods: true
+    ui:
+      enabled: ${DOMAIN:+true}
+      rollOutPods: true
+      ingress:
+        enabled: true
+        className: ingress
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: Observability
+          gethomepage.dev/icon: cilium.png
+          gethomepage.dev/name: Hubble
+        hosts:
+          - &host "hubble.${DOMAIN}"
+        tls:
+          - hosts:
+              - *host
