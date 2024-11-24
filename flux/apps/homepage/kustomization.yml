@@ -4,3 +4,12 @@ resources:
   - ./config.yml
   - ./helm-repository.yml
   - ./helm-release.yml
+
+configMapGenerator:
+  - name: homepage-values
+    namespace: default
+    files:
+      - ./values.yml
+
+configurations:
+  - kustomize-config.yml
