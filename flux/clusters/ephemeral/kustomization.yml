@@ -7,3 +7,4 @@ resources:
   - ../../apps/external-dns
   - ../../apps/ingress-nginx
   - ../../apps/cert-manager
+  - ../../apps/homepage
