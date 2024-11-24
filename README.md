@@ -12,20 +12,7 @@
 
 #### Create a cluster
 
-Create a PR with changes and add a comment to PR:
-
-```
-/create
-```
-
-This will trigger the workflow that will setup talos cluster from you PR.
-Comment
-
-```
-/help
-```
-
-to see all available commands.
+Create a PR with changes and add a a label `create` to PR.
 
 #### Download and export kubeconfig
 
@@ -40,9 +27,10 @@ export KUBECONFIG=./kubeconfig
 
 https://kubernetes.io/docs/reference/kubectl/quick-reference/
 
-
 ## Misc
+
 ### Accessing kubernetes dashboard
+
 ```
 kubectl -n kubernetes-dashboard create token kubernetes-dashboard-admin
 ```
