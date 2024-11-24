@@ -21,6 +21,9 @@ on:
         description: "Used in Flux to clone the repo"
         required: true
 
+concurrency:
+  group: "${{ github.workflow }}-${{ github.ref }}"
+
 jobs:
   terraform:
     runs-on: ubuntu-latest
