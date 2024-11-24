@@ -17,10 +17,7 @@ spec:
   values:
     env:
       - name: DO_TOKEN
-        valueFrom:
-          secretKeyRef:
-            name: digitalocean-token
-            key: token
+        value: "${DOTOKEN}"
     txtOwnerId: "${PREFIX}"
     sources:
       - ingress
