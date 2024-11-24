@@ -9,3 +9,6 @@ configMapGenerator:
     namespace: kube-system
     files:
       - values.yaml=./values.yml
+
+configurations:
+  - kustomize-config.yml
