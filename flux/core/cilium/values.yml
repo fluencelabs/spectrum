@@ -41,7 +41,7 @@ cgroup:
   hostRoot: /sys/fs/cgroup
 
 hubble:
-  enabled: ${DOMAIN:+true}
+  enabled: true
   metrics:
     enabled:
       - dns:query
@@ -59,7 +59,7 @@ hubble:
     enabled: true
     rollOutPods: true
   ui:
-    enabled: ${DOMAIN:+true}
+    enabled: true
     rollOutPods: true
     ingress:
       enabled: true
