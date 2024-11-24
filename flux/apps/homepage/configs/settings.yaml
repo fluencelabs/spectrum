@@ -1,7 +1,6 @@
 title: Spectrum Dashboard
 favicon: https://kubernetes.io/images/favicon.png
 theme: dark
-color: blue
 target: _self
 headerStyle: clean
 layout:

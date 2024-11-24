@@ -1,4 +1,4 @@
 - search:
-    provider: [google]
+    provider: [duckduckgo]
     focus: false
     target: _blank
