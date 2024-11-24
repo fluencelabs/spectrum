@@ -145,14 +145,6 @@ cluster:
           LOADBALANCER_IP: ${loadbalancerip}
           BRANCH: ${branch}
           PREFIX: ${prefix}
-        ---
-        apiVersion: v1
-        kind: Secret
-        metadata:
-          name: terraform-secrets
-          namespace: flux-system
-        type: Opaque
-        data:
           DOTOKEN: ${dotoken}
         ---
         apiVersion: source.toolkit.fluxcd.io/v1
@@ -185,8 +177,6 @@ cluster:
             substituteFrom:
             - kind: ConfigMap
               name: terraform-config
-            - kind: Secret
-              name: terraform-secrets
         ---
         apiVersion: v1
         kind: Secret

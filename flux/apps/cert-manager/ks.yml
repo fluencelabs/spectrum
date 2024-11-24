@@ -30,4 +30,4 @@ spec:
   postBuild:
     substituteFrom:
     - kind: Secret
-      name: terraform-secrets
+      name: terraform-config
