@@ -42,6 +42,8 @@ spec:
           - Github:
               - href: https://github.com/fluencelabs/spectrum/tree/${BRANCH}
                 description: "Spectrum config"
+                icon: github.png
+          - Github:
               - abbr: PR
                 href: ${PR_URL}
                 description: "PR that triggered cluster creation"
