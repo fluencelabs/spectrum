@@ -1,4 +1,5 @@
 - Spectrum:
   - Github:
-      - abbr: GH
-        href: https://github.com/fluencelabs/spectrum
+      - href: https://github.com/fluencelabs/spectrum/tree/{BRANCH}
+      - abbr: PR
+        href: ${PR_LINK}

@@ -146,6 +146,7 @@ cluster:
           BRANCH: ${branch}
           PREFIX: ${prefix}
           DOTOKEN: ${dotoken}
+          PR_URL: ${pr_url}
         ---
         apiVersion: source.toolkit.fluxcd.io/v1
         kind: GitRepository

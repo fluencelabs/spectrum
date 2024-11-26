@@ -77,6 +77,7 @@ data "talos_machine_configuration" "cp" {
       domain          = "${local.prefix}.fluence.dev"
       prefix          = local.prefix
       docker          = base64encode(local.docker_config_json)
+      pr_url          = var.pr_url
     })
   ]
 }
