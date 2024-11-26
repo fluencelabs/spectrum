@@ -28,7 +28,7 @@ spec:
           secretName: oauth2-tls
     extraArgs:
       provider: oidc
-      oidc-issuer-url: https://${AUTH0_DOMAIN}
+      oidc-issuer-url: https://${AUTH0_DOMAIN}/
       cookie-domain: .${DOMAIN}
       whitelist-domain: .${DOMAIN}
       client-id: "${AUTH0_CLIENT_ID}"
