@@ -43,7 +43,7 @@ spec:
               - href: https://github.com/fluencelabs/spectrum/tree/${BRANCH}
                 description: "Spectrum config"
               - abbr: PR
-                href: ${PR_LINK}
+                href: ${PR_URL}
                 description: "PR that triggered cluster creation"
 
       kubernetes:
@@ -66,3 +66,5 @@ spec:
             provider: [duckduckgo]
             focus: false
             target: _blank
+
+      services: null
