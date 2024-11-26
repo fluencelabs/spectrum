@@ -35,7 +35,7 @@ spec:
       client-secret: "${AUTH0_CLIENT_SECRET}"
       cookie-secret: "${AUTH0_COOKIE}"
       set-authorization-header: true
-      whitelist-domain: .${DOMAIN}
+      whitelist-domains: .${DOMAIN}
       email-domain: "*"
       pass-access-token: true
       reverse-proxy: true
