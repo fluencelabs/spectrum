@@ -17,6 +17,10 @@ terraform {
     talos = {
       source = "siderolabs/talos"
     }
+    auth0 = {
+      source  = "auth0/auth0"
+      version = "~> 1"
+    }
   }
 }
 
@@ -27,3 +31,5 @@ data "cloudflare_zone" "fluence_dev" {
 provider "vault" {
   address = "https://vault.fluence.dev"
 }
+
+provider "auth0" {}
