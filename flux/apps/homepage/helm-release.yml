@@ -37,4 +37,36 @@ spec:
               - *host
             secretName: homepage-tls
     config:
-      useExistingConfigMap: homepage-values
+      bookmarks:
+        - Spectrum:
+          - Github:
+              - href: https://github.com/fluencelabs/spectrum/tree/${BRANCH}
+                description: "Spectrum config"
+                icon: github.png
+          - Github:
+              - abbr: PR
+                href: ${PR_URL}
+                description: "PR that triggered cluster creation"
+
+      kubernetes:
+        mode: cluster
+
+      settings:
+        title: Spectrum Dashboard
+        favicon: https://kubernetes.io/images/favicon.png
+        theme: dark
+        color: slate
+        target: _self
+        headerStyle: clean
+        layout:
+          Home:
+            style: row
+            columns: 4
+
+      widgets:
+        - search:
+            provider: [duckduckgo]
+            focus: false
+            target: _blank
+
+      services: null

@@ -26,3 +26,4 @@ spec:
       - ingress
     policy: sync
     provider: digitalocean
+    interval: "10s"

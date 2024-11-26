@@ -15,4 +15,4 @@ spec:
           digitalocean:
             tokenSecretRef:
               name: digitalocean-token
-              key: token
+              key: access-token
