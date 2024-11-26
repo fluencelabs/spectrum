@@ -34,3 +34,5 @@ spec:
       client-id: "${AUTH0_CLIENT_ID}"
       client-secret: "${AUTH0_CLIENT_SECRET}"
       cookie-secret: "${AUTH0_COOKIE}"
+      set-authorization-header: true
+      whitelist-domain: .${DOMAIN}
