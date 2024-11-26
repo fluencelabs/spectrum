@@ -39,4 +39,4 @@ spec:
       email-domain: "*"
       pass-access-token: true
       reverse-proxy: true
-      code_challenge_method: S256
+      code-challenge-method: S256
