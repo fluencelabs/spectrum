@@ -36,3 +36,4 @@ spec:
       cookie-secret: "${AUTH0_COOKIE}"
       set-authorization-header: true
       whitelist-domain: .${DOMAIN}
+      email-domain: "*"
