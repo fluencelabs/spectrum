@@ -129,11 +129,20 @@ jobs:
             terraform/kubeconfig
             terraform/talosconfig
 
+      - name: Find comment
+        if: inputs.command == 'create' || inputs.command == 'reset'
+        uses: peter-evans/find-comment@v3
+        id: comment-update
+        with:
+          token: ${{ secrets.PAT }}
+          issue-number: "${{ github.event.pull_request.number }}"
+          body-includes: "## ephemeral: ${{ steps.sanitize.outputs.workspace }}"
+
       - name: Update comment
         if: inputs.command == 'create' || inputs.command == 'reset'
         uses: peter-evans/create-or-update-comment@v3
         with:
-          comment-id: "${{ steps.comment.outputs.comment-id }}"
+          comment-id: "${{ steps.comment-update.outputs.comment-id }}"
           token: ${{ secrets.PAT }}
           issue-number: "${{ github.event.pull_request.number }}"
           body: |
