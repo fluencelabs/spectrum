@@ -1,5 +1,5 @@
 locals {
-  prefix           = "rnd-${terraform.workspace}"
+  prefix           = terraform.workspace
   loadbalancer_dns = "kube.${local.prefix}.fluence.dev"
 
   docker_config_json = jsonencode({

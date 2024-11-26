@@ -5,7 +5,7 @@ locals {
 }
 
 resource "digitalocean_loadbalancer" "cp" {
-  name     = "${local.prefix}-controlplane"
+  name     = "rnd-${local.prefix}-controlplane"
   region   = "fra1"
   vpc_uuid = data.digitalocean_vpc.spectrum.id
 
@@ -92,7 +92,7 @@ data "talos_client_configuration" "this" {
 resource "digitalocean_droplet" "cp" {
   for_each = { for index, name in local.cp : name => index }
 
-  name      = "${local.prefix}-spectrum-${each.key}"
+  name      = "rnd-${local.prefix}-spectrum-${each.key}"
   size      = "s-4vcpu-8gb"
   image     = data.digitalocean_image.talos.id
   region    = "fra1"
@@ -122,6 +122,9 @@ resource "talos_machine_bootstrap" "this" {
   client_configuration = talos_machine_secrets.this.client_configuration
   endpoint             = digitalocean_droplet.cp["cp-0"].ipv4_address
   node                 = digitalocean_droplet.cp["cp-0"].ipv4_address
+  timeouts = {
+    create = "3m"
+  }
 
   lifecycle {
     replace_triggered_by = [
@@ -133,6 +136,9 @@ resource "talos_machine_bootstrap" "this" {
 resource "talos_cluster_kubeconfig" "this" {
   client_configuration = talos_machine_secrets.this.client_configuration
   node                 = digitalocean_droplet.cp["cp-0"].ipv4_address
+  timeouts = {
+    create = "3m"
+  }
 }
 
 # data "talos_cluster_health" "health" {
