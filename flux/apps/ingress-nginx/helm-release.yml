@@ -27,16 +27,3 @@ spec:
           http: 30100
           https: 30101
         externalTrafficPolicy: Local
-    ingress:
-      enabled: true
-      hosts:
-        - kube.${DOMAIN}
-      ingressClassName: nginx
-      useDefaultAnnotations: true
-      pathType: ImplementationSpecific
-      path: /
-      issuer:
-        name: letsencrypt
-        scope: cluster
-      tls:
-        enabled: true
