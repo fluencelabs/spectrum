@@ -21,9 +21,6 @@ on:
         description: "Used in Flux to clone the repo"
         required: true
 
-concurrency:
-  group: "${{ github.workflow }}-${{ github.ref }}"
-
 jobs:
   terraform:
     runs-on: ubuntu-latest
@@ -104,6 +101,7 @@ jobs:
           terraform workspace select -or-create=true ${{ steps.sanitize.outputs.workspace }}
 
       - name: Run terraform command
+        if: always()
         run: |
           case ${{ inputs.command }} in
           create)
