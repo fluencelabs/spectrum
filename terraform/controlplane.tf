@@ -76,6 +76,7 @@ data "talos_machine_configuration" "cp" {
       loadbalancerip  = digitalocean_loadbalancer.cp.ip
       hostdns         = "${each.key}.${local.prefix}.fluence.dev",
       subnet          = data.digitalocean_vpc.spectrum.ip_range,
+      auth0_domain    = "dev-v25diaaxc686kb0j.us.auth0.com"
 
       docker              = base64encode(local.docker_config_json)
       dotoken             = base64encode(data.vault_generic_secret.spectrum.data.token)

@@ -6,5 +6,6 @@ resources:
   - ../../core/kubevirt
   - ../../apps/external-dns
   - ../../apps/ingress-nginx
+  - ../../apps/oauth2-proxy
   - ../../apps/cert-manager
   - ../../apps/homepage
