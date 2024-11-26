@@ -142,22 +142,8 @@ resource "talos_cluster_kubeconfig" "this" {
   }
 }
 
-# data "talos_cluster_health" "health" {
-#   client_configuration = data.talos_client_configuration.this.client_configuration
-#   control_plane_nodes  = [for droplet in digitalocean_droplet.cp : droplet.ipv4_address]
-#   endpoints            = data.talos_client_configuration.this.endpoints
-# }
-
-data "http" "talos_health" {
-  for_each = toset([
-    "cp-0.${local.prefix}.fluence.dev",
-  ])
-  url      = "https://${each.key}:6443/version"
-  insecure = true
-  retry {
-    attempts     = 60
-    min_delay_ms = 5000
-    max_delay_ms = 5000
-  }
-  depends_on = [talos_machine_bootstrap.this]
+data "talos_cluster_health" "health" {
+  client_configuration = data.talos_client_configuration.this.client_configuration
+  control_plane_nodes  = [for droplet in digitalocean_droplet.cp : droplet.ipv4_address_private]
+  endpoints            = data.talos_client_configuration.this.endpoints
 }
