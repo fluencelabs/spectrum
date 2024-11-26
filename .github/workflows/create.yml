@@ -16,7 +16,7 @@ jobs:
     uses: ./.github/workflows/terraform.yml
     with:
       command: create
-      workspace: "spectrum-${{ github.head_ref }}"
+      workspace: "spectrum-${{ github.event.number }}"
       branch: ${{ github.event.pull_request.head.ref }}
     secrets:
       PAT: ${{ secrets.FLUENCEBOT_RELEASE_PLEASE_PAT }}
