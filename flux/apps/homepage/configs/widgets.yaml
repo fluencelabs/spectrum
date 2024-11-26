@@ -1,4 +1,0 @@
-- search:
-    provider: [duckduckgo]
-    focus: false
-    target: _blank

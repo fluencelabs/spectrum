@@ -1,7 +1,0 @@
-- Spectrum:
-  - Github:
-      - href: https://github.com/fluencelabs/spectrum/tree/{BRANCH}
-        description: "Spectrum config"
-      - abbr: PR
-        href: ${PR_LINK}
-        description: "PR that triggered cluster creation"
