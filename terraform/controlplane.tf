@@ -80,9 +80,9 @@ data "talos_machine_configuration" "cp" {
 
       docker              = base64encode(local.docker_config_json)
       dotoken             = base64encode(data.vault_generic_secret.spectrum.data.token)
-      auth0_client_id     = base64encode(auth0_client.spectrum.client_id)
-      auth0_client_secret = base64encode(data.auth0_client.spectrum.client_secret)
-      auth0_cookie        = base64encode(random_password.auth0_cookie.result)
+      auth0_client_id     = auth0_client.spectrum.client_id
+      auth0_client_secret = data.auth0_client.spectrum.client_secret
+      auth0_cookie        = random_password.auth0_cookie.result
     })
   ]
 }

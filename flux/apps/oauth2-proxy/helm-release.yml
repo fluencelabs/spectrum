@@ -31,7 +31,6 @@ spec:
       oidc-issuer-url: https://${AUTH0_DOMAIN}
       cookie-domain: .${DOMAIN}
       whitelist-domain: .${DOMAIN}
-  valuesFrom:
-  - kind: Secret
-    name: auth0
-    optional: false
+      client-id: "${AUTH0_CLIENT_ID}"
+      client-secret: "${AUTH0_CLIENT_SECRET}"
+      cookie-secret: "${AUTH0_COOKIE}"
