@@ -1,0 +1,57 @@
+operator:
+  replicas: 1
+  rollOutPods: true
+
+rollOutCiliumPods: true
+envoy.rollOutPods: true
+
+k8sServiceHost: localhost
+k8sServicePort: 7445
+
+ipam:
+  mode: kubernetes
+
+kubeProxyReplacement: true
+
+securityContext:
+  capabilities:
+    ciliumAgent:
+      - CHOWN
+      - KILL
+      - NET_ADMIN
+      - NET_RAW
+      - IPC_LOCK
+      - SYS_ADMIN
+      - SYS_RESOURCE
+      - DAC_OVERRIDE
+      - FOWNER
+      - SETGID
+      - SETUID
+    cleanCiliumState:
+      - NET_ADMIN
+      - SYS_ADMIN
+      - SYS_RESOURCE
+
+cgroup:
+  autoMount:
+    enabled: false
+  hostRoot: /sys/fs/cgroup
+
+hubble:
+  enabled: ${hubble_enabled}
+  relay:
+    enabled: true
+    rollOutPods: true
+  ui:
+    enabled: true
+    rollOutPods: true
+
+%{ if l2_enabled == "true" }
+l2announcements:
+  enabled: ${l2_enabled}
+
+externalIPs:
+  enabled: ${l2_enabled}
+
+devices: ${devices}
+%{ endif }

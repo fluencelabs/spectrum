@@ -27,7 +27,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: terraform
+        working-directory: ephemeral
 
     permissions:
       contents: read
