@@ -1,5 +1,5 @@
 resource "auth0_client" "spectrum" {
-  name            = "spectum-${local.prefix}"
+  name            = "${local.prefix}"
   app_type        = "regular_web"
   callbacks       = ["https://auth.${local.prefix}.fluence.dev/oauth2/callback"]
   oidc_conformant = true
