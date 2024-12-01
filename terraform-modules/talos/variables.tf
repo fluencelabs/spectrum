@@ -6,10 +6,6 @@ variable "cluster_name" {
   type = string
 }
 
-variable "components" {
-  type = list(string)
-}
-
 variable "network" {
   type = string
 }
