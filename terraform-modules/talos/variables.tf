@@ -5,3 +5,8 @@ variable "public_ip" {
 variable "cluster_name" {
   type = string
 }
+
+variable "config_patches" {
+  type    = list(string)
+  default = []
+}
