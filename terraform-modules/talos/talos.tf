@@ -40,7 +40,8 @@ resource "talos_cluster_kubeconfig" "this" {
 }
 
 data "talos_cluster_health" "this" {
-  client_configuration = data.talos_client_configuration.this.client_configuration
-  control_plane_nodes  = [var.public_ip]
-  endpoints            = data.talos_client_configuration.this.endpoints
+  client_configuration  = data.talos_client_configuration.this.client_configuration
+  control_plane_nodes   = [var.public_ip]
+  endpoints             = data.talos_client_configuration.this.endpoints
+  skip_kubernetes_check = true
 }
