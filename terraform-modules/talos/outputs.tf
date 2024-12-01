@@ -25,3 +25,7 @@ output "talosconfig" {
   }
   sensitive = true
 }
+
+output "machine_config" {
+  value = talos_machine_configuration.this.machine_configuration
+}
