@@ -132,8 +132,8 @@ jobs:
         with:
           name: configs
           path: |
-            terraform/kubeconfig
-            terraform/talosconfig
+            ephemeral/kubeconfig
+            ephemeral/talosconfig
 
       - name: Find comment
         if: inputs.command == 'create' || inputs.command == 'reset'
