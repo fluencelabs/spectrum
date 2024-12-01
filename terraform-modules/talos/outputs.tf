@@ -27,5 +27,5 @@ output "talosconfig" {
 }
 
 output "machine_config" {
-  value = talos_machine_configuration.this.machine_configuration
+  value = talos_machine_configuration_apply.this.machine_configuration
 }
