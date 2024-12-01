@@ -68,16 +68,10 @@ data "talos_machine_configuration" "cp" {
   talos_version    = "v1.8"
   config_patches = [
     templatefile("${path.module}/templates/controlplane_patch.yml", {
+      docker          = base64encode(local.docker_config_json)
       loadbalancerdns = "kube.${local.prefix}.fluence.dev"
-      loadbalancerip  = digitalocean_loadbalancer.cp.ip
       hostdns         = "${each.key}.${local.prefix}.fluence.dev",
       subnet          = data.digitalocean_vpc.spectrum.ip_range,
-      branch          = var.github_branch
-      dotoken         = base64encode(data.vault_generic_secret.spectrum.data.token)
-      domain          = "${local.prefix}.fluence.dev"
-      prefix          = local.prefix
-      docker          = base64encode(local.docker_config_json)
-      pr_url          = var.github_pr_url
     })
   ]
 }
@@ -142,8 +136,3 @@ resource "talos_cluster_kubeconfig" "this" {
   }
 }
 
-data "talos_cluster_health" "health" {
-  client_configuration = data.talos_client_configuration.this.client_configuration
-  control_plane_nodes  = [for droplet in digitalocean_droplet.cp : droplet.ipv4_address_private]
-  endpoints            = data.talos_client_configuration.this.endpoints
-}

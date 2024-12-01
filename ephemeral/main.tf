@@ -32,3 +32,23 @@ data "vault_generic_secret" "spectrum" {
 data "vault_generic_secret" "docker" {
   path = "kv/docker-registry/basicauth/ci"
 }
+
+module "spectrum" {
+  source          = "../terraform-modules/spectrum"
+  kubeconfig_path = local_file.kubeconfig.filename
+  components      = ["kubevirt"]
+  network         = var.github_branch
+  cluster         = "ephemeral"
+  public_ip       = "kube.${local.prefix}.fluence.dev"
+
+  cilium_hubble_enabled = true
+
+  flux_variables = {
+    PR_URL          = var.github_pr_url
+    LOADBALANCER_IP = digitalocean_loadbalancer.cp.ip
+    BRANCH          = var.github_branch
+    DOTOKEN         = base64encode(data.vault_generic_secret.spectrum.data.token)
+    DOMAIN          = "${local.prefix}.fluence.dev"
+    PREFIX          = local.prefix
+  }
+}
