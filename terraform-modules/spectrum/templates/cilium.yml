@@ -55,6 +55,6 @@ externalIPs:
 
 devices:
   %{ for device in devices }
-  - ${devices}
+  - ${device}
   %{ endfor }
 %{ endif }
