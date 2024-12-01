@@ -1,5 +1,6 @@
 variable "components" {
-  type = list(string)
+  type    = list(string)
+  default = []
 }
 
 variable "network" {
