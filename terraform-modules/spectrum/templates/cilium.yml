@@ -48,10 +48,10 @@ hubble:
 
 %{ if l2_enabled == "true" }
 l2announcements:
-  enabled: ${l2_enabled}
+  enabled: true
 
 externalIPs:
-  enabled: ${l2_enabled}
+  enabled: true
 
 devices: ${devices}
 %{ endif }
