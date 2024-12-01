@@ -17,9 +17,7 @@ resource "talos_machine_configuration_apply" "this" {
   client_configuration        = talos_machine_secrets.this.client_configuration
   machine_configuration_input = data.talos_machine_configuration.this.machine_configuration
   node                        = var.public_ip
-  config_patches = [
-    var.config_patches
-  ]
+  config_patches              = var.config_patches
 }
 
 data "talos_client_configuration" "this" {
