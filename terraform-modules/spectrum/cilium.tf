@@ -10,18 +10,7 @@ resource "null_resource" "validate_l2_config" {
   }
 }
 
-data "http" "health" {
-  url      = "https://${var.public_ip}:6443/version"
-  insecure = true
-  retry {
-    attempts     = 60
-    min_delay_ms = 5000
-    max_delay_ms = 5000
-  }
-}
-
 resource "helm_release" "cilium" {
-  depends_on = [data.http.health]
   name       = "cilium"
   chart      = "cilium"
   repository = "https://helm.cilium.io/"
