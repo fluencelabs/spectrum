@@ -46,7 +46,7 @@ hubble:
     enabled: true
     rollOutPods: true
 
-%{ if l2_enabled == "true" }
+%{ if l2_enabled }
 l2announcements:
   enabled: true
 
