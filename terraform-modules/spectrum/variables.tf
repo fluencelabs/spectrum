@@ -13,10 +13,6 @@ variable "cluster" {
   default = "default"
 }
 
-variable "public_ip" {
-  type = string
-}
-
 variable "cilium_l2_enabled" {
   type    = bool
   default = false

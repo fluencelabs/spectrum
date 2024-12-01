@@ -136,3 +136,13 @@ resource "talos_cluster_kubeconfig" "this" {
   }
 }
 
+data "http" "talos_health" {
+  url      = "https://kube.${local.prefix}.fluence.dev:6443/version"
+  insecure = true
+  retry {
+    attempts     = 60
+    min_delay_ms = 5000
+    max_delay_ms = 5000
+  }
+  depends_on = [talos_machine_bootstrap.this]
+}
