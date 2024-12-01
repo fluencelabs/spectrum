@@ -1,0 +1,18 @@
+machine:
+  time:
+    servers:
+      - time.cloudflare.com
+  install:
+      diskSelector:
+        size: '>= 100GB'
+      image: ghcr.io/siderolabs/installer:v1.8.3
+      bootloader: true
+      wipe: true
+
+cluster:
+  allowSchedulingOnControlPlanes: true
+  network:
+    cni:
+      name: none
+  proxy:
+    disabled: true
