@@ -80,7 +80,7 @@ jobs:
           body-includes: "## ephemeral: ${{ steps.sanitize.outputs.workspace }}"
 
       - name: Add comment
-        if: steps.comment.outputs.comment-id == null
+        if: steps.comment.outputs.comment-id == null && (inputs.command == 'create' || inputs.command == 'reset')
         uses: peter-evans/create-or-update-comment@v3
         with:
           comment-id: "${{ steps.comment.outputs.comment-id }}"
