@@ -35,13 +35,12 @@ data "vault_generic_secret" "docker" {
 
 module "spectrum" {
   depends_on = [
-      data.http.talos_health
+    data.http.talos_health
   ]
   source     = "../terraform-modules/spectrum"
   components = ["kubevirt"]
   network    = var.github_branch
   cluster    = "ephemeral"
-  public_ip  = "kube.${local.prefix}.fluence.dev"
 
   cilium_hubble_enabled = true
 
