@@ -21,7 +21,7 @@ resource "helm_release" "cilium" {
   values = [
     templatefile("${path.module}/templates/cilium.yml", {
       l2_enabled     = var.cilium_l2_enabled,
-      devices        = to_list(var.cilium_devices)
+      devices        = tolist(var.cilium_devices)
       hubble_enabled = var.cilium_hubble_enabled
     })
   ]
