@@ -18,6 +18,9 @@ data "http" "health" {
     min_delay_ms = 5000
     max_delay_ms = 5000
   }
+  lifecycle {
+    ignore_changes = [url]
+  }
 }
 
 resource "helm_release" "cilium" {
