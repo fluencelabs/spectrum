@@ -108,12 +108,14 @@ jobs:
           create)
             terraform apply -auto-approve ;;
           destroy)
-            terraform destroy -auto-approve ;;
-          reset)
             terraform destroy -auto-approve \
               -target module.spectrum.helm_release.flux-sync \
               -target module.spectrum.helm_release.flux \
               -target module.spectrum.helm_release.cilium
+            terraform destroy -auto-approve 
+            terraform workspace delete ${{ steps.sanitize.outputs.workspace }}
+            ;;
+          reset)
             terraform destroy -auto-approve
             terraform apply -auto-approve
           ;;
