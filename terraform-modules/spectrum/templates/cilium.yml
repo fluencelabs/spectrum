@@ -53,5 +53,8 @@ l2announcements:
 externalIPs:
   enabled: true
 
-devices: ${devices}
+devices:
+  %{ for device in devices }
+  - ${devices}
+  %{ endif }
 %{ endif }
