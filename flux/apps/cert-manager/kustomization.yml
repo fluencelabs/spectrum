@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - ks.yml
   - namespace.yml
+  - secret.yml
