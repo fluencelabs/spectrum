@@ -110,16 +110,18 @@ jobs:
             terraform apply -auto-approve
           ;;
           destroy)
-            terraform apply -target local_sensitive_file.kubeconfig -auto-approve
-            terraform destroy -auto-approve \
-              -target module.spectrum.helm_release.flux-sync \
-              -target module.spectrum.helm_release.flux \
-              -target module.spectrum.helm_release.cilium
+            terraform state rm \
+              module.spectrum.helm_release.flux-sync \
+              module.spectrum.helm_release.flux \
+              module.spectrum.helm_release.cilium
             terraform destroy -auto-approve 
             terraform workspace delete ${{ steps.sanitize.outputs.workspace }}
           ;;
           reset)
-            terraform apply -target local_sensitive_file.kubeconfig -auto-approve
+            terraform state rm \
+              module.spectrum.helm_release.flux-sync \
+              module.spectrum.helm_release.flux \
+              module.spectrum.helm_release.cilium
             terraform destroy -auto-approve
             terraform apply -auto-approve
           ;;
