@@ -1,10 +1,10 @@
-resource "local_file" "kubeconfig" {
+resource "local_sensitive_file" "kubeconfig" {
   content         = talos_cluster_kubeconfig.this.kubeconfig_raw
   filename        = "${path.root}/kubeconfig"
   file_permission = "0600"
 }
 
-resource "local_file" "talosconfig" {
+resource "local_sensitive_file" "talosconfig" {
   content         = data.talos_client_configuration.this.talos_config
   filename        = "${path.root}/talosconfig"
   file_permission = "0600"
@@ -24,8 +24,4 @@ output "talosconfig" {
     content = local_file.talosconfig.content
   }
   sensitive = true
-}
-
-output "machine_config" {
-  value = talos_machine_configuration_apply.this.machine_configuration
 }
