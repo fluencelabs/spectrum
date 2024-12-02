@@ -5,20 +5,21 @@ gitRepository:
     ref:
       branch: ${network}
 
-kustomizationlist:
-  - spec:
-      interval: "1m0s"
-      path: "./flux/clusters/${cluster}"
-      validation: "client"
-      prune: true
-      %{ if variables != null }
-      postBuild:
-        substitute:
-          %{ for key, value in variables }
-          ${key}: ${value}
-          %{ endfor }
-      %{ endif }
+kustomization:
+  spec:
+    interval: "1m0s"
+    path: "./flux/clusters/${cluster}"
+    validation: "client"
+    prune: true
+    %{ if variables != null }
+    postBuild:
+      substitute:
+        %{ for key, value in variables }
+        ${key}: ${value}
+        %{ endfor }
+    %{ endif }
 
+kustomizationlist:
   - spec:
       interval: 1m0s
       path: "./flux/components/lightmare/app"
