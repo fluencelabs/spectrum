@@ -1,0 +1,32 @@
+machine:
+  kubelet:
+    nodeIP:
+      validSubnets:
+        - ${subnet}
+  certSANs:
+    - ${loadbalancerdns}
+    - ${hostdns}
+  time:
+    servers:
+      - time.cloudflare.com
+  registries:
+    config:
+      docker.fluence.dev:
+        auth:
+          username: ${docker_username}
+          password: ${docker_password}
+
+cluster:
+  allowSchedulingOnControlPlanes: true
+  apiServer:
+    admissionControl:
+      - name: PodSecurity
+        configuration:
+          exemptions:
+            namespaces:
+              - cilium-test # to run cilium connectivity tests
+  network:
+    cni:
+      name: none
+  proxy:
+    disabled: true

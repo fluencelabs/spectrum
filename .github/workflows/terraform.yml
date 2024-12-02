@@ -27,7 +27,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: terraform
+        working-directory: ephemeral
 
     permissions:
       contents: read
@@ -80,7 +80,7 @@ jobs:
           body-includes: "## ephemeral: ${{ steps.sanitize.outputs.workspace }}"
 
       - name: Add comment
-        if: steps.comment.outputs.comment-id == null
+        if: steps.comment.outputs.comment-id == null && (inputs.command == 'create' || inputs.command == 'reset')
         uses: peter-evans/create-or-update-comment@v3
         with:
           comment-id: "${{ steps.comment.outputs.comment-id }}"
@@ -106,10 +106,20 @@ jobs:
         run: |
           case ${{ inputs.command }} in
           create)
-            terraform apply -auto-approve ;;
+            terraform apply -target local_sensitive_file.kubeconfig -auto-approve
+            terraform apply -auto-approve
+          ;;
           destroy)
-            terraform destroy -auto-approve ;;
+            terraform apply -target local_sensitive_file.kubeconfig -auto-approve
+            terraform destroy -auto-approve \
+              -target module.spectrum.helm_release.flux-sync \
+              -target module.spectrum.helm_release.flux \
+              -target module.spectrum.helm_release.cilium
+            terraform destroy -auto-approve 
+            terraform workspace delete ${{ steps.sanitize.outputs.workspace }}
+          ;;
           reset)
+            terraform apply -target local_sensitive_file.kubeconfig -auto-approve
             terraform destroy -auto-approve
             terraform apply -auto-approve
           ;;
@@ -126,8 +136,8 @@ jobs:
         with:
           name: configs
           path: |
-            terraform/kubeconfig
-            terraform/talosconfig
+            ephemeral/kubeconfig
+            ephemeral/talosconfig
 
       - name: Find comment
         if: inputs.command == 'create' || inputs.command == 'reset'

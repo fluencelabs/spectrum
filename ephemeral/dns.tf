@@ -1,7 +1,3 @@
-resource "digitalocean_domain" "spectrum" {
-  name = "${local.prefix}.fluence.dev"
-}
-
 resource "cloudflare_record" "ns" {
   for_each = toset([
     "ns1.digitalocean.com",
@@ -13,4 +9,9 @@ resource "cloudflare_record" "ns" {
   name    = "${local.prefix}.fluence.dev"
   content = each.key
   type    = "NS"
+}
+
+resource "digitalocean_domain" "spectrum" {
+  depends_on = [cloudflare_record.ns]
+  name       = "${local.prefix}.fluence.dev"
 }
