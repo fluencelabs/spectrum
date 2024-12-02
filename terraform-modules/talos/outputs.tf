@@ -12,16 +12,16 @@ resource "local_sensitive_file" "talosconfig" {
 
 output "kubeconfig" {
   value = {
-    path    = local_file.kubeconfig.filename
-    content = local_file.kubeconfig.content
+    path    = local_sensitive_file.kubeconfig.filename
+    content = local_sensitive_file.kubeconfig.content
   }
   sensitive = true
 }
 
 output "talosconfig" {
   value = {
-    path    = local_file.talosconfig.filename
-    content = local_file.talosconfig.content
+    path    = local_sensitive_file.talosconfig.filename
+    content = local_sensitive_file.talosconfig.content
   }
   sensitive = true
 }
