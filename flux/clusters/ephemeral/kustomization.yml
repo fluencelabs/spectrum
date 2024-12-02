@@ -6,4 +6,4 @@ resources:
   - ../../apps/ingress-nginx
   - ../../apps/cert-manager
   - ../../apps/homepage
-  - hubble-ingress
+  - hubble-ingress.yml
