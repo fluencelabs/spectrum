@@ -9,6 +9,12 @@ machine:
   time:
     servers:
       - time.cloudflare.com
+  registries:
+    config:
+      docker.fluence.dev:
+        auth:
+          username: ${docker_username}
+          password: ${docker_password}
 
 cluster:
   allowSchedulingOnControlPlanes: true
@@ -24,14 +30,3 @@ cluster:
       name: none
   proxy:
     disabled: true
-  inlineManifests:
-    - name: fluence
-      contents: |-
-        apiVersion: v1
-        kind: Secret
-        metadata:
-          name: docker-auth
-          namespace: default
-        type: kubernetes.io/dockerconfigjson
-        data:
-          .dockerconfigjson: ${docker}

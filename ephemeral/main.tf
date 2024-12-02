@@ -1,15 +1,6 @@
 locals {
   prefix           = terraform.workspace
   loadbalancer_dns = "kube.${local.prefix}.fluence.dev"
-
-  docker_config_json = jsonencode({
-    auths = {
-      "docker.fluence.dev" = {
-        username = data.vault_generic_secret.docker.data.username
-        password = data.vault_generic_secret.docker.data.password
-      }
-    }
-  })
 }
 
 resource "tls_private_key" "spectrum" {

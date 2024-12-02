@@ -72,6 +72,8 @@ data "talos_machine_configuration" "cp" {
       loadbalancerdns = "kube.${local.prefix}.fluence.dev"
       hostdns         = "${each.key}.${local.prefix}.fluence.dev",
       subnet          = data.digitalocean_vpc.spectrum.ip_range,
+      docker_username = data.vault_generic_secret.docker.data.username
+      docker_password = data.vault_generic_secret.docker.data.password
     })
   ]
 }
@@ -104,13 +106,14 @@ resource "digitalocean_droplet" "cp" {
   ]
 }
 
-resource "cloudflare_record" "cp" {
+resource "digitalocean_record" "cp" {
   for_each = { for index, name in local.cp : name => index }
 
-  zone_id = data.cloudflare_zone.fluence_dev.zone_id
-  name    = "${each.key}.${local.prefix}.fluence.dev"
-  content = digitalocean_droplet.cp[each.key].ipv4_address
-  type    = "A"
+  name   = each.key
+  value  = digitalocean_droplet.cp[each.key].ipv4_address
+  domain = digitalocean_domain.spectrum.id
+  type   = "A"
+  ttl    = 30
 }
 
 resource "talos_machine_bootstrap" "this" {
