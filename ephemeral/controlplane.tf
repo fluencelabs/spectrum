@@ -68,7 +68,6 @@ data "talos_machine_configuration" "cp" {
   talos_version    = "v1.8"
   config_patches = [
     templatefile("${path.module}/templates/controlplane_patch.yml", {
-      docker          = base64encode(local.docker_config_json)
       loadbalancerdns = "kube.${local.prefix}.fluence.dev"
       hostdns         = "${each.key}.${local.prefix}.fluence.dev",
       subnet          = data.digitalocean_vpc.spectrum.ip_range,
