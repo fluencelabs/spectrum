@@ -1,8 +1,3 @@
-variable "components" {
-  type    = list(string)
-  default = []
-}
-
 variable "network" {
   type    = string
   default = "main"
@@ -31,4 +26,9 @@ variable "cilium_hubble_enabled" {
 variable "flux_variables" {
   type    = map(string)
   default = {}
+}
+
+variable "components" {
+  type    = list(string)
+  default = []
 }
