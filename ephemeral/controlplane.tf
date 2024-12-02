@@ -49,11 +49,12 @@ resource "digitalocean_record" "endpoint" {
 }
 
 resource "digitalocean_droplet" "cp" {
-  name     = "rnd-${local.prefix}-spectrum-cp"
-  size     = "s-4vcpu-8gb"
-  image    = data.digitalocean_image.talos.id
-  region   = "fra1"
-  vpc_uuid = data.digitalocean_vpc.spectrum.id
+  name      = "rnd-${local.prefix}-spectrum-cp"
+  size      = "s-4vcpu-8gb"
+  image     = data.digitalocean_image.talos.id
+  region    = "fra1"
+  vpc_uuid  = data.digitalocean_vpc.spectrum.id
+  user_data = data.talos_machine_configuration.cp.machine_configuration
 
   ssh_keys = [
     digitalocean_ssh_key.spectrum.id
