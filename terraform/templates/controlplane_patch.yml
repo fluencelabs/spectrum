@@ -9,6 +9,12 @@ machine:
   time:
     servers:
       - time.cloudflare.com
+  registries:
+    config:
+      docker.fluence.dev:
+        auth:
+          username: ${docker_username}
+          password: ${docker_password}
 
 cluster:
   allowSchedulingOnControlPlanes: true
@@ -178,12 +184,3 @@ cluster:
             substituteFrom:
             - kind: ConfigMap
               name: terraform-config
-        ---
-        apiVersion: v1
-        kind: Secret
-        metadata:
-          name: docker-auth
-          namespace: default
-        type: kubernetes.io/dockerconfigjson
-        data:
-          .dockerconfigjson: ${docker}
