@@ -111,13 +111,14 @@ resource "digitalocean_droplet" "cp" {
   ]
 }
 
-resource "cloudflare_record" "cp" {
+resource "digitalocean_record" "cp" {
   for_each = { for index, name in local.cp : name => index }
 
-  zone_id = data.cloudflare_zone.fluence_dev.zone_id
-  name    = "${each.key}.${local.prefix}.fluence.dev"
-  content = digitalocean_droplet.cp[each.key].ipv4_address
-  type    = "A"
+  name   = each.key
+  value  = digitalocean_droplet.cp[each.key].ipv4_address
+  domain = digitalocean_domain.spectrum.id
+  type   = "A"
+  ttl    = 30
 }
 
 resource "talos_machine_bootstrap" "this" {
