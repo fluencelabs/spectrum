@@ -5,3 +5,4 @@
 .direnv
 kubeconfig
 talosconfig
+provider_project/*
