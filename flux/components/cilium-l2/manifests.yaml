@@ -14,7 +14,7 @@ spec:
 apiVersion: "cilium.io/v2alpha1"
 kind: CiliumLoadBalancerIPPool
 metadata:
-  name: flunece-l2
+  name: fluence-l2
   namespace: kube-system
 spec:
   serviceSelector:
