@@ -39,7 +39,6 @@ resource "terraform_data" "k3s-gen-kubeconfig" {
     command = <<EOT
         rm -rf ${self.input}.yaml
     EOT
-
   }
 }
 
