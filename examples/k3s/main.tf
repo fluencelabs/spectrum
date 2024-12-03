@@ -16,5 +16,5 @@ provider "helm" {
 
 module "spectrum" {
   depends_on = [module.k3s]
-  source           = "github.com/fluencelabs/spectrum//terraform-modules/spectrum"
+  source     = "github.com/fluencelabs/spectrum//terraform-modules/spectrum"
 }
