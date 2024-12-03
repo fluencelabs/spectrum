@@ -1,0 +1,13 @@
+---
+apiVersion: "cilium.io/v2alpha1"
+kind: CiliumL2AnnouncementPolicy
+metadata:
+  name: fluence-l2
+  namespace: kube-system
+---
+apiVersion: "cilium.io/v2alpha1"
+kind: CiliumLoadBalancerIPPool
+metadata:
+  name: flunce-l2
+  namespace: kube-system
+
