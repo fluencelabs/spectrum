@@ -24,10 +24,3 @@ kustomizationlist:
       interval: 1m0s
       path: "./flux/components/lightmare/app"
       prune: true
-
-  %{ for component in components }
-  - spec:
-      interval: 1m0s
-      path: "./flux/components/${component}/app"
-      prune: true
-  %{ endfor }

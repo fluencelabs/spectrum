@@ -22,8 +22,3 @@ variable "flux_variables" {
   type    = map(string)
   default = {}
 }
-
-variable "components" {
-  type    = list(string)
-  default = []
-}

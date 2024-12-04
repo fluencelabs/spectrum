@@ -30,7 +30,6 @@ module "spectrum" {
     local_sensitive_file.kubeconfig,
   ]
   source     = "../terraform-modules/spectrum"
-  components = ["kubevirt"]
   network    = var.github_branch
   cluster    = "ephemeral"
 

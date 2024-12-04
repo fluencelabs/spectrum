@@ -36,7 +36,6 @@ resource "helm_release" "flux-sync" {
       network    = var.network
       cluster    = var.cluster
       variables  = var.flux_variables
-      components = var.components
     })
   ]
 }
