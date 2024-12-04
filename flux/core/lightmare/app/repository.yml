@@ -6,3 +6,5 @@ metadata:
 spec:
   interval: 5m0s
   url: oci://registry-1.docker.io/fluencelabs/lightmare-chart
+  ref:
+    tag: 0.1.0
