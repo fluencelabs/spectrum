@@ -113,7 +113,7 @@ jobs:
             terraform state rm \
               module.spectrum.helm_release.flux-sync \
               module.spectrum.helm_release.flux \
-              module.spectrum.helm_release.cilium
+              module.spectrum.helm_release.cilium || true
             terraform destroy -auto-approve 
             terraform workspace delete ${{ steps.sanitize.outputs.workspace }}
           ;;
