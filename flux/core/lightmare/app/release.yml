@@ -9,7 +9,7 @@ spec:
     spec:
       chart: lightmare-chart
       sourceRef:
-        kind: OCIRepository
+        kind: HelmRepository
         name: lightmare
         namespace: flux-system
   values:
