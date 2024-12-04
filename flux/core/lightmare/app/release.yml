@@ -8,7 +8,6 @@ spec:
   chart:
     spec:
       chart: lightmare-chart
-      version: 7.10.0
       sourceRef:
         kind: OCIRepository
         name: lightmare
