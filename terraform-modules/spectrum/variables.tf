@@ -8,14 +8,9 @@ variable "cluster" {
   default = "default"
 }
 
-variable "cilium_l2_enabled" {
-  type    = bool
-  default = false
-}
-
-variable "cilium_devices" {
-  type    = list(string)
-  default = []
+variable "cluster_flavour" {
+  type = string
+  default = "talos"
 }
 
 variable "cilium_hubble_enabled" {
@@ -26,9 +21,4 @@ variable "cilium_hubble_enabled" {
 variable "flux_variables" {
   type    = map(string)
   default = {}
-}
-
-variable "components" {
-  type    = list(string)
-  default = []
 }
