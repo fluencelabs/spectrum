@@ -7,10 +7,9 @@ spec:
   interval: 5m
   chart:
     spec:
-      chart: lightmare-chart
-      sourceRef:
+      chartRef:
         kind: OCIRepository
-        name: lightmare
+        name: lightmare-chart
         namespace: flux-system
   values:
     image:
