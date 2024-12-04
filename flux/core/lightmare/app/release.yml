@@ -1,0 +1,20 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: lightmare
+  namespace: lightmare
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: lightmare-chart
+      version: 7.10.0
+      sourceRef:
+        kind: OCIRepository
+        name: lightmare
+        namespace: flux-system
+  values:
+    image:
+      repository: fluencelabs/lightmare
+      tag: main
+      pullPolicy: Always
