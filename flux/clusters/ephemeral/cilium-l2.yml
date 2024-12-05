@@ -1,0 +1,34 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cilium-l2
+  namespace: flux-system
+spec:
+  interval: 1m
+  path: "./flux/components/cilium-l2"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: spectrum
+    namespace: flux-system
+  patches:
+    - patch: |-
+        - op: add
+          path: /spec/blocks
+          value:
+              - start: ${L2_IP}
+      target:
+        kind: CiliumLoadBalancerIPPool
+        name: fluence-l2
+        namespace: kube-system
+
+    - patch: |-
+        - op: add
+          path: /spec/interfaces
+          value:
+            - eth0
+      target:
+        kind: CiliumL2AnnouncementPolicy
+        name: fluence-l2
+        namespace: kube-system

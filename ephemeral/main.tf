@@ -29,9 +29,9 @@ module "spectrum" {
     data.http.talos_health,
     local_sensitive_file.kubeconfig,
   ]
-  source     = "../terraform-modules/spectrum"
-  network    = var.github_branch
-  cluster    = "ephemeral"
+  source  = "../terraform-modules/spectrum"
+  network = var.github_branch
+  cluster = "ephemeral"
 
   cilium_hubble_enabled = true
 
@@ -42,5 +42,6 @@ module "spectrum" {
     DOTOKEN         = base64encode(data.vault_generic_secret.spectrum.data.token)
     DOMAIN          = "${local.prefix}.fluence.dev"
     PREFIX          = local.prefix
+    L2_IP           = digitalocean_reserved_ip.l2.ip_address
   }
 }
