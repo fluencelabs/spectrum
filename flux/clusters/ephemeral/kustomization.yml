@@ -8,3 +8,4 @@ resources:
   - ../../apps/homepage
   - ../../core/local-path-provisioner
   - hubble-ingress.yml
+  - cilium-l2.yml

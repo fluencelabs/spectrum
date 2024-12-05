@@ -74,6 +74,10 @@ resource "digitalocean_record" "cp" {
   ttl    = 30
 }
 
+resource "digitalocean_reserved_ip" "l2" {
+  droplet_id = digitalocean_droplet.cp.id
+  region     = digitalocean_droplet.cp.region
+}
 
 resource "talos_machine_secrets" "this" {
   talos_version = "v1.8"
