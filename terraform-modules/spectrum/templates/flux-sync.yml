@@ -22,5 +22,5 @@ kustomization:
 kustomizationlist:
   - spec:
       interval: 1m0s
-      path: "./flux/components/lightmare/app"
+      path: "./flux/core/lightmare/app"
       prune: true
