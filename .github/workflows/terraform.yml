@@ -115,6 +115,7 @@ jobs:
               module.spectrum.helm_release.flux \
               module.spectrum.helm_release.cilium || true
             terraform destroy -auto-approve 
+            terraform select default
             terraform workspace delete ${{ steps.sanitize.outputs.workspace }}
           ;;
           reset)
