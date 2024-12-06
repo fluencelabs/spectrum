@@ -26,4 +26,5 @@ metadata:
   name: private-key-secret
   namespace: lightmare
 type: Opaque
-data: dndYTGhwVENBZjRycUlUelNwODhUTzgvMnNpWTcwZHhMOXB5NVlMRmZ2UT0K
+data:
+  key: dndYTGhwVENBZjRycUlUelNwODhUTzgvMnNpWTcwZHhMOXB5NVlMRmZ2UT0K
