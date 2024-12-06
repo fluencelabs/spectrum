@@ -37,11 +37,11 @@ module "spectrum" {
 
   flux_variables = {
     PR_URL          = var.github_pr_url
-    LOADBALANCER_IP = digitalocean_loadbalancer.cp.ip
     BRANCH          = var.github_branch
     DOTOKEN         = base64encode(data.vault_generic_secret.spectrum.data.token)
     DOMAIN          = "${local.prefix}.fluence.dev"
     PREFIX          = local.prefix
+    LOADBALANCER_IP = digitalocean_loadbalancer.cp.ip
     L2_IP           = digitalocean_reserved_ip.l2.ip_address
   }
 }
