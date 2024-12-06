@@ -95,9 +95,11 @@ jobs:
         uses: hashicorp/setup-terraform@v3
 
       - name: terraform init
+        if: always()
         run: terraform init
 
       - name: terraform workspace
+        if: always()
         run: |
           terraform workspace select -or-create=true ${{ steps.sanitize.outputs.workspace }}
 
