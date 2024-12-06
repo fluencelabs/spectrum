@@ -10,14 +10,15 @@ metadata:
   name: chain-adapter-config
   namespace: lightmare
 data:
-  httpEndpoint: "https://rpc.stage.fluence.dev"
-  wsEndpoint: "wss://ws.stage.fluence.dev"
-  ipfsGatewayEndpoint: "/dns4/ipfs.fluence.dev/tcp/5001"
-  peerId: "123"
-  networkId: "9999999"
-  diamondContract: "0x16Aa2A8F809fA9eDB2848d6c991F3aAC75f1fC76"
-  privateKeyPath: "/secret/chain-private-key"
-  privateKeySecretRef: "private-key-secret"
+  values.yaml: |
+    httpEndpoint: "https://rpc.stage.fluence.dev"
+    wsEndpoint: "wss://ws.stage.fluence.dev"
+    ipfsGatewayEndpoint: "/dns4/ipfs.fluence.dev/tcp/5001"
+    peerId: "123"
+    networkId: "9999999"
+    diamondContract: "0x16Aa2A8F809fA9eDB2848d6c991F3aAC75f1fC76"
+    privateKeyPath: "/secret/chain-private-key"
+    privateKeySecretRef: "private-key-secret"
 ---
 apiVersion: v1
 kind: Secret
