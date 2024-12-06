@@ -9,6 +9,10 @@ spec:
     kind: OCIRepository
     name: lightmare
     namespace: flux-system
+  valuesFrom:
+    - kind: ConfigMap
+      name: chain-adapter-config
+      targetPath: chainAdapter
   values:
     image:
       repository: fluencelabs/lightmare

@@ -10,3 +10,4 @@ resources:
   - ../../components/kubevirt
   - hubble-ingress.yml
   - cilium-l2.yml
+  - lightmare.yml
