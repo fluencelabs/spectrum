@@ -12,7 +12,8 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: chain-adapter-config
-      targetPath: chainAdapter
+      targetPath: operator.config.chainAdapter
+      optional: false
   values:
     operator:
       image:
