@@ -11,14 +11,17 @@ metadata:
   namespace: lightmare
 data:
   values.yaml: |
-    httpEndpoint: "https://rpc.stage.fluence.dev"
-    wsEndpoint: "wss://ws.stage.fluence.dev"
-    ipfsGatewayEndpoint: "https://ipfs.fluence.dev:5001"
-    peerId: "abca5fb0ab6f63bb1caa2c37825c42e4a7eb70412deb5048c72095fd4a0fa5dd"
-    networkId: "9999999"
-    diamondContract: "0x16Aa2A8F809fA9eDB2848d6c991F3aAC75f1fC76"
-    privateKeyPath: "/secret/chain-private-key"
-    privateKeySecretRef: "private-key-secret"
+    operator:
+      config:
+        chainAdapter:
+          httpEndpoint: "https://rpc.stage.fluence.dev"
+          wsEndpoint: "wss://ws.stage.fluence.dev"
+          ipfsGatewayEndpoint: "https://ipfs.fluence.dev:5001"
+          peerId: "abca5fb0ab6f63bb1caa2c37825c42e4a7eb70412deb5048c72095fd4a0fa5dd"
+          networkId: "9999999"
+          diamondContract: "0x16Aa2A8F809fA9eDB2848d6c991F3aAC75f1fC76"
+          privateKeyPath: "/secret/chain-private-key"
+          privateKeySecretRef: "private-key-secret"
 ---
 apiVersion: v1
 kind: Secret
