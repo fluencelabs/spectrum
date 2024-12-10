@@ -11,7 +11,7 @@ spec:
     namespace: flux-system
   valuesFrom:
     - kind: ConfigMap
-      name: chain-adapter-config-test
+      name: chain-adapter-config
       targetPath: operator.config.chainAdapter
       optional: false
   values:
