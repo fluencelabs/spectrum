@@ -50,7 +50,7 @@ resource "digitalocean_record" "endpoint" {
 
 resource "digitalocean_droplet" "cp" {
   name      = "rnd-${local.prefix}-spectrum-cp"
-  size      = "s-4vcpu-8gb"
+  size      = "s-8vcpu-16gb"
   image     = data.digitalocean_image.talos.id
   region    = "fra1"
   vpc_uuid  = data.digitalocean_vpc.spectrum.id
