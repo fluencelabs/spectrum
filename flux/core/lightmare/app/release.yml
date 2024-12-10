@@ -12,7 +12,6 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: chain-adapter-config
-      namespace: lightmare
       targetPath: chainAdapter
   values:
     operator:
