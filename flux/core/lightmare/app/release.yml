@@ -15,7 +15,8 @@ spec:
       namespace: lightmare
       targetPath: chainAdapter
   values:
-    image:
-      repository: fluencelabs/lightmare
-      tag: main
-      pullPolicy: Always
+    operator:
+      image:
+        repository: fluencelabs/lightmare
+        tag: main
+        pullPolicy: Always
