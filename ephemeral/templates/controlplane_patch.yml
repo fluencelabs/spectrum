@@ -3,6 +3,11 @@ machine:
     nodeIP:
       validSubnets:
         - ${subnet}
+    extraConfig:
+      cpuManagerPolicy: "static"
+      cpuManagerPolicyOptions:
+        full-pcpus-only: "true"
+
   certSANs:
     - ${loadbalancerdns}
     - ${hostdns}
