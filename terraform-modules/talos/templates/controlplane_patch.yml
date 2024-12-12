@@ -8,11 +8,6 @@ machine:
       image: ghcr.io/siderolabs/installer:v1.8.3
       bootloader: true
       wipe: true
-  kubelet:
-    extraConfig:
-      cpuManagerPolicy: "static"
-      cpuManagerPolicyOptions:
-        full-pcpus-only: "true"
 
 cluster:
   allowSchedulingOnControlPlanes: true
