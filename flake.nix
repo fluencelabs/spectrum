@@ -22,8 +22,8 @@
           name = "spectrum";
 
           packages = [
-            pkgs.bashInteractive
             pkgs.nixfmt-rfc-style
+            pkgs.bashInteractive
             pkgs.just
             pkgs.gh
 
