@@ -7,8 +7,8 @@ metadata:
 spec:
   serviceSelector:
     matchLabels:
-      fluence: cloudless.dev  
-      io.cilium/l2-announce: true
+      fluence: cloudless.dev
+      io.cilium/l2-announce: "true"
   externalIPs: true
   loadBalancerIPs: true
 ---
@@ -20,5 +20,5 @@ metadata:
 spec:
   serviceSelector:
     matchLabels:
-      fluence: cloudless.dev     
-      io.cilium/l2-announce: true
+      fluence: cloudless.dev
+      io.cilium/l2-announce: "true"
