@@ -24,8 +24,8 @@
           packages = [
             pkgs.bashInteractive
             pkgs.nixfmt-rfc-style
-            pkgs.just
             pkgs.gh
+            pkgs.just
 
             pkgs.talosctl
             pkgs.kubectl
