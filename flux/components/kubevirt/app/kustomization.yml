@@ -1,7 +1,16 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - https://github.com/kubevirt/kubevirt/releases/download/v1.3.1/kubevirt-operator.yaml
-  - https://github.com/kubevirt/kubevirt/releases/download/v1.3.1/kubevirt-cr.yaml
+  - https://github.com/kubevirt/kubevirt/releases/download/v1.4.0/kubevirt-operator.yaml
+  - https://github.com/kubevirt/kubevirt/releases/download/v1.4.0/kubevirt-cr.yaml
   - https://github.com/kubevirt/containerized-data-importer/releases/download/v1.60.3/cdi-operator.yaml
   - https://github.com/kubevirt/containerized-data-importer/releases/download/v1.60.3/cdi-cr.yaml
+patches:
+  - patch: |-
+      kind: Deployment
+      apiVersion: apps/v1
+      metadata:
+        name: virt-operator
+        namespace: virt-operator
+      spec:
+        replicas: 1
