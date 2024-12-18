@@ -30,6 +30,7 @@
             pkgs.talosctl
             pkgs.kubectl
             pkgs.kubernetes-helm
+            pkgs.kustomize
             pkgs.kubevirt
             pkgs.cilium-cli
             pkgs.fluxcd

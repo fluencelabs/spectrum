@@ -1,5 +1,0 @@
-spec:
-  configuration:
-    developerConfiguration: 
-      featureGates:
-        - CPUManager
