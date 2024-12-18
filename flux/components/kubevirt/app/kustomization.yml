@@ -5,7 +5,6 @@ resources:
   - https://github.com/kubevirt/kubevirt/releases/download/v1.4.0/kubevirt-cr.yaml
   - https://github.com/kubevirt/containerized-data-importer/releases/download/v1.60.3/cdi-operator.yaml
   - https://github.com/kubevirt/containerized-data-importer/releases/download/v1.60.3/cdi-cr.yaml
-  - feature-gates.yml
 patches:
   - patch: |-
       kind: Deployment
@@ -21,3 +20,13 @@ patches:
         name: virt-controller
       spec:
         replicas: 1
+  - path: |-
+      kind: KubeVirt
+      apiVersion: kubevirt.io/v1
+      metadata:
+        name: kubevirt
+      spec:
+        configuration:
+          developerConfiguration: 
+            featureGates:
+              - CPUManager
