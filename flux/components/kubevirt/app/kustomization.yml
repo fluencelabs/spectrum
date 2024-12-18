@@ -11,6 +11,7 @@ patches:
       apiVersion: apps/v1
       metadata:
         name: virt-operator
+        namespace: kubevirt
       spec:
         replicas: 1
   - patch: |-
@@ -18,6 +19,7 @@ patches:
       apiVersion: apps/v1
       metadata:
         name: virt-controller
+        namespace: kubevirt
       spec:
         replicas: 1
   - patch: |-
@@ -25,6 +27,7 @@ patches:
       apiVersion: kubevirt.io/v1
       metadata:
         name: kubevirt
+        namespace: kubevirt
       spec:
         configuration:
           developerConfiguration: 
