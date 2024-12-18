@@ -6,33 +6,30 @@ resources:
   - https://github.com/kubevirt/containerized-data-importer/releases/download/v1.60.3/cdi-operator.yaml
   - https://github.com/kubevirt/containerized-data-importer/releases/download/v1.60.3/cdi-cr.yaml
 patches:
-  - patch: |-
-      spec:
-        replicas: 1
-    target:
+  - target:
       kind: Deployment
       apiVersion: apps/v1
-      metadata:
-        name: virt-operator
-        namespace: kubevirt
-  - patch: |-
+      name: virt-operator
+      namespace: kubevirt
+    patch: |-
       spec:
         replicas: 1
-    target:
+  - target:
       kind: Deployment
       apiVersion: apps/v1
-      metadata:
-        name: virt-controller
-        namespace: kubevirt
-  - patch: |-
+      name: virt-controller
+      namespace: kubevirt
+    patch: |-
+      spec:
+        replicas: 1
+  - target:
+      kind: KubeVirt
+      apiVersion: kubevirt.io/v1
+      name: kubevirt
+      namespace: kubevirt
+    patch: |-
       spec:
         configuration:
           developerConfiguration: 
             featureGates:
               - CPUManager
-    target:
-      kind: KubeVirt
-      apiVersion: kubevirt.io/v1
-      metadata:
-        name: kubevirt
-        namespace: kubevirt
