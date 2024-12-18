@@ -47,9 +47,11 @@ hubble:
   relay:
     enabled: true
     rollOutPods: true
+    replicas: 1
   ui:
     enabled: true
     rollOutPods: true
+    replicas: 1
 %{ endif }
 
 l2announcements:
