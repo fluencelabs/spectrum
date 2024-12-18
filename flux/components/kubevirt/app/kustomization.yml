@@ -6,7 +6,7 @@ resources:
   - https://github.com/kubevirt/containerized-data-importer/releases/download/v1.60.3/cdi-operator.yaml
   - https://github.com/kubevirt/containerized-data-importer/releases/download/v1.60.3/cdi-cr.yaml
 patches:
-  - patch: |-
+  - patch:
       kind: Deployment
       apiVersion: apps/v1
       metadata:
@@ -14,7 +14,7 @@ patches:
         namespace: kubevirt
       spec:
         replicas: 1
-  - patch: |-
+  - patch:
       kind: Deployment
       apiVersion: apps/v1
       metadata:
@@ -22,7 +22,7 @@ patches:
         namespace: kubevirt
       spec:
         replicas: 1
-  - patch: |-
+  - patch:
       kind: KubeVirt
       apiVersion: kubevirt.io/v1
       metadata:
