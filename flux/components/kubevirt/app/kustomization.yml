@@ -16,9 +16,4 @@ patches:
       apiVersion: kubevirt.io/v1
       name: kubevirt
       namespace: kubevirt
-    patch: |-
-      spec:
-        configuration:
-          developerConfiguration: 
-            featureGates:
-              - CPUManager
+    path: feature-gates.yml
