@@ -20,7 +20,7 @@ patches:
         name: virt-controller
       spec:
         replicas: 1
-  - path: |-
+  - patch: |-
       kind: KubeVirt
       apiVersion: kubevirt.io/v1
       metadata:
