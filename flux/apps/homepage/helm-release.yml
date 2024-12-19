@@ -73,5 +73,7 @@ spec:
               show: true
               cpu: true
               memory: true
+            nodes:
+              show: false
 
       services: null
