@@ -40,3 +40,20 @@ spec:
     grafana:
       defaultDashboardsEnabled: true
       adminPassword: fluence
+      ingress:
+        enabled: ${DOMAIN:+true}
+        ingressClassName: nginx
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/name: grafana
+          gethomepage.dev/icon: grafana.png
+          cert-manager.io/cluster-issuer: "letsencrypt"
+        hosts:
+          - host: &host "grafana.${DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+            secretName: grafana-tls
