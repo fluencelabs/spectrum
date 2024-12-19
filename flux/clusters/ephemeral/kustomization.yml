@@ -10,6 +10,7 @@ resources:
   - ../../core/metrics-server
   - ../../core/kubelet-serving-cert-approver
   - ../../components/kubevirt
+  - ../../components/monitoring
   - hubble-ingress.yml
   - cilium-l2.yml
   - lightmare.yml
