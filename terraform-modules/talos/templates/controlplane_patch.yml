@@ -1,6 +1,4 @@
 machine:
-  certSANs:
-    - ${public_ip}
   time:
     servers:
       - time.cloudflare.com
@@ -11,6 +9,8 @@ machine:
       bootloader: true
       wipe: true
   kubelet:
+    extraArgs:
+      rotate-server-certificates: true
     extraConfig:
       cpuManagerPolicy: "static"
       cpuManagerPolicyOptions:

@@ -8,6 +8,7 @@ resources:
   - ../../apps/homepage
   - ../../core/local-path-provisioner
   - ../../core/metrics-server
+  - ../../core/kubelet-serving-cert-approver
   - ../../components/kubevirt
   - hubble-ingress.yml
   - cilium-l2.yml
