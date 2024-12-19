@@ -23,7 +23,3 @@ cluster:
       name: none
   proxy:
     disabled: true
-
-  extraManifests:
-    # required cause rotate-server-certificates is enabled
-    - https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/refs/tags/v0.8.7/deploy/standalone-install.yaml
