@@ -9,7 +9,7 @@ data "talos_machine_configuration" "this" {
   machine_secrets  = talos_machine_secrets.this.machine_secrets
   talos_version    = "v1.8"
   config_patches = [
-    file("${path.module}/templates/controlplane_patch.yml")
+    templatefile("${path.module}/templates/controlplane_patch.yml", {})
   ]
 }
 
@@ -40,9 +40,22 @@ resource "talos_cluster_kubeconfig" "this" {
   node                 = var.public_ip
 }
 
-data "talos_cluster_health" "this" {
-  client_configuration   = data.talos_client_configuration.this.client_configuration
-  control_plane_nodes    = [var.public_ip]
-  endpoints              = data.talos_client_configuration.this.endpoints
-  skip_kubernetes_checks = true
+# data "talos_cluster_health" "this" {
+#   client_configuration   = data.talos_client_configuration.this.client_configuration
+#   control_plane_nodes    = [var.public_ip]
+#   endpoints              = data.talos_client_configuration.this.endpoints
+#   skip_kubernetes_checks = true
+# }
+
+data "http" "talos_health" {
+  url      = "https://${var.public_ip}:6443/version"
+  insecure = true
+  retry {
+    attempts     = 20
+    min_delay_ms = 5000
+    max_delay_ms = 5000
+  }
+  depends_on = [
+    talos_machine_bootstrap.this,
+  ]
 }

@@ -68,5 +68,10 @@ spec:
             provider: [duckduckgo]
             focus: false
             target: _blank
+        - kubernetes:
+            cluster:
+              show: true
+              cpu: true
+              memory: true
 
       services: null
