@@ -7,6 +7,7 @@ resources:
   - ../../apps/cert-manager
   - ../../apps/homepage
   - ../../core/local-path-provisioner
+  - ../../core/metrics-server
   - ../../components/kubevirt
   - hubble-ingress.yml
   - cilium-l2.yml
