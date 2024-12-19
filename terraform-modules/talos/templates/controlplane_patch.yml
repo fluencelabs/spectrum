@@ -1,4 +1,6 @@
 machine:
+  certSANs:
+    - ${private_ip}
   time:
     servers:
       - time.cloudflare.com

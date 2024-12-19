@@ -9,7 +9,9 @@ data "talos_machine_configuration" "this" {
   machine_secrets  = talos_machine_secrets.this.machine_secrets
   talos_version    = "v1.8"
   config_patches = [
-    file("${path.module}/templates/controlplane_patch.yml")
+    templatefile("${path.module}/templates/controlplane_patch.yml", {
+      public_ip = var.public_ip
+    })
   ]
 }
 
