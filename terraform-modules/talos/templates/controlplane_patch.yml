@@ -1,6 +1,6 @@
 machine:
   certSANs:
-    - ${private_ip}
+    - ${public_ip}
   time:
     servers:
       - time.cloudflare.com
