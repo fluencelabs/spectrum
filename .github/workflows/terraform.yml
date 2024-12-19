@@ -81,7 +81,7 @@ jobs:
 
       - name: Add comment
         if: steps.comment.outputs.comment-id == null && (inputs.command == 'create' || inputs.command == 'reset')
-        uses: peter-evans/create-or-update-comment@v3
+        uses: peter-evans/create-or-update-comment@v4
         with:
           comment-id: "${{ steps.comment.outputs.comment-id }}"
           token: ${{ secrets.PAT }}
@@ -155,7 +155,7 @@ jobs:
 
       - name: Update comment
         if: inputs.command == 'create' || inputs.command == 'reset'
-        uses: peter-evans/create-or-update-comment@v3
+        uses: peter-evans/create-or-update-comment@v4
         with:
           comment-id: "${{ steps.comment-update.outputs.comment-id }}"
           token: ${{ secrets.PAT }}
