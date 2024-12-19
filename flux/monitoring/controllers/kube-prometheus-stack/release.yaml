@@ -45,6 +45,7 @@ spec:
         ingressClassName: nginx
         annotations:
           gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: "Observability"
           gethomepage.dev/name: grafana
           gethomepage.dev/icon: grafana.png
           cert-manager.io/cluster-issuer: "letsencrypt"
