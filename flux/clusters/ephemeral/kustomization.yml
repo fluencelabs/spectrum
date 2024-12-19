@@ -12,5 +12,6 @@ resources:
   - ../../components/kubevirt
   - ../../components/monitoring
   - hubble-ingress.yml
+  - grafana-ingress.yml
   - cilium-l2.yml
   - lightmare.yml
