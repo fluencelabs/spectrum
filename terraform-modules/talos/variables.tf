@@ -1,4 +1,4 @@
-variable "public_ip" {
+variable "server_ip" {
   type = string
 }
 

@@ -80,7 +80,7 @@ resource "digitalocean_reserved_ip" "l2" {
 }
 
 resource "talos_machine_secrets" "this" {
-  talos_version = "v1.8"
+  talos_version = "v1.9"
 }
 
 data "talos_machine_configuration" "cp" {
@@ -88,7 +88,7 @@ data "talos_machine_configuration" "cp" {
   machine_type     = "controlplane"
   cluster_endpoint = "https://${local.loadbalancer_dns}:6443"
   machine_secrets  = talos_machine_secrets.this.machine_secrets
-  talos_version    = "v1.8"
+  talos_version    = "v1.9"
   config_patches = [
     templatefile("${path.module}/templates/controlplane_patch.yml", {
       loadbalancerdns = "kube.${local.prefix}.fluence.dev"
