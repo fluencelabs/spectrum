@@ -13,7 +13,7 @@ resource "digitalocean_ssh_key" "spectrum" {
 }
 
 data "digitalocean_image" "talos" {
-  name = "talos-v1.8.2"
+  name = "talos-v1.9.0"
 }
 
 data "vault_generic_secret" "spectrum" {

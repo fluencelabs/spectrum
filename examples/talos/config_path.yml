@@ -1,0 +1,13 @@
+machine:
+  network:
+    interfaces:
+      - interface: bond0
+        dhcp: true
+        bond:
+          mode: 802.3ad
+          miimon: 100
+          lacpRate: slow
+          xmitHashPolicy: layer3+4
+          interfaces:           
+            - enp1s0f0
+            - enp1s0f1
