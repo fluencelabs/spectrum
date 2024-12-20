@@ -1,5 +1,5 @@
 terraform {
-  # Is is higly recommended to setup remote terraform state
+  # Is is highly recommended to setup remote terraform state
   # backend "s3" {
   #   bucket = "mybucket"
   #   key    = "path/to/my/key"

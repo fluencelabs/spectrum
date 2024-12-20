@@ -8,4 +8,4 @@ You can configure server specific things like layout of disks or network configu
 
 ## Terraform state
 
-terraform saves state of resources it manages to a state. By default state is local. It is highly recommended to configure remote [terraform state](https://developer.hashicorp.com/terraform/language/backend/s3).
+terraform saves the state of resources it manages to a state. By default state is local. It is highly recommended to configure remote [terraform state](https://developer.hashicorp.com/terraform/language/backend/s3).
