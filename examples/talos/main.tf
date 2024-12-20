@@ -23,7 +23,7 @@ provider "helm" {
 module "talos" {
   source       = "git::https://github.com/fluencelabs/spectrum.git//terraform-modules/talos?ref=main"
   cluster_name = var.cluster_name
-  public_ip    = var.public_ip
+  server_ip    = var.server_ip
   # config_patches = [
   #   file("${path.root}/config_path.yml"),
   # ]
