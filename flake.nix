@@ -1,5 +1,6 @@
 {
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+  inputs.unstableNixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   inputs.systems.url = "github:nix-systems/default";
   inputs.flake-utils = {
     url = "github:numtide/flake-utils";
@@ -7,11 +8,20 @@
   };
 
   outputs =
-    { nixpkgs, flake-utils, ... }:
+    {
+      nixpkgs,
+      unstableNixpkgs,
+      flake-utils,
+      ...
+    }:
     flake-utils.lib.eachDefaultSystem (
       system:
       let
         pkgs = import nixpkgs {
+          system = "${system}";
+          config.allowUnfree = true;
+        };
+        unstablePkgs = import unstableNixpkgs {
           system = "${system}";
           config.allowUnfree = true;
         };
@@ -27,7 +37,7 @@
             pkgs.just
             pkgs.gh
 
-            pkgs.talosctl
+            unstablePkgs.talosctl
             pkgs.kubectl
             pkgs.kubernetes-helm
             pkgs.kustomize
