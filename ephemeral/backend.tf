@@ -6,9 +6,9 @@ terraform {
   }
 
   required_providers {
-    digitalocean = {
-      source  = "digitalocean/digitalocean"
-      version = "~> 2"
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
     }
     cloudflare = {
       source  = "cloudflare/cloudflare"
@@ -18,6 +18,10 @@ terraform {
       source = "siderolabs/talos"
     }
   }
+}
+
+provider "aws" {
+  region = "eu-west-1"
 }
 
 data "cloudflare_zone" "fluence_dev" {
