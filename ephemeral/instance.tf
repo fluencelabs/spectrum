@@ -17,6 +17,7 @@ data "aws_ami" "talos" {
 resource "aws_instance" "talos" {
   ami           = data.aws_ami.talos.id
   instance_type = "m6a.large"
+    subnet_id = "subnet-0bef3ec291eaae204"
 
   instance_market_options {
     market_type = "spot"
