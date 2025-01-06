@@ -26,6 +26,7 @@ patches:
         name: local-path
         annotations:
           storageclass.kubernetes.io/is-default-class: "true"
+      volumeBindingMode: Immediate
   - patch: |-
       apiVersion: v1
       kind: Namespace
