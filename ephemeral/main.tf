@@ -2,6 +2,19 @@ locals {
   prefix = terraform.workspace
 }
 
+resource "tls_private_key" "spectrum" {
+  algorithm = "ED25519"
+}
+
+resource "digitalocean_ssh_key" "spectrum" {
+  name       = "${local.prefix}-ssh-key"
+  public_key = tls_private_key.spectrum.public_key_openssh
+}
+
+data "digitalocean_image" "talos" {
+  name = "talos-v1.8.4"
+}
+
 data "vault_generic_secret" "spectrum" {
   path = "kv/digitalocean/spectrum"
 }
@@ -33,6 +46,7 @@ module "spectrum" {
   flux_variables = {
     PR_URL          = var.github_pr_url
     BRANCH          = var.github_branch
+    DOTOKEN         = base64encode(data.vault_generic_secret.spectrum.data.token)
     DOMAIN          = "${local.prefix}.fluence.dev"
     PREFIX          = local.prefix
     LOADBALANCER_IP = digitalocean_droplet.talos.ipv4_address
