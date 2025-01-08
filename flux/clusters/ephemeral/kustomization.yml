@@ -2,9 +2,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ../../apps/kubernetes-dashboard
-  #- ../../apps/external-dns
+  - ../../apps/external-dns
   - ../../apps/ingress-nginx
-  #- ../../apps/cert-manager
+  - ../../apps/cert-manager
   - ../../apps/homepage
   - ../../core/local-path-provisioner
   - ../../core/metrics-server

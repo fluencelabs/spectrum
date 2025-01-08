@@ -20,10 +20,6 @@ terraform {
   }
 }
 
-provider "aws" {
-  region = "eu-west-1"
-}
-
 data "cloudflare_zone" "fluence_dev" {
   name = "fluence.dev"
 }
