@@ -1,0 +1,66 @@
+machine:
+  install:
+    diskSelector:
+      # ❯ talosctl get --talosconfig talosconfig -i -n 154.42.3.58 disk nvme8n1 -o yaml
+      # node: 
+      # metadata:
+      #     namespace: runtime
+      #     type: Disks.block.talos.dev
+      #     id: nvme8n1
+      #     version: 1
+      #     owner: block.DisksController
+      #     phase: running
+      #     created: 2024-12-23T18:47:46Z
+      #     updated: 2024-12-23T18:47:46Z
+      # spec:
+      #     dev_path: /dev/nvme8n1
+      #     size: 1920383410176
+      #     pretty_size: 1.9 TB
+      #     io_size: 4096
+      #     sector_size: 512
+      #     readonly: false
+      #     cdrom: false
+      #     model: KCD6XLUL1T92
+      #     serial: Y0L0A031T5N8
+      #     wwid: eui.00000000000000008ce38ee20458db01
+      #     bus_path: /pci0000:20/0000:20:03.2/0000:22:00.0/nvme
+      #     sub_system: /sys/class/block
+      #     transport: nvme
+      model: KCD6XLUL1T92
+      serial: Y0L0A031T5N8
+
+  network:
+    hostname: foobar
+    interfaces:
+      - interface: bond0
+        dhcp: false
+        addresses:
+          - 154.42.3.56/29
+        routes:
+          - network: 0.0.0.0/0
+            gateway: 154.42.3.57
+        nameservers:
+          - 1.1.1.1
+        bond:
+          mode: 802.3ad
+          miimon: 100
+          lacpRate: slow
+          xmitHashPolicy: layer3+4
+          deviceSelectors:
+            # ❯ talosctl get --talosconfig talosconfig -i -n 154.42.3.58 link
+            # NODE   NAMESPACE   TYPE         ID              VERSION   TYPE       KIND     HW ADDR                                           OPER STATE   LINK STATE
+            #        network     LinkStatus   bond0           1         ether      bond     b2:10:98:b2:d5:25                                 down         false
+            #        network     LinkStatus   dummy0          1         ether      dummy    16:fc:48:9d:bd:5b                                 down         false
+            #        network     LinkStatus   enp161s0f0np0   3         ether               04:3f:72:dc:2e:3c                                 up           true
+            #        network     LinkStatus   enp161s0f1np1   2         ether               04:3f:72:dc:2e:3d                                 down         false
+            #        network     LinkStatus   enp68s0f0np0    2         ether               3c:ec:ef:5d:ba:84                                 down         false
+            #        network     LinkStatus   enp68s0f1np1    2         ether               3c:ec:ef:5d:ba:85                                 down         false
+            #        network     LinkStatus   enp68s0f2np2    2         ether               3c:ec:ef:5d:ba:86                                 down         false
+            #        network     LinkStatus   enp68s0f3np3    2         ether               3c:ec:ef:5d:ba:87                                 down         false
+            #        network     LinkStatus   ip6tnl0         1         tunnel6    ip6tnl   00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00   down         false
+            #        network     LinkStatus   lo              2         loopback            00:00:00:00:00:00                                 unknown      true
+            #        network     LinkStatus   sit0            1         sit        sit      00:00:00:00                                       down         false
+            #        network     LinkStatus   teql0           1         void                                                                  down         false
+            #        network     LinkStatus   tunl0           1         ipip       ipip     00:00:00:00                                       down         false
+            - permanentAddr: 04:3f:72:dc:2e:3c
+            - permanentAddr: 04:3f:72:dc:2e:3d

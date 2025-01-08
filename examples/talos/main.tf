@@ -25,7 +25,7 @@ module "talos" {
   cluster_name = var.cluster_name
   server_ip    = var.server_ip
   # config_patches = [
-  #   file("${path.root}/config_path.yml"),
+  #   file("${path.root}/config_patch.yml"),
   # ]
 }
 
