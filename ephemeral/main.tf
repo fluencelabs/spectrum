@@ -2,19 +2,6 @@ locals {
   prefix = terraform.workspace
 }
 
-resource "tls_private_key" "spectrum" {
-  algorithm = "ED25519"
-}
-
-resource "digitalocean_ssh_key" "spectrum" {
-  name       = "${local.prefix}-ssh-key"
-  public_key = tls_private_key.spectrum.public_key_openssh
-}
-
-data "digitalocean_image" "talos" {
-  name = "talos-v1.8.4"
-}
-
 data "vault_generic_secret" "spectrum" {
   path = "kv/digitalocean/spectrum"
 }
