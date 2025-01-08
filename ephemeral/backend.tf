@@ -6,9 +6,9 @@ terraform {
   }
 
   required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.0"
+    digitalocean = {
+      source  = "digitalocean/digitalocean"
+      version = "~> 2"
     }
     cloudflare = {
       source  = "cloudflare/cloudflare"
@@ -34,6 +34,6 @@ provider "vault" {
 
 provider "helm" {
   kubernetes {
-    config_path = local_sensitive_file.kubeconfig.filename
+    config_path = module.talos.kubeconfig.path
   }
 }

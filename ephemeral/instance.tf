@@ -1,29 +1,37 @@
-data "aws_ami" "talos" {
-  most_recent = true
-
-  filter {
-    name   = "name"
-    values = ["talos-v1.8.4-*"]
-  }
-
-  filter {
-    name   = "architecture"
-    values = ["x86_64"]
-  }
-
-  owners = ["540036508848"]
+data "digitalocean_vpc" "spectrum" {
+  name = "rnd-spectrum-vpc"
 }
 
-resource "aws_instance" "talos" {
-  ami           = data.aws_ami.talos.id
-  instance_type = "m6a.large"
-    subnet_id = "subnet-0bef3ec291eaae204"
-
-  instance_market_options {
-    market_type = "spot"
-  }
+resource "tls_private_key" "spectrum" {
+  algorithm = "ED25519"
 }
 
-resource "aws_eip" "l2ip" {
-  instance = aws_instance.talos.id
+resource "digitalocean_ssh_key" "spectrum" {
+  name       = "${local.prefix}-ssh-key"
+  public_key = tls_private_key.spectrum.public_key_openssh
+}
+
+data "digitalocean_image" "talos" {
+  name = "talos-v1.8.4"
+}
+
+resource "digitalocean_droplet" "talos" {
+  name     = "rnd-${local.prefix}-spectrum-cp"
+  size     = "s-8vcpu-16gb"
+  image    = data.digitalocean_image.talos.id
+  region   = "fra1"
+  vpc_uuid = data.digitalocean_vpc.spectrum.id
+
+  ssh_keys = [
+    digitalocean_ssh_key.spectrum.id
+  ]
+
+  tags = [
+    local.prefix,
+  ]
+}
+
+resource "digitalocean_reserved_ip" "l2" {
+  droplet_id = digitalocean_droplet.talos.id
+  region     = digitalocean_droplet.talos.region
 }
