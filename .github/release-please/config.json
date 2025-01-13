@@ -1,0 +1,17 @@
+{
+  "release-type": "terraform-module",
+  "bump-minor-pre-major": true,
+  "bump-patch-for-minor-pre-major": true,
+  "initial-version": "0.1.0",
+  "packages": {
+    "terraform-modules/spectrum": {
+      "component": "terraform-module-spectrum"
+    },
+    "terraform-modules/k3s": {
+      "component": "terraform-module-k3s"
+    },
+    "terraform-modules/talos": {
+      "component": "terraform-module-talos"
+    }
+  }
+}
