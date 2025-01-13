@@ -21,7 +21,7 @@ provider "helm" {
 }
 
 module "talos" {
-  source       = "git::https://github.com/fluencelabs/spectrum.git//terraform-modules/talos?ref=terraform-module-talos-v0.0.1" # x-release-please-version
+  source       = "git::https://github.com/fluencelabs/spectrum.git//terraform-modules/talos?ref=terraform-module-talos-v0.1.0" # x-release-please-version
   cluster_name = var.cluster_name
   server_ip    = var.server_ip
   # config_patches = [
