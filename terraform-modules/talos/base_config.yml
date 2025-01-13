@@ -1,7 +1,6 @@
 machine:
-  time:
-    servers:
-      - time.cloudflare.com
+  network:
+    hostname: ${hostname}
   install:
       diskSelector:
         size: '>= 100GB'
