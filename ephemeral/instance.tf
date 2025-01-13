@@ -18,7 +18,7 @@ data "digitalocean_image" "talos" {
 resource "digitalocean_droplet" "cp" {
   count    = 1
   name     = "rnd-${local.prefix}-spectrum-cp-${count.index}"
-  size     = "s-2vcpu-4gb"
+  size     = "s-8vcpu-16gb"
   image    = data.digitalocean_image.talos.id
   region   = "fra1"
   vpc_uuid = data.digitalocean_vpc.spectrum.id
