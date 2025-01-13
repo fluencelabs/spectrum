@@ -6,13 +6,19 @@
   "separate-pull-requests": true,
   "packages": {
     "terraform-modules/spectrum": {
-      "component": "terraform-module-spectrum"
+      "component": "terraform-module-spectrum",
+      "extra-files": [
+        "../../examples/k3s/main.tf",
+        "../../examples/talos/main.tf"
+      ]
     },
     "terraform-modules/k3s": {
-      "component": "terraform-module-k3s"
+      "component": "terraform-module-k3s",
+      "extra-files": ["../../examples/k3s/main.tf"]
     },
     "terraform-modules/talos": {
-      "component": "terraform-module-talos"
+      "component": "terraform-module-talos",
+      "extra-files": ["../../examples/talos/main.tf"]
     }
   }
 }
