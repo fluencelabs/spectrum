@@ -8,8 +8,8 @@
     "terraform-modules/spectrum": {
       "component": "terraform-module-spectrum",
       "extra-files": [
-        "/examples/k3s/main.tf",
-        "/examples/talos/main.tf"
+        "/examples/k3s/spectrum.tf",
+        "/examples/talos/spectrum.tf"
       ]
     },
     "terraform-modules/k3s": {
