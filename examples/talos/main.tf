@@ -21,7 +21,7 @@ provider "helm" {
 }
 
 module "talos" {
-  source       = "git::https://github.com/fluencelabs/spectrum.git//terraform-modules/talos?ref=main"
+  source       = "git::https://github.com/fluencelabs/spectrum.git//terraform-modules/talos?ref=terraform-module-talos-v0.0.1" # x-release-please-version
   cluster_name = var.cluster_name
   server_ip    = var.server_ip
   # config_patches = [
@@ -31,7 +31,7 @@ module "talos" {
 
 module "spectrum" {
   depends_on = [module.talos]
-  source     = "git::https://github.com/fluencelabs/spectrum.git//terraform-modules/spectrum?ref=main"
+  source     = "git::https://github.com/fluencelabs/spectrum.git//terraform-modules/spectrum?ref=terraform-module-spectrum-v0.0.1" # x-release-please-version
   network    = "main"
   cluster    = "default"
 }
