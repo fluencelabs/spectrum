@@ -21,7 +21,7 @@ provider "helm" {
 }
 
 module "talos" {
-  source       = "git::https://github.com/fluencelabs/spectrum.git//terraform-modules/talos?ref=terraform-module-talos-v0.1.0"
+  source       = "git::https://github.com/fluencelabs/spectrum.git//terraform-modules/talos?ref=terraform-module-talos-v0.1.0" # x-release-please-version
   cluster_name = var.cluster_name
 
   control_planes = [
@@ -34,11 +34,4 @@ module "talos" {
       ]
     },
   ]
-}
-
-module "spectrum" {
-  depends_on = [module.talos]
-  source     = "git::https://github.com/fluencelabs/spectrum.git//terraform-modules/spectrum?ref=terraform-module-spectrum-v0.1.0"
-  network    = "main"
-  cluster    = "default"
 }
