@@ -13,9 +13,10 @@ spec:
     - kind: ConfigMap
       name: chain-adapter-config
       optional: false
-  # values:
-  #   operator:
-  #     image:
-  #       repository: fluencelabs/lightmare
-  #       tag: main
-  #       pullPolicy: Always
+  values:
+    operator:
+      config:
+        ccp:
+          image:
+            repository: "fluencelabs/ccp-cu-worker"
+            tag: "0.14.3"
