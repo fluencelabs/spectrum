@@ -1,4 +1,5 @@
 {
   "terraform-modules/talos":"0.1.0",
-  "terraform-modules/spectrum":"0.1.0"
+  "terraform-modules/spectrum":"0.1.0",
+  "terraform-modules/k3s":"0.1.0"
 }
