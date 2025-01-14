@@ -22,7 +22,7 @@ provider "helm" {
 
 module "talos" {
   source       = "git::https://github.com/fluencelabs/spectrum.git//terraform-modules/talos?ref=terraform-module-talos-v0.1.0" # x-release-please-version
-  cluster_name = var.cluster_name
+  cluster_name = "my-cluster"
 
   control_planes = [
     {
