@@ -15,8 +15,9 @@ data "digitalocean_image" "talos" {
   name = "talos-v1.9.1"
 }
 
-resource "digitalocean_droplet" "talos" {
-  name     = "rnd-${local.prefix}-spectrum-cp"
+resource "digitalocean_droplet" "cp" {
+  count    = 1
+  name     = "rnd-${local.prefix}-spectrum-cp-${count.index}"
   size     = "s-8vcpu-16gb"
   image    = data.digitalocean_image.talos.id
   region   = "fra1"
@@ -32,6 +33,6 @@ resource "digitalocean_droplet" "talos" {
 }
 
 resource "digitalocean_reserved_ip" "l2" {
-  droplet_id = digitalocean_droplet.talos.id
-  region     = digitalocean_droplet.talos.region
+  droplet_id = digitalocean_droplet.cp[0].id
+  region     = digitalocean_droplet.cp[0].region
 }

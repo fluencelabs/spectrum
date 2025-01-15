@@ -30,7 +30,6 @@ machine:
       serial: Y0L0A031T5N8
 
   network:
-    hostname: foobar
     interfaces:
       - interface: bond0
         dhcp: false
