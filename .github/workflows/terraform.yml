@@ -108,7 +108,7 @@ jobs:
         run: |
           case ${{ inputs.command }} in
           create)
-            terraform apply -target module.talos.kubeconfig -auto-approve
+            terraform apply -target module.talos.local_sensitive_file.kubeconfig -auto-approve
             terraform apply -auto-approve
           ;;
           destroy)
