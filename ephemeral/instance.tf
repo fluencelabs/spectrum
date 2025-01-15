@@ -12,7 +12,7 @@ resource "digitalocean_ssh_key" "spectrum" {
 }
 
 data "digitalocean_image" "talos" {
-  name = "talos-v1.8.4"
+  name = "talos-v1.9.1"
 }
 
 resource "digitalocean_droplet" "cp" {
