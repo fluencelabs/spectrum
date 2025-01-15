@@ -1,5 +1,5 @@
 resource "talos_machine_secrets" "this" {
-  talos_version = "v1.8"
+  talos_version = "v1.9"
 }
 
 data "talos_machine_configuration" "this" {
@@ -7,7 +7,7 @@ data "talos_machine_configuration" "this" {
   machine_type     = "controlplane"
   cluster_endpoint = "https://${var.server_ip}:6443"
   machine_secrets  = talos_machine_secrets.this.machine_secrets
-  talos_version    = "v1.8"
+  talos_version    = "v1.9"
   config_patches = [
     templatefile("${path.module}/templates/controlplane_patch.yml", {})
   ]
