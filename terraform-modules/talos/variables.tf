@@ -10,7 +10,7 @@ variable "cluster_name" {
 
 variable "talos_version" {
   type    = string
-  default = "v1.8"
+  default = "v1.9"
 }
 
 variable "control_planes" {

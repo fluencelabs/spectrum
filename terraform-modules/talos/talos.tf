@@ -14,7 +14,6 @@ data "talos_machine_configuration" "control_plane" {
   machine_type     = "controlplane"
   cluster_endpoint = local.cluster_endpoint
   machine_secrets  = talos_machine_secrets.this.machine_secrets
-  talos_version = var.talos_version
   config_patches = [
     templatefile("${path.module}/base_config.yml", { hostname = each.value.name })
   ]
@@ -27,7 +26,6 @@ data "talos_machine_configuration" "worker" {
   cluster_endpoint = local.cluster_endpoint
   machine_type     = "worker"
   machine_secrets  = talos_machine_secrets.this.machine_secrets
-  talos_version = var.talos_version
   config_patches = [
     templatefile("${path.module}/base_config.yml", { hostname = each.value.name })
   ]
