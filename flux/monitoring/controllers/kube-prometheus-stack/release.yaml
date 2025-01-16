@@ -40,3 +40,13 @@ spec:
     grafana:
       defaultDashboardsEnabled: false
       adminPassword: fluence
+      sidecar:
+        dashboards:
+          enabled: true
+          label: grafana_dashboard
+          folder: /var/lib/grafana/dashboards
+          updateIntervalSeconds: 10
+          folderAnnotation: grafana_folder
+          provider:
+            allowUiUpdates: true
+            foldersFromFilesStructure: true
