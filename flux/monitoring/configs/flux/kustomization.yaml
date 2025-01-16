@@ -10,9 +10,10 @@ configMapGenerator:
       - dashboards/cluster.json
       - dashboards/logs.json
     options:
+      annotations:
+        grafana_folder: "Flux"
       labels:
         grafana_dashboard: "1"
-        grafana_folder: "Flux"
         app.kubernetes.io/part-of: flux
         app.kubernetes.io/component: monitoring
         kustomize.toolkit.fluxcd.io/substitute: disabled
