@@ -2,12 +2,23 @@ kube-state-metrics:
   # For kube-prometheus-stacks that are already installed and configured with
   # custom collectors, commenting out the collectors and extraArgs below will
   # retain any existing kube-state-metrics configuration.
+  fullnameOverride: kube-state-metrics
+  metricLabelsAllowlist:
+    - pods=[*]
+    - deployments=[*]
+    - persistentvolumeclaims=[*]
+  selfMonitor:
+    enabled: true
   prometheus:
     monitor:
       enabled: true
-  collectors: [ ]
-  extraArgs:
-    - --custom-resource-state-only=true
+      relabelings:
+        - action: replace
+          regex: (.*)
+          replacement: $1
+          sourceLabels:
+            - __meta_kubernetes_pod_node_name
+          targetLabel: kubernetes_node
   rbac:
     extraRules:
       - apiGroups:
