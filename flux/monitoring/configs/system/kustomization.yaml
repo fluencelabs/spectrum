@@ -4,7 +4,7 @@ namespace: monitoring
 configMapGenerator:
   - name: system-grafana-dashboards
     files:
-      - dashboards/kubernetes.json
+      - dashboards/node_exporter.json
     options:
       labels:
         grafana_dashboard: "1"
