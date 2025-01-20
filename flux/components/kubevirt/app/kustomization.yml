@@ -5,6 +5,7 @@ resources:
   - https://github.com/kubevirt/kubevirt/releases/download/v1.4.0/kubevirt-cr.yaml
   - https://github.com/kubevirt/containerized-data-importer/releases/download/v1.60.3/cdi-operator.yaml
   - https://github.com/kubevirt/containerized-data-importer/releases/download/v1.60.3/cdi-cr.yaml
+  - service-monitor.yml
   - disable-selinux.yml
 patches:
   - target:
