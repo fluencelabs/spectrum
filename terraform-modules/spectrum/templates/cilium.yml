@@ -86,14 +86,14 @@ hubble:
     serviceMonitor:
       enabled: true
       interval: 30s
+      labels:
+        app.kubernetes.io/part-of: cilium
+        app.kubernetes.io/component: monitoring
     dashboards:
       enabled: true
       label: grafana_dashboard
       annotations:
         grafana_folder: Cilium
-      labels:
-        app.kubernetes.io/part-of: cilium
-        app.kubernetes.io/component: monitoring
 %{ endif }
 
 l2announcements:

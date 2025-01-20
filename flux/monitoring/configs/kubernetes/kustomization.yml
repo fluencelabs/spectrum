@@ -5,9 +5,10 @@ generatorOptions:
   disableNameSuffixHash: true
   labels:
     grafana_dashboard: "1"
+    app.kubernetes.io/component: monitoring
+    app.kubernetes.io/part-of: kubernetes
 commonAnnotations:
   grafana_folder: "Kubernetes"
-  app.kubernetes.io/component: monitoring
 
 configMapGenerator:
   - name: dashboards-k8s-views-global
