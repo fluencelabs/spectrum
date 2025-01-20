@@ -33,7 +33,7 @@ spec:
           requests:
             cpu: 200m
             memory: 200Mi
-
+        serviceMonitorSelectorNilUsesHelmValues: false
         serviceMonitorNamespaceSelector: {}
         serviceMonitorSelector: {}
 
