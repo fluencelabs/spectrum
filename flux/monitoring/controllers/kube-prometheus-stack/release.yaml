@@ -36,7 +36,9 @@ spec:
 
         serviceMonitorNamespaceSelector: {}
         serviceMonitorSelector:
-          matchLabels: {}
+          matchExpressions:
+          - key: app.kubernetes.io/component
+            operator: Exists
 
         podMonitorNamespaceSelector: {}
         podMonitorSelector:
