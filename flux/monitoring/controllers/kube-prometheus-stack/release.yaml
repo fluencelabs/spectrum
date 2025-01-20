@@ -33,14 +33,16 @@ spec:
           requests:
             cpu: 200m
             memory: 200Mi
-        serviceMonitorSelectorNilUsesHelmValues: false
+
         serviceMonitorNamespaceSelector: {}
-        serviceMonitorSelector: {}
+        serviceMonitorSelector:
+          matchLabels: {}
 
         podMonitorNamespaceSelector: {}
         podMonitorSelector:
           matchLabels:
             app.kubernetes.io/component: monitoring
+
     grafana:
       defaultDashboardsEnabled: false
       adminPassword: fluence
