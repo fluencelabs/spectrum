@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/fluencelabs/spectrum/compare/terraform-module-talos-v0.2.0...terraform-module-talos-v0.2.1) (2025-01-23)
+
+
+### Bug Fixes
+
+* Bump talos version to 1.9.2 ([#98](https://github.com/fluencelabs/spectrum/issues/98)) ([92e8605](https://github.com/fluencelabs/spectrum/commit/92e86052775b55de00986629f781e09285b9dae2))
+
 ## [0.2.0](https://github.com/fluencelabs/spectrum/compare/terraform-module-talos-v0.1.0...terraform-module-talos-v0.2.0) (2025-01-15)
 
 
