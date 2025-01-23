@@ -7,6 +7,18 @@
 
 * Setup system metrics collection (host, k8s, cilium, kubevirt) ([#95](https://github.com/fluencelabs/spectrum/issues/95)) ([d23d5b8](https://github.com/fluencelabs/spectrum/commit/d23d5b8c6d505462fc54cdb3c5b7ec6f0b226a74))
 
+
+### Bug Fixes
+
+* Disable creation of service monitor for now ([#102](https://github.com/fluencelabs/spectrum/issues/102)) ([fa57329](https://github.com/fluencelabs/spectrum/commit/fa5732905470e5af60b888538c0facc44a48968d))
+
+## [0.1.1](https://github.com/fluencelabs/spectrum/compare/terraform-module-spectrum-v0.1.0...terraform-module-spectrum-v0.1.1) (2025-01-23)
+
+
+### Features
+
+* Setup system metrics collection (host, k8s, cilium, kubevirt) ([#95](https://github.com/fluencelabs/spectrum/issues/95)) ([d23d5b8](https://github.com/fluencelabs/spectrum/commit/d23d5b8c6d505462fc54cdb3c5b7ec6f0b226a74))
+
 ## 0.1.0 (2025-01-13)
 
 
