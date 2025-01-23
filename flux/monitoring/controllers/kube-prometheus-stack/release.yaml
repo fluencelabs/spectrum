@@ -33,10 +33,28 @@ spec:
           requests:
             cpu: 200m
             memory: 200Mi
-        podMonitorNamespaceSelector: { }
+
+        serviceMonitorNamespaceSelector: {}
+        serviceMonitorSelector:
+          matchExpressions:
+          - key: app.kubernetes.io/component
+            operator: Exists
+
+        podMonitorNamespaceSelector: {}
         podMonitorSelector:
           matchLabels:
             app.kubernetes.io/component: monitoring
+
     grafana:
-      defaultDashboardsEnabled: true
+      defaultDashboardsEnabled: false
       adminPassword: fluence
+      sidecar:
+        dashboards:
+          enabled: true
+          label: grafana_dashboard
+          folder: /var/lib/grafana/dashboards
+          updateIntervalSeconds: 10
+          folderAnnotation: grafana_folder
+          provider:
+            allowUiUpdates: true
+            foldersFromFilesStructure: true
