@@ -4,7 +4,7 @@ machine:
   install:
       diskSelector:
         size: '>= 100GB'
-      image: ghcr.io/siderolabs/installer:v1.9.1
+      image: ghcr.io/siderolabs/installer:v1.9.2
       bootloader: true
       wipe: true
   kubelet:
