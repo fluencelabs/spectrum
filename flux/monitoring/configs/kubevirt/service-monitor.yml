@@ -2,14 +2,16 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: kubevirt
-  namespace: kubevirt
   labels:
-    app.kubernetes.io/part-of: kubevirt
-    app.kubernetes.io/component: monitoring
+    app.kubernetes.io/part-of: spectrum-monitoring
+    app.kubernetes.io/component: kubevirt
 spec:
   selector:
     matchLabels:
       prometheus.kubevirt.io: "true"
+  namespaceSelector:
+    matchNames:
+    - kubevirt
   endpoints:
   - port: metrics
     scheme: https

@@ -5,8 +5,8 @@ generatorOptions:
   disableNameSuffixHash: true
   labels:
     grafana_dashboard: "1"
-    app.kubernetes.io/component: monitoring
-    app.kubernetes.io/part-of: kubernetes
+    app.kubernetes.io/component: kubernetes
+    app.kubernetes.io/part-of: spectrum-monitoring
 commonAnnotations:
   grafana_folder: "Kubernetes"
 
@@ -26,7 +26,3 @@ configMapGenerator:
   - name: dashboards-k8s-views-pods
     files:
       - https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/refs/tags/v2.5.3/dashboards/k8s-views-pods.json
-
-  - name: dashboards-k8s-kubevirt
-    files:
-      - https://raw.githubusercontent.com/aenix-io/cozystack/refs/tags/v0.23.1/dashboards/kubevirt/kubevirt-control-plane.json

@@ -37,13 +37,18 @@ spec:
         serviceMonitorNamespaceSelector: {}
         serviceMonitorSelector:
           matchExpressions:
-          - key: app.kubernetes.io/component
-            operator: Exists
+            - key: app.kubernetes.io/part-of
+              operator: In
+              values: 
+              - "kube-prometheus-stack"
+              - "kube-state-metrics"
+              - "prometheus-node-exporter"
+              - "spectrum-monitoring"
 
         podMonitorNamespaceSelector: {}
         podMonitorSelector:
           matchLabels:
-            app.kubernetes.io/component: monitoring
+            app.kubernetes.io/part-of: spectrum-monitoring
 
     grafana:
       defaultDashboardsEnabled: false
