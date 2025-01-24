@@ -37,12 +37,12 @@ spec:
         serviceMonitorNamespaceSelector: {}
         serviceMonitorSelector:
           matchLabels:
-            app.kubernetes.io/component: spectrum-monitoring
+            app.kubernetes.io/part-of: spectrum-monitoring
 
         podMonitorNamespaceSelector: {}
         podMonitorSelector:
           matchLabels:
-            app.kubernetes.io/component: spectrum-monitoring
+            app.kubernetes.io/part-of: spectrum-monitoring
 
     grafana:
       defaultDashboardsEnabled: false
