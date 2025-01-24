@@ -9,5 +9,9 @@ configMapGenerator:
   - name: flux-kube-state-metrics-config
     files:
       - kube-state-metrics-config.yaml
+    options:
+      labels:
+        app.kubernetes.io/part-of: spectrum-monitoring
+        app.kubernetes.io/component: kube-prometheus-stack
 configurations:
   - kustomizeconfig.yaml
