@@ -1,6 +1,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: monitoring
+commonLabels:
+  app.kubernetes.io/part-of: spectrum-monitoring
 resources:
   - namespace.yaml
   - repository.yaml
@@ -9,9 +11,5 @@ configMapGenerator:
   - name: flux-kube-state-metrics-config
     files:
       - kube-state-metrics-config.yaml
-    options:
-      labels:
-        app.kubernetes.io/part-of: spectrum-monitoring
-        app.kubernetes.io/component: kube-prometheus-stack
 configurations:
   - kustomizeconfig.yaml
