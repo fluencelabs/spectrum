@@ -36,8 +36,13 @@ spec:
 
         serviceMonitorNamespaceSelector: {}
         serviceMonitorSelector:
-          matchLabels:
-            app.kubernetes.io/part-of: spectrum-monitoring
+          matchExpressions:
+            - key: app.kubernetes.io/part-of
+              operator: In
+              values: 
+              - "kube-prometheus-stack"
+              - "prometheus-node-exporter"
+              - "spectrum-monitoring"
 
         podMonitorNamespaceSelector: {}
         podMonitorSelector:
