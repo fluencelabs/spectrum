@@ -9,8 +9,8 @@ resources:
   - ../../core/local-path-provisioner
   - ../../core/metrics-server
   - ../../core/kubelet-serving-cert-approver
-  - ../../components/kubevirt
-  - ../../components/monitoring
+  #  - ../../components/kubevirt
+  #- ../../components/monitoring
   - hubble-ingress.yml
   - grafana-ingress.yml
   - cilium-l2.yml

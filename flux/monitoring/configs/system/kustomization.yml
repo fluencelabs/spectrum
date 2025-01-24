@@ -10,4 +10,5 @@ configMapGenerator:
         grafana_folder: "System"
       labels:
         grafana_dashboard: "1"
-        app.kubernetes.io/component: monitoring
+        app.kubernetes.io/component: spectrum-monitoring
+        app.kubernetes.io/part-of: system

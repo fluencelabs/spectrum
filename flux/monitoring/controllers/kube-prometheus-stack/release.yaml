@@ -7,6 +7,7 @@ spec:
   chartRef:
     kind: OCIRepository
     name: kube-prometheus-stack
+    namespace: flux-system
   install:
     crds: Create
   upgrade:
@@ -36,14 +37,13 @@ spec:
 
         serviceMonitorNamespaceSelector: {}
         serviceMonitorSelector:
-          matchExpressions:
-          - key: app.kubernetes.io/component
-            operator: Exists
+          matchLabels:
+            app.kubernetes.io/component: spectrum-monitoring
 
         podMonitorNamespaceSelector: {}
         podMonitorSelector:
           matchLabels:
-            app.kubernetes.io/component: monitoring
+            app.kubernetes.io/component: spectrum-monitoring
 
     grafana:
       defaultDashboardsEnabled: false
