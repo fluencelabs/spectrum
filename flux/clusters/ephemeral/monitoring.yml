@@ -19,7 +19,7 @@ data:
     prometheus:
       prometheusSpec:
         remoteWrite:
-          - url: https://metrics.fluence.dev
+          - url: "https://mimir.fluence.dev/api/v1/push"
             basicAuth:
               username:
                 name: fluence-monitoring-creds
