@@ -28,6 +28,14 @@ spec:
       enabled: false
     prometheus:
       prometheusSpec:
+        {{- if .Values.MONITORING_BASIC_AUTH_USERNAME }}
+        remoteWrite:
+          url: https://metrics.fluence.dev
+          basic_auth:
+            username: "${MONITORING_BASIC_AUTH_USERNAME}"
+            password: "${MONITORING_BASIC_AUTH_PASSWORD}"
+        {{- end }}
+
         retention: 24h
         resources:
           requests:
