@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: fluence-observability-push
+  namespace: monitoring
+type: Opaque
+stringData:
+  metrics.yaml: |
+    remoteWrite:
+      url: https://metrics.fluence.dev
+      basic_auth:
+        username: "spectrum"
+        password: "Bjyx629kSsVtmiAS"

@@ -22,20 +22,16 @@ spec:
   - kind: ConfigMap
     name: flux-kube-state-metrics-config
     valuesKey: kube-state-metrics-config.yaml
+  - kind: Secret
+    name: fluence-observability-push
+    valuesKey: metrics.yaml
+    targetPath: prometheus.prometheusSpec
   # https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
   values:
     alertmanager:
       enabled: false
     prometheus:
       prometheusSpec:
-        {{- if .Values.MONITORING_BASIC_AUTH_USERNAME }}
-        remoteWrite:
-          url: https://metrics.fluence.dev
-          basic_auth:
-            username: "${MONITORING_BASIC_AUTH_USERNAME}"
-            password: "${MONITORING_BASIC_AUTH_PASSWORD}"
-        {{- end }}
-
         retention: 24h
         resources:
           requests:
