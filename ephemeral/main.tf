@@ -45,6 +45,5 @@ module "spectrum" {
     DOMAIN          = "${local.prefix}.fluence.dev"
     PREFIX          = local.prefix
     LOADBALANCER_IP = digitalocean_droplet.cp[0].ipv4_address
-    L2_IP           = digitalocean_reserved_ip.l2.ip_address
   }
 }
