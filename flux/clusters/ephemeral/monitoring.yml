@@ -1,15 +1,29 @@
+---
 apiVersion: v1
 kind: Secret
 metadata:
-  name: fluence-observability-push
+  name: fluence-monitoring-creds
   namespace: monitoring
 type: Opaque
 stringData:
+  username: "spectrum"
+  password: "Bjyx629kSsVtmiAS"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fluence-monitoring-push
+  namespace: monitoring
+data:
   metrics.yaml: |
     prometheus:
       prometheusSpec:
         remoteWrite:
           - url: https://metrics.fluence.dev
             basicAuth:
-              username: 'spectrum'
-              password: 'Bjyx629kSsVtmiAS'
+              username:
+                name: fluence-monitoring-creds
+                key: username
+              password:
+                name: fluence-monitoring-creds
+                key: password

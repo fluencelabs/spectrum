@@ -23,7 +23,7 @@ spec:
     name: flux-kube-state-metrics-config
     valuesKey: kube-state-metrics-config.yaml
   - kind: Secret
-    name: fluence-observability-push
+    name: fluence-monitoring-push
     valuesKey: metrics.yaml
     optional: false
   # https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
