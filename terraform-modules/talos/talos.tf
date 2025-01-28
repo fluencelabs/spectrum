@@ -71,13 +71,13 @@ resource "talos_cluster_kubeconfig" "this" {
   }
 }
 
-# data "http" "talos_health" {
-#   url      = "${local.cluster_endpoint}/version"
-#   insecure = true
-#   retry {
-#     attempts     = 60
-#     min_delay_ms = 5000
-#     max_delay_ms = 5000
-#   }
-#   depends_on = [talos_machine_bootstrap.this]
-# }
+data "http" "talos_health" {
+  url      = "${local.cluster_endpoint}/version"
+  insecure = true
+  retry {
+    attempts     = 60
+    min_delay_ms = 5000
+    max_delay_ms = 5000
+  }
+  depends_on = [talos_machine_bootstrap.this]
+}
