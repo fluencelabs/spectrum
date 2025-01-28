@@ -25,6 +25,7 @@ spec:
   - kind: Secret
     name: fluence-observability-push
     valuesKey: metrics.yaml
+    optional: false
   # https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
   values:
     alertmanager:
