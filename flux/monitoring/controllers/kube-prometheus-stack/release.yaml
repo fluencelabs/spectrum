@@ -22,7 +22,7 @@ spec:
   - kind: ConfigMap
     name: flux-kube-state-metrics-config
     valuesKey: kube-state-metrics-config.yaml
-  - kind: Secret
+  - kind: ConfigMap
     name: fluence-monitoring-push
     valuesKey: metrics.yaml
     optional: false
