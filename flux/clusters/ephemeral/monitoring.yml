@@ -4,7 +4,7 @@ metadata:
   name: fluence-observability-push
   namespace: monitoring
 type: Opaque
-data:
+stringData:
   metrics.yaml: |
     prometheus:
       prometheusSpec:
