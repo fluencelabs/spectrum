@@ -10,6 +10,6 @@ stringData:
       prometheusSpec:
         remoteWrite:
           - url: https://metrics.fluence.dev
-            basic_auth:
+            basicAuth:
               username: "spectrum"
               password: "Bjyx629kSsVtmiAS"
