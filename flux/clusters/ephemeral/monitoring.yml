@@ -6,7 +6,8 @@ metadata:
 type: Opaque
 stringData:
   metrics.yaml: |
-    - url: https://metrics.fluence.dev
-      basic_auth:
-        username: "spectrum"
-        password: "Bjyx629kSsVtmiAS"
+    remoteWrite:
+      - url: https://metrics.fluence.dev
+        basic_auth:
+          username: "spectrum"
+          password: "Bjyx629kSsVtmiAS"
