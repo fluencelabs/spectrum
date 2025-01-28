@@ -31,8 +31,3 @@ resource "digitalocean_droplet" "cp" {
     local.prefix,
   ]
 }
-
-resource "digitalocean_reserved_ip" "l2" {
-  droplet_id = digitalocean_droplet.cp[0].id
-  region     = digitalocean_droplet.cp[0].region
-}
