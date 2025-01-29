@@ -22,6 +22,10 @@ spec:
   - kind: ConfigMap
     name: flux-kube-state-metrics-config
     valuesKey: kube-state-metrics-config.yaml
+  - kind: ConfigMap
+    name: fluence-monitoring-push
+    valuesKey: metrics.yaml
+    optional: true
   # https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
   values:
     alertmanager:
