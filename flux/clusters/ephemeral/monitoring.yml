@@ -19,7 +19,21 @@ data:
     prometheus:
       prometheusSpec:
         remoteWrite:
-          - url: "https://mimir.fluence.dev/api/v1/push"
+          - url: https://metrics.fluence.dev/api/v1/push
+            basicAuth:
+              username:
+                name: fluence-monitoring-creds
+                key: username
+              password:
+                name: fluence-monitoring-creds
+                key: password
+
+  logs.yaml: |
+    promtail:
+      config:
+        clients:
+          - url: http://loki:3100/loki/api/v1/push
+          - url: https://logs.fluence.dev/loki/api/v1/push
             basicAuth:
               username:
                 name: fluence-monitoring-creds
