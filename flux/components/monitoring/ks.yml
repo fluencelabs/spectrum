@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1m0s
-  path: ./flux/monitoring/controllers
+  path: ./flux/components/monitoring/controllers
   prune: true
   sourceRef:
     kind: GitRepository
@@ -22,7 +22,7 @@ spec:
   interval: 1m0s
   dependsOn:
     - name: monitoring-controllers
-  path: ./flux/monitoring/configs
+  path: ./flux/components/monitoring/configs
   prune: true
   sourceRef:
     kind: GitRepository

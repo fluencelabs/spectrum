@@ -15,4 +15,3 @@ resources:
   - grafana-ingress.yml
   #  - cilium-l2.yml
   - lightmare.yml
-  - monitoring.yml
