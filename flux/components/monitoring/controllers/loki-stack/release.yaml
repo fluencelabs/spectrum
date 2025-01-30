@@ -16,6 +16,11 @@ spec:
       interval: 60m
   # https://github.com/grafana/helm-charts/blob/main/charts/loki-stack/values.yaml
   # https://github.com/grafana/loki/blob/main/production/helm/loki/values.yaml
+  valuesFrom:
+  - kind: ConfigMap
+    name: fluence-monitoring-push
+    valuesKey: logs.yaml
+    optional: true
   values:
     promtail:
       enabled: true
@@ -25,7 +30,8 @@ spec:
       serviceMonitor:
         enabled: true
         additionalLabels:
-          app.kubernetes.io/part-of: kube-prometheus-stack
+          app.kubernetes.io/part-of: spectrum-monitoring
+          app.kubernetes.io/component: kube-prometheus-stack
       config:
         chunk_store_config:
           max_look_back_period: 0s

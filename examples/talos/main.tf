@@ -21,27 +21,17 @@ provider "helm" {
 }
 
 module "talos" {
-  source       = "git::https://github.com/fluencelabs/spectrum.git//terraform-modules/talos?ref=main"
-  cluster_name = var.cluster_name
-  server_ip    = var.server_ip
-  # config_patches = [
-  #   file("${path.root}/config_patch.yml"),
-  # ]
-}
+  source       = "git::https://github.com/fluencelabs/spectrum.git//terraform-modules/talos?ref=terraform-module-talos-v0.2.1" # x-release-please-version
+  cluster_name = "my-cluster"
 
-module "spectrum" {
-  depends_on = [module.talos]
-  source     = "git::https://github.com/fluencelabs/spectrum.git//terraform-modules/spectrum?ref=main"
-  network    = "main"
-  cluster    = "default"
-}
-
-variable "server_ip" {
-  type        = string
-  description = "IP at which server is accessible"
-}
-
-variable "cluster_name" {
-  type        = string
-  description = "Name used in k8s and talos to distinguish between clusters"
+  control_planes = [
+    {
+      name      = "cp-0"
+      server_ip = "1.2.3.4"
+      config_patches = [
+        file("${path.root}/patches/base.yml"),
+        file("${path.root}/patches/cp-0.yml"),
+      ]
+    },
+  ]
 }

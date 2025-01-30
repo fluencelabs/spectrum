@@ -1,11 +1,10 @@
 machine:
-  time:
-    servers:
-      - time.cloudflare.com
+  network:
+    hostname: ${hostname}
   install:
       diskSelector:
         size: '>= 100GB'
-      image: ghcr.io/siderolabs/installer:v1.8.4
+      image: ghcr.io/siderolabs/installer:v1.9.2
       bootloader: true
       wipe: true
   kubelet:
@@ -23,3 +22,13 @@ cluster:
       name: none
   proxy:
     disabled: true
+
+  controllerManager:
+    # for prometheus to scrape
+    extraArgs:
+      bind-address: 0.0.0.0
+      
+  scheduler:
+    # for prometheus to scrape
+    extraArgs:
+      bind-address: 0.0.0.0

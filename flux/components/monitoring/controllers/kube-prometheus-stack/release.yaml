@@ -22,6 +22,10 @@ spec:
   - kind: ConfigMap
     name: flux-kube-state-metrics-config
     valuesKey: kube-state-metrics-config.yaml
+  - kind: ConfigMap
+    name: fluence-monitoring-push
+    valuesKey: metrics.yaml
+    optional: true
   # https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
   values:
     alertmanager:
@@ -33,10 +37,33 @@ spec:
           requests:
             cpu: 200m
             memory: 200Mi
-        podMonitorNamespaceSelector: { }
+
+        serviceMonitorNamespaceSelector: {}
+        serviceMonitorSelector:
+          matchExpressions:
+            - key: app.kubernetes.io/part-of
+              operator: In
+              values: 
+              - "kube-prometheus-stack"
+              - "kube-state-metrics"
+              - "prometheus-node-exporter"
+              - "spectrum-monitoring"
+
+        podMonitorNamespaceSelector: {}
         podMonitorSelector:
           matchLabels:
-            app.kubernetes.io/component: monitoring
+            app.kubernetes.io/part-of: spectrum-monitoring
+
     grafana:
-      defaultDashboardsEnabled: true
+      defaultDashboardsEnabled: false
       adminPassword: fluence
+      sidecar:
+        dashboards:
+          enabled: true
+          label: grafana_dashboard
+          folder: /var/lib/grafana/dashboards
+          updateIntervalSeconds: 10
+          folderAnnotation: grafana_folder
+          provider:
+            allowUiUpdates: true
+            foldersFromFilesStructure: true

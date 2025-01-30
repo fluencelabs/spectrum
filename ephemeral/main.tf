@@ -13,10 +13,18 @@ data "vault_generic_secret" "docker" {
 module "talos" {
   source       = "../terraform-modules/talos"
   cluster_name = local.prefix
-  server_ip    = digitalocean_droplet.talos.ipv4_address
 
-  config_patches = [
-    file("${path.root}/config_patch.yml"),
+  control_planes = [
+    {
+      name      = "cp-0"
+      server_ip = digitalocean_droplet.cp[0].ipv4_address
+      config_patches = [
+        templatefile("${path.root}/patches/registry.yml", {
+          docker_username = data.vault_generic_secret.docker.data.username,
+          docker_password = data.vault_generic_secret.docker.data.password
+        })
+      ]
+    },
   ]
 }
 
@@ -36,7 +44,6 @@ module "spectrum" {
     DOTOKEN         = base64encode(data.vault_generic_secret.spectrum.data.token)
     DOMAIN          = "${local.prefix}.fluence.dev"
     PREFIX          = local.prefix
-    LOADBALANCER_IP = digitalocean_droplet.talos.ipv4_address
-    L2_IP           = digitalocean_reserved_ip.l2.ip_address
+    LOADBALANCER_IP = digitalocean_droplet.cp[0].ipv4_address
   }
 }

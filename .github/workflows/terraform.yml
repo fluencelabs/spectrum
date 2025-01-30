@@ -45,7 +45,7 @@ jobs:
           ref: ${{ inputs.command == 'destroy' && 'main' || inputs.branch }}
 
       - name: Get Vault token
-        uses: hashicorp/vault-action@v3.0.0
+        uses: hashicorp/vault-action@v3.1.0
         with:
           url: "https://vault.fluence.dev"
           path: jwt/github
@@ -108,7 +108,7 @@ jobs:
         run: |
           case ${{ inputs.command }} in
           create)
-            terraform apply -target module.talos.kubeconfig.path -auto-approve
+            terraform apply -target module.talos.local_sensitive_file.kubeconfig -auto-approve
             terraform apply -auto-approve
           ;;
           destroy)
