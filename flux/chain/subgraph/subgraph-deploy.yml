@@ -1,0 +1,40 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: subgraph-deploy
+spec:
+  template:
+    metadata:
+      labels:
+        job: subgraph-deploy
+    spec:
+      restartPolicy: Never
+      initContainers:
+        - name: wait-for-graph-node
+          image: busybox
+          command:
+            - sh
+            - -c
+            - |
+              echo "Waiting for ipfs to be ready..."
+              while ! wget -qO- http://ipfs.chain.svc.cluster.local:5001 >/dev/null; do
+                echo "Still waiting for ipfs..."
+                sleep 5
+              done
+              echo "ipfs is ready!"
+
+              echo "Waiting for graph-node to be ready..."
+              while ! wget -qO- http://graph-node.chain.svc.cluster.local:8020 >/dev/null; do
+                echo "Still waiting for graph-node..."
+                sleep 5
+              done
+              echo "graph-node is ready!"
+      containers:
+        - name: subgraph-deploy
+          image: docker.fluence.dev/subgraph-deploy-script:feat-marketplace-v2-resources-d1eaf27-7661-1
+          env:
+            - name: GRAPHNODE_ADMIN_URL_LOCAL
+              value: "http://graph-node.chain.svc.cluster.local:8020"
+            - name: IPFS_URL
+              value: "http://ipfs.chain.svc.cluster.local:5001"
+      backoffLimit: 4
