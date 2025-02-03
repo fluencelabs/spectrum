@@ -24,7 +24,9 @@ spec:
               echo "ipfs is ready!"
 
               echo "Waiting for graph-node to be ready..."
-              while ! wget -qO- http://graph-node.chain.svc.cluster.local:8020 >/dev/null; do
+              while true; do
+                wget -qO- --post-data '{"foo":"bar"}' --header "Content-Type: application/json" \
+                  http://graph-node.chain.svc.cluster.local:8020 | grep -q 'result' && break
                 echo "Still waiting for graph-node..."
                 sleep 5
               done
