@@ -6,11 +6,16 @@ resources:
   - ../../apps/ingress-nginx
   - ../../apps/cert-manager
   - ../../apps/homepage
+
   - ../../core/local-path-provisioner
   - ../../core/metrics-server
   - ../../core/kubelet-serving-cert-approver
+
+  - ../../chain
+
   - ../../components/kubevirt
   - ../../components/monitoring
+
   - hubble-ingress.yml
   - grafana-ingress.yml
   #  - cilium-l2.yml
