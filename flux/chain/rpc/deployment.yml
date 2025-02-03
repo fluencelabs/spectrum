@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chain-rpc
+  labels:
+    app: chain-rpc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chain-rpc
+  template:
+    metadata:
+      labels:
+        app: chain-rpc
+    spec:
+      containers:
+        - name: chain-rpc
+          image: docker.fluence.dev/chain-rpc:feat-marketplace-v2-resources-d1eaf27-7661-1
+          ports:
+            - containerPort: 8545
+          volumeMounts:
+            - name: chain-rpc-storage
+              mountPath: /data
+          env:
+            - name: LOCAL_CHAIN_BLOCK_MINING_INTERVAL
+              value: "1"
+          readinessProbe:
+            exec:
+              command:
+                [
+                  "curl",
+                  "-s",
+                  "-X",
+                  "POST",
+                  "http://localhost:8545",
+                  "-H",
+                  "Content-Type: application/json",
+                  "--data",
+                  '{"jsonrpc":"2.0", "method":"eth_chainId", "params":[], "id":1}',
+                ]
+            initialDelaySeconds: 10
+            periodSeconds: 8
+      volumes:
+        - name: chain-rpc-storage
+          persistentVolumeClaim:
+            claimName: chain-rpc-pvc
