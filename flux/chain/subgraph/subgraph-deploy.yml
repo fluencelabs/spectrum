@@ -10,22 +10,29 @@ spec:
     spec:
       restartPolicy: Never
       initContainers:
+        - name: wait-for-ipfs
+          image: busybox
+          command:
+            - sh
+            - -c
+            - |
+              echo "Waiting for IPFS to be ready..."
+              while ! wget -qO- http://ipfs.chain.svc.cluster.local:5001/api/v0/id >/dev/null; do
+                echo "Still waiting for IPFS..."
+                sleep 5
+              done
+              echo "IPFS is ready!"
+
         - name: wait-for-graph-node
           image: busybox
           command:
             - sh
             - -c
             - |
-              echo "Waiting for ipfs to be ready..."
-              while ! wget -qO- http://ipfs.chain.svc.cluster.local:5001 >/dev/null; do
-                echo "Still waiting for ipfs..."
-                sleep 5
-              done
-              echo "ipfs is ready!"
-
               echo "Waiting for graph-node to be ready..."
               while true; do
-                wget -qO- --post-data '{"foo":"bar"}' --header "Content-Type: application/json" \
+                wget -qO- --post-data '{"jsonrpc":"2.0", "method":"eth_chainId", "params":[], "id":1}' \
+                  --header "Content-Type: application/json" \
                   http://graph-node.chain.svc.cluster.local:8020 | grep -q 'result' && break
                 echo "Still waiting for graph-node..."
                 sleep 5
