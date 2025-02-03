@@ -39,8 +39,8 @@ spec:
                   "--data",
                   '{"jsonrpc":"2.0", "method":"eth_chainId", "params":[], "id":1}',
                 ]
-            initialDelaySeconds: 10
-            periodSeconds: 8
+            initialDelaySeconds: 5
+            periodSeconds: 5
       volumes:
         - name: chain-rpc-storage
           persistentVolumeClaim:

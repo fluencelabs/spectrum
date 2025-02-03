@@ -1,0 +1,43 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: contracts-deploy
+spec:
+  template:
+    metadata:
+      labels:
+        job: contracts-deploy
+    spec:
+      restartPolicy: Never
+      initContainers:
+        - name: wait-for-chain-rpc
+          image: busybox
+          command:
+            - sh
+            - -c
+            - |
+              echo "Waiting for chain-rpc to be ready..."
+              while true; do
+                response=$(wget -qO- --post-data '{"jsonrpc":"2.0", "method":"eth_chainId", "params":[], "id":1}' \
+                  --header "Content-Type: application/json" \
+                  http://chain-rpc.chain.svc.cluster.local:8545)
+                if echo "$response" | grep -q 'result'; then
+                  echo "chain-rpc is ready!"
+                  break
+                fi
+                echo "Still waiting for chain-rpc..."
+                sleep 5
+              done
+      containers:
+        - name: contracts-deploy
+          image: docker.fluence.dev/chain-deploy-script:feat-marketplace-v2-resources-d1eaf27-7661-1
+          env:
+            - name: CHAIN_RPC_URL
+              value: "http://chain-rpc.chain.svc.cluster.local:8545"
+            - name: MAX_FAILED_RATIO
+              value: "9999"
+            - name: IS_MOCKED_RANDOMX
+              value: "true"
+            - name: MIN_DURATION
+              value: "0"
+      backoffLimit: 4
