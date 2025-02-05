@@ -59,5 +59,9 @@ spec:
       targetPort: 8020
       protocol: TCP
       name: admin
+    - port: 8030
+      targetPort: 8030
+      protocol: TCP
+      name: index
   selector:
     app: graph-node

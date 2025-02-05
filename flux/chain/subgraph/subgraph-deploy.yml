@@ -30,10 +30,7 @@ spec:
             - -c
             - |
               echo "Waiting for graph-node to be ready..."
-              while true; do
-                wget -qO- --post-data '{"jsonrpc":"2.0", "method":"eth_chainId", "params":[], "id":1}' \
-                  --header "Content-Type: application/json" \
-                  http://graph-node.chain.svc.cluster.local:8020 | grep -q 'result' && break
+              while ! wget -qO- http://graph-node.chain.svc.cluster.local:8030 >/dev/null; do
                 echo "Still waiting for graph-node..."
                 sleep 5
               done
