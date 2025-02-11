@@ -15,8 +15,11 @@ spec:
       optional: false
   values:
     operator:
+      image:
+        repository: "fluencelabs/lightmare"
+        tag: "0.1.0@sha256:a76f25984cbd22fe7e0476a49498dc612d3e3e4e007818156c6cfbe2ed0bd15d"
       config:
         ccp:
           image:
             repository: "fluencelabs/ccp-cu-worker"
-            tag: "0.16.1"
+            tag: "0.16.1@sha256:60d77b2113afa112c2277c2ca9c56a9644835a2e0c1fc993388359c2b79d9e13"
