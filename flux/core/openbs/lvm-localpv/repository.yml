@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: openebs-lvm-localpv
+  namespace: flux-system
+spec:
+  interval: 1h
+  timeout: 3m
+  url: https://openebs.github.io/lvm-localpv
+

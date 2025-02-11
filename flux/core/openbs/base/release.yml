@@ -1,0 +1,15 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: openebs
+  namespace: kube-system
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: openebs/openebs
+      version: 4.1.3
+      sourceRef:
+        name: openebs
+        kind: HelmRepository
+        namespace: flux-system
