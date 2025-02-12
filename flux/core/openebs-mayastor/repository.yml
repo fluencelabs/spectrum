@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: openebs-mayastor
+  namespace: flux-system
+spec:
+  interval: 5m
+  timeout: 3m
+  url: https://openebs.github.io/mayastor-extensions/ 
+
