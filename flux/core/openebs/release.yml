@@ -17,9 +17,9 @@ spec:
     engines:
       replicated:
         mayastor:
-          enabled: false
+          enabled: true
       local:
         lvm:
-          enabled: true
+          enabled: false
         zfs:
           enabled: false
