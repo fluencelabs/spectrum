@@ -13,3 +13,10 @@ spec:
         name: openebs-mayastor
         kind: HelmRepository
         namespace: flux-system
+  values:
+      etcd:
+        replicaCount: 1
+      csi:
+        node:
+          initContainers:
+            enabled: false
