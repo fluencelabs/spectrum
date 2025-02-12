@@ -3,12 +3,3 @@ kind: Kustomization
 resources:
   - repository.yml
   - release.yml
-patches:
-  - patch: |-
-      - op: add
-        path: metadata/annotations
-        value:
-          - storageclass.kubernetes.io/is-default-class: "true"
-    target:
-      kind: StorageClass
-      name: openebs-hostpath
