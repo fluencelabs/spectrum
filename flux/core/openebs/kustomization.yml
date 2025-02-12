@@ -9,5 +9,6 @@ patches:
       kind: StorageClass
       metadata:
         name: openebs-hostpath
+        namespace: kube-system
         annotations:
           storageclass.kubernetes.io/is-default-class: "true"
