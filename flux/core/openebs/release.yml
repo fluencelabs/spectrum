@@ -20,7 +20,7 @@ spec:
     engines:
       replicated:
         mayastor:
-          enabled: true
+          enabled: false
       local:
         lvm:
           enabled: false
