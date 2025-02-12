@@ -10,6 +10,6 @@ spec:
       chart: mayastor
       version: 2.7.3
       sourceRef:
-        name: mayastor
+        name: openebs-mayastor
         kind: HelmRepository
         namespace: flux-system
