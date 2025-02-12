@@ -4,7 +4,7 @@ metadata:
   name: openebs
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 5m
   timeout: 3m
   url: https://openebs.github.io/openebs
 

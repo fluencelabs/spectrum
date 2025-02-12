@@ -7,8 +7,19 @@ spec:
   interval: 5m
   chart:
     spec:
-      chart: openebs/openebs
+      chart: openebs
+      version: 4.1.3
       sourceRef:
         name: openebs
         kind: HelmRepository
         namespace: flux-system
+  values:
+    engines:
+      replicated:
+        mayastor:
+          enabled: false
+      local:
+        lvm:
+          enabled: true
+        zfs:
+          enabled: false

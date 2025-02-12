@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - ../../core/local-path-provisioner
   - ../../core/openebs/base
-  - ../../core/openebs/dynamic-localpv-provisioner
-  - ../../core/openebs/lvm-localpv
+  # - ../../core/openebs/dynamic-localpv-provisioner
+  # - ../../core/openebs/lvm-localpv
   - ../../core/metrics-server
   - ../../core/kubelet-serving-cert-approver
