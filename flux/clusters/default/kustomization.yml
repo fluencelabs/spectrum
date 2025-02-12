@@ -3,6 +3,5 @@ kind: Kustomization
 resources:
   - ../../core/local-path-provisioner
   - ../../core/openebs
-  - ../../core/openebs-mayastor
   - ../../core/metrics-server
   - ../../core/kubelet-serving-cert-approver
