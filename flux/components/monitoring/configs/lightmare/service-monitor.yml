@@ -11,7 +11,7 @@ spec:
       app: lightmare
   namespaceSelector:
     matchNames:
-    - kubevirt
+    - lightmare
   endpoints:
   - port: metrics
     scheme: http
