@@ -5,3 +5,4 @@ resources:
   - system
   - kubernetes
   - kubevirt.yml
+  - lightmare.yml

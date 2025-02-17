@@ -32,7 +32,7 @@ spec:
       enabled: false
     prometheus:
       prometheusSpec:
-        retention: 24h
+        retention: 168h
         resources:
           requests:
             cpu: 200m
@@ -48,6 +48,7 @@ spec:
               - "kube-state-metrics"
               - "prometheus-node-exporter"
               - "spectrum-monitoring"
+              - "lightmare"
 
         podMonitorNamespaceSelector: {}
         podMonitorSelector:
