@@ -32,7 +32,7 @@ spec:
     namespace: flux-system
   patches:
     - patch: |-
-        - op: add
+        - op: replace
           path: /spec/disks
           value:
             ["aio:///dev/disk/by-id/scsi-0DO_Volume_rnd-mayastor-test-spectrum-cp"]
