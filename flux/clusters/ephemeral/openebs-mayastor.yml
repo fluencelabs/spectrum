@@ -23,11 +23,11 @@ spec:
     namespace: flux-system
   patches:
     - patch: |-
-      apiVersion: "openebs.io/v1beta2"
-      kind: DiskPool
-      metadata:
-        name: pool
-        namespace: openebs
-      spec:
-        node: cp-0
-        disks: ["aio:///dev/disk/by-id/scsi-0DO_Volume_${DO_DISK}"]
+        apiVersion: "openebs.io/v1beta2"
+        kind: DiskPool
+        metadata:
+          name: pool
+          namespace: openebs
+        spec:
+          node: cp-0
+          disks: ["aio:///dev/disk/by-id/scsi-0DO_Volume_${DO_DISK}"]
