@@ -31,10 +31,10 @@ spec:
     name: spectrum
     namespace: flux-system
   patches:
-    - patch: |-
+    - patch: |
         - op: replace
           path: /spec/disks
-          value: ["aio:///dev/disk/by-id/scsi-0DO_Volume_rnd-mayastor-test-spectrum-cp"]
+          value: "aio:///dev/disk/by-id/scsi-0DO_Volume_rnd-mayastor-test-spectrum-cp"
       target:
         kind: dsp
         name: ebs-pool
