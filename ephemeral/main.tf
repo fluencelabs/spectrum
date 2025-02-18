@@ -33,7 +33,7 @@ module "spectrum" {
     module.talos
   ]
   source  = "../terraform-modules/spectrum"
-  network = var.github_branch
+  network = "testnet-merged"
   cluster = "ephemeral"
 
   cilium_hubble_enabled = true
