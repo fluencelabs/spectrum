@@ -7,12 +7,27 @@ parameters:
   protocol: nvmf
   repl: "1"
 provisioner: io.openebs.csi-mayastor
-# ---
-# apiVersion: "openebs.io/v1beta2"
-# kind: DiskPool
-# metadata:
-#   name: pool
-#   namespace: openebs
-# spec:
-#   node: cp-0
-#   disks: ["aio:///dev/disk/by-id/scsi-0DO_Volume_${DO_DISK}"]
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: openebs
+  namespace: flux-system
+spec:
+  interval: 1m
+  path: "./flux/core/openebs"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: spectrum
+    namespace: flux-system
+  patches:
+    - patch: |-
+      apiVersion: "openebs.io/v1beta2"
+      kind: DiskPool
+      metadata:
+        name: pool
+        namespace: openebs
+      spec:
+        node: cp-0
+        disks: ["aio:///dev/disk/by-id/scsi-0DO_Volume_${DO_DISK}"]
