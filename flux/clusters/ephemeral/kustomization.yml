@@ -9,9 +9,9 @@ resources:
   - ../../core/local-path-provisioner
   - ../../core/metrics-server
   - ../../core/kubelet-serving-cert-approver
-  - ../../core/openebs
   - ../../components/kubevirt
   - ../../components/monitoring
+  - ../../core/openebs
   - hubble-ingress.yml
   - grafana-ingress.yml
   - openebs-mayastor.yml
