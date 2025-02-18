@@ -7,12 +7,3 @@ parameters:
   protocol: nvmf
   repl: "1"
 provisioner: io.openebs.csi-mayastor
----
-apiVersion: "openebs.io/v1beta2"
-kind: DiskPool
-metadata:
-  name: pool
-  namespace: openebs
-spec:
-  node: cp-0
-  disks: ["aio:///dev/disk/by-id/scsi-0DO_Volume_${DO_DISK}"]
