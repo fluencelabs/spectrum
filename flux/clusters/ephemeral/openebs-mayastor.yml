@@ -26,8 +26,12 @@ spec:
         apiVersion: "openebs.io/v1beta2"
         kind: DiskPool
         metadata:
-          name: pool-lol
+          name: pool
           namespace: openebs
         spec:
           node: cp-0
           disks: ["aio:///dev/disk/by-id/scsi-0DO_Volume_rnd-mayastor-test-spectrum-cp"]
+      target:
+        kind: DiskPool
+        name: pool
+        namespace: openebs
