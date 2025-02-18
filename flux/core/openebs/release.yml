@@ -3,8 +3,10 @@ kind: HelmRelease
 metadata:
   name: openebs
   namespace: openebs
-  targetNamespace: openebs
 spec:
+  targetNamespace: openebs
+  install:
+    createNamespace: true
   interval: 5m
   chart:
     spec:
@@ -14,8 +16,6 @@ spec:
         name: openebs
         kind: HelmRepository
         namespace: flux-system
-      install:
-        createNamespace: true
   values:
     mayastor:
       csi:
