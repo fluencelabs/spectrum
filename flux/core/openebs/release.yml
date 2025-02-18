@@ -12,6 +12,8 @@ spec:
         name: openebs
         kind: HelmRepository
         namespace: flux-system
+      install:
+        createNamespace: true
   values:
     mayastor:
       csi:
