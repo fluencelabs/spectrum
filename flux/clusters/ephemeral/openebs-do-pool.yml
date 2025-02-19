@@ -1,0 +1,25 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: openebs-do-pool
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: openebs
+  interval: 1m
+  path: "./flux/components/openebs-do-pool"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: spectrum
+    namespace: flux-system
+  patches:
+    - patch: |-
+        - op: replace
+          path: /spec/disks
+          value: ["aio:///dev/disk/by-id/scsi-0DO_Volume_${DO_DISK}"]
+      target:
+        kind: DiskPool
+        name: ebs-pool
+        namespace: openebs

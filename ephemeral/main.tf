@@ -22,7 +22,8 @@ module "talos" {
         templatefile("${path.root}/patches/registry.yml", {
           docker_username = data.vault_generic_secret.docker.data.username,
           docker_password = data.vault_generic_secret.docker.data.password
-        })
+        },),
+        file("${path.root}/patches/mayastor.yml")
       ]
     },
   ]
@@ -45,5 +46,6 @@ module "spectrum" {
     DOMAIN          = "${local.prefix}.fluence.dev"
     PREFIX          = local.prefix
     LOADBALANCER_IP = digitalocean_droplet.cp[0].ipv4_address
+    DO_DISK         = digitalocean_volume.mayastor.name
   }
 }

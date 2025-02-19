@@ -11,7 +11,10 @@ resources:
   - ../../core/kubelet-serving-cert-approver
   - ../../components/kubevirt
   - ../../components/monitoring
+  - openebs-mayastor.yml
   - hubble-ingress.yml
   - grafana-ingress.yml
   #  - cilium-l2.yml
   - lightmare.yml
+  - openebs-do-pool.yml
+  - cilium-qps-patch.yml
