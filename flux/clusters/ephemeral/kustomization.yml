@@ -17,4 +17,3 @@ resources:
   #  - cilium-l2.yml
   - lightmare.yml
   - openebs-do-pool.yml
-  - cilium-qps-patch.yml
