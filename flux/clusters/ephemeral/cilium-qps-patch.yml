@@ -5,7 +5,12 @@ metadata:
   name: cilium-qps-patch
   namespace: flux-system
 spec:
-  # ...omitted for brevity
+  interval: 1m
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: spectrum
+    namespace: flux-system
   patches:
     - patch: |-
         - op: replace
