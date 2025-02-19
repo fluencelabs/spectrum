@@ -18,7 +18,7 @@ spec:
   values:
     k8sClientRateLimit:
       qps: 1000
-      burst: 5000
+      burst: 6000
       operator:
         qps: 1000
         burst: 5500
