@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/fluencelabs/spectrum/compare/terraform-module-spectrum-v0.1.1...terraform-module-spectrum-v0.1.2) (2025-02-19)
+
+
+### Bug Fixes
+
+* spectrum add qps increase to cilium config ([#140](https://github.com/fluencelabs/spectrum/issues/140)) ([fa3df5a](https://github.com/fluencelabs/spectrum/commit/fa3df5a99d4f46cabbdb2036598e1ee18c868042))
+
 ## [0.1.1](https://github.com/fluencelabs/spectrum/compare/terraform-module-spectrum-v0.1.0...terraform-module-spectrum-v0.1.1) (2025-01-23)
 
 
