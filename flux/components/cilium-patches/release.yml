@@ -4,6 +4,8 @@ metadata:
   name: cilium-patches
   namespace: kube-system
 spec:
+  upgrade:
+    preserveValues: true
   interval: 5m
   chart:
     spec:
