@@ -1,0 +1,23 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: cilium-patches
+  namespace: kube-system
+  interval: 5m
+  chart:
+    spec:
+      chart: cilium
+      version: 1.16.5
+      upgrade:
+        preserveValues: true
+      sourceRef:
+        name: cilium-patches
+        kind: HelmRepository
+        namespace: flux-system
+  values:
+    k8sClientRateLimit:
+      qps: 1000
+      burst: 5000
+      operator:
+        qps: 1000
+        burst: 5000

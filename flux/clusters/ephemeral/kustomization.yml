@@ -11,6 +11,7 @@ resources:
   - ../../core/kubelet-serving-cert-approver
   - ../../components/kubevirt
   - ../../components/monitoring
+  - ../../components/cilium-patches
   - hubble-ingress.yml
   - grafana-ingress.yml
   #  - cilium-l2.yml
