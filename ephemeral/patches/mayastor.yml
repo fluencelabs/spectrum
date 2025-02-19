@@ -1,0 +1,27 @@
+machine:
+  kubelet:
+    extraArgs:
+      node-labels: openebs.io/engine=mayastor
+      max-pods: 500
+    extraMounts:
+            - destination: /var/local # Destination is the absolute path where the mount will be placed in the container.
+              type: bind # Type specifies the mount kind.
+              source: /var/local # Source specifies the source path of the mount.
+              options:
+                - bind
+                - rshared
+                - rw
+  sysctls:
+    vm.nr_hugepages: "1024"
+  nodeLabels:
+    openebs.io/engine: "mayastor"
+cluster:
+  apiServer:
+    admissionControl:
+      - name: PodSecurity
+        configuration:
+          apiVersion: pod-security.admission.config.k8s.io/v1beta1
+          kind: PodSecurityConfiguration
+          exemptions:
+            namespaces:
+              - openebs

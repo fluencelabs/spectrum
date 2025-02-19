@@ -31,3 +31,15 @@ resource "digitalocean_droplet" "cp" {
     local.prefix,
   ]
 }
+
+# mayastor volume
+resource "digitalocean_volume" "mayastor" {
+  region                  = "fra1"
+  name                    = "rnd-${local.prefix}-spectrum-cp"
+  size                    = "100"
+}
+
+resource "digitalocean_volume_attachment" "mayastor" {
+  droplet_id = digitalocean_droplet.cp[0].id
+  volume_id  = digitalocean_volume.mayastor.id
+}
