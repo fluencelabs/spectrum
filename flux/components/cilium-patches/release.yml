@@ -21,4 +21,4 @@ spec:
       burst: 5000
       operator:
         qps: 1000
-        burst: 5000
+        burst: 5500
