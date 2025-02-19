@@ -7,7 +7,6 @@ metadata:
 spec:
   # ...omitted for brevity
   patches:
-    patches:
     - patch: |-
         - op: replace
           path: /data/k8s-client-qps
