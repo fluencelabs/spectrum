@@ -15,4 +15,4 @@ metadata:
   namespace: openebs
 spec:
   node: cp-0
-  disks: ["aio:///dev/disk/by-id/scsi-0DO_Volume_${DO_DISK}"]
+  disks: ["aio:///dev/disk/by-id/placeholder"]
