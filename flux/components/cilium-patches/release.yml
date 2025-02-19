@@ -3,9 +3,11 @@ kind: HelmRelease
 metadata:
   name: cilium-patches
   namespace: kube-system
+spec:
   interval: 5m
   chart:
     spec:
+      interval: 5m
       chart: cilium
       version: 1.16.5
       upgrade:
