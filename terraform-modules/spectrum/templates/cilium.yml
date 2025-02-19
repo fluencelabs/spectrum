@@ -75,6 +75,13 @@ socketLB:
 
 k8sServiceHost: localhost
 
+k8sClientRateLimit:
+  qps: 1000
+  burst: 5000
+  operator:
+    qps: 1000
+    burst: 5000
+
 %{ if cluster_flavour == "talos" }
 k8sServicePort: 7445
 %{ else }
