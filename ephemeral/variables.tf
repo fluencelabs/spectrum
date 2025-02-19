@@ -1,11 +1,10 @@
 variable "github_branch" {
   description = "GitHub branch that Flux will checkout to"
   type        = string
-  default = "openebs-integration"
 }
 
 variable "github_pr_url" {
   description = "GitHub url to PR that triggered the workflow"
   type        = string
-  default     = "https://github.com/fluencelabs/spectrum/pull/125"
+  default     = "https://github.com/fluencelabs"
 }
