@@ -40,9 +40,18 @@ spec:
           version: v1
           flags:
             migStrategy: mixed
-      # Default config name within the ConfigMap
-      default: "mig-mixed"
-      # List of fallback strategies to attempt if no config is selected and no default is provided
+        test: |-
+          version: v1
+          flags:
+            migStrategy: none
+          sharing:
+            timeSlicing:
+              renameByDefault: false
+              failRequestsGreaterThanOne: false
+              resources:
+                - name: nvidia.com/gpu
+                  replicas: 4
+      default: "test"
       fallbackStrategies: ["named" , "single"]
     runtimeClassName: nvidia
 
