@@ -5,3 +5,4 @@ resources:
   - ../../core/metrics-server
   - ../../core/kubelet-serving-cert-approver
   - ../../components/kubevirt
+  - ../../components/gpu-operator
