@@ -27,18 +27,17 @@ spec:
   #     strategy: rollback
   #     retries: 3
   values:
-    hostPaths:
-      driverInstallDir: "/usr/local/lib/containers/nvidia-persistenced"
+    # hostPaths:
+    #   driverInstallDir: "/usr/local/lib/containers/nvidia-persistenced"
     nfd:
       enabled: true
     gfd:
       enabled: true
     cdi:
       enabled: false
-    # operator:
-    #   repository: ghcr.io/jfroy
-    #   version: v24.9.1
-    #   defaultRuntime: containerd
+    operator:
+      repository: ghcr.io/jfroy
+      version: v24.9.1
     driver:
       enabled: false
     toolkit:
