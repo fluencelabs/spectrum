@@ -57,3 +57,4 @@ spec:
     sandboxDevicePlugin:
       enabled: true
       defaultWorkload: "vm-passthrough"
+    validator: {}
