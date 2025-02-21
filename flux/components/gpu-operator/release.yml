@@ -27,12 +27,10 @@ spec:
   #     strategy: rollback
   #     retries: 3
   values:
-    hostPaths:
-      driverInstallDir: "
     nfd:
       enabled: true
     gfd:
-      enabled: true
+      enabled: false
     cdi:
       enabled: false
     # operator:
