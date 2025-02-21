@@ -5,9 +5,9 @@ resources:
   - ./namespace.yml
   - ./repository.yml
   - ./release.yml
-configMapGenerator:
-  - name: time-slicing-config-all
-    files:
-      - any=./time-slicing.yml
-generatorOptions:
-  disableNameSuffixHash: true
+# configMapGenerator:
+#   - name: time-slicing-config-all
+#     files:
+#       - any=./time-slicing.yml
+# generatorOptions:
+#   disableNameSuffixHash: true
