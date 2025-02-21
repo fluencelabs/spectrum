@@ -27,6 +27,8 @@ spec:
   #     strategy: rollback
   #     retries: 3
   values:
+    hostPaths:
+      driverInstallDir: "
     nfd:
       enabled: true
     gfd:
@@ -38,6 +40,8 @@ spec:
     #   version: v24.9.1
     #   defaultRuntime: containerd
     driver:
+      enabled: false
+    toolkit:
       enabled: false
     devicePlugin:
       enabled: false
