@@ -27,10 +27,12 @@ spec:
   #     strategy: rollback
   #     retries: 3
   values:
+    hostPaths:
+      driverInstallDir: "/usr/local/lib/containers/nvidia-persistenced"
     nfd:
       enabled: true
     gfd:
-      enabled: false
+      enabled: true
     cdi:
       enabled: false
     # operator:
