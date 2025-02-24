@@ -24,11 +24,11 @@ spec:
   values:
     promtail:
       enabled: true
-      priorityClassName: system-cluster-critical
+      priorityClassName: spectrum-monitoring
     loki:
       enabled: true
       isDefault: false
-      priorityClassName: system-cluster-critical
+      priorityClassName: spectrum-monitoring
       serviceMonitor:
         enabled: true
         additionalLabels:
