@@ -30,9 +30,9 @@ spec:
   values:
     alertmanager:
       enabled: false
-    prometheus:
-      prometheusOperator:
+    prometheusOperator:
         priorityClassName: system-cluster-critical
+    prometheus:
       prometheusSpec:
         priorityClassName: system-cluster-critical
         retention: 168h
@@ -73,5 +73,7 @@ spec:
             allowUiUpdates: true
             foldersFromFilesStructure: true
 
+    kube-state-metrics:
+      priorityClassName: system-cluster-critical
     prometheus-node-exporter:
       priorityClassName: system-cluster-critical
