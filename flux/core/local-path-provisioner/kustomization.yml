@@ -33,3 +33,11 @@ patches:
         name: local-path-storage
         labels:
           pod-security.kubernetes.io/enforce: privileged
+  - patch: |-
+        - op:  replace
+          path: /spec/priorityClassName:
+          value: system-cluster-critical
+    target:
+        kind: Deployment
+        name: local-path-provisioner
+        namespace: local-path-storage
