@@ -34,7 +34,7 @@ patches:
         labels:
           pod-security.kubernetes.io/enforce: privileged
   - patch: |-
-        - op:  replace
+        - op: replace
           path: /spec/template/spec/priorityClassName:
           value: system-cluster-critical
     target:
