@@ -29,6 +29,7 @@ spec:
     loki:
       enabled: true
       isDefault: false
+      priorityClassName: system-cluster-critical
       serviceMonitor:
         enabled: true
         additionalLabels:
