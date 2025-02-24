@@ -24,9 +24,11 @@ spec:
   values:
     promtail:
       enabled: true
+      priorityClassName: spectrum-monitoring
     loki:
       enabled: true
       isDefault: false
+      priorityClassName: spectrum-monitoring
       serviceMonitor:
         enabled: true
         additionalLabels:

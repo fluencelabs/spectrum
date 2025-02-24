@@ -21,6 +21,22 @@ resource "helm_release" "flux" {
     name  = "imageAutomationController.create"
     value = "false"
   }
+  set {
+    name  = "helmController.priorityClassName"
+    value = "system-cluster-critical"
+  }
+  set {
+    name  = "kustomizeController.priorityClassName"
+    value = "system-cluster-critical"
+  }
+  set {
+    name  = "notificationController.priorityClassName"
+    value = "system-cluster-critical"
+  }
+  set {
+    name  = "sourceController.priorityClassName"
+    value = "system-cluster-critical"
+  }
 }
 
 resource "helm_release" "flux-sync" {
