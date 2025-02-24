@@ -31,7 +31,10 @@ spec:
     alertmanager:
       enabled: false
     prometheus:
+      prometheusOperator:
+        priorityClassName: system-cluster-critical
       prometheusSpec:
+        priorityClassName: system-cluster-critical
         retention: 168h
         resources:
           requests:
@@ -56,6 +59,7 @@ spec:
             app.kubernetes.io/part-of: spectrum-monitoring
 
     grafana:
+      priorityClassName: system-cluster-critical
       defaultDashboardsEnabled: false
       adminPassword: fluence
       sidecar:
@@ -68,3 +72,6 @@ spec:
           provider:
             allowUiUpdates: true
             foldersFromFilesStructure: true
+
+    prometheus-node-exporter:
+      priorityClassName: system-cluster-critical
