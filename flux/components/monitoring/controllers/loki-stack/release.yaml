@@ -22,10 +22,9 @@ spec:
     valuesKey: logs.yaml
     optional: true
   values:
-    global:
-      priorityClassName: system-cluster-critical
     promtail:
       enabled: true
+      priorityClassName: system-cluster-critical
     loki:
       enabled: true
       isDefault: false
