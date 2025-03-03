@@ -3,8 +3,6 @@ kind: HelmRelease
 metadata:
   name: lightmare
   namespace: lightmare
-  annotations:
-    fluxcd.io/reconcileAt: "2025-03-03T12:00:00Z"
 spec:
   interval: 5m
   install:
