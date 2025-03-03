@@ -5,3 +5,5 @@ metadata:
   namespace: lightmare
   annotations:
     helm.sh/resource-policy: keep
+spec:
+  storageClassName: local-path
