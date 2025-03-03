@@ -5,6 +5,13 @@ metadata:
   namespace: lightmare
 spec:
   interval: 5m
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    # force: true
+    remediation:
+      retries: 3
   chartRef:
     kind: OCIRepository
     name: lightmare
