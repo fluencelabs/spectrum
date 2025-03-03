@@ -3,3 +3,8 @@ kind: Kustomization
 resources:
   - repository.yml
   - release.yml
+patches:
+  - target:
+      kind: PersistentVolumeClaim
+      name: ccp-proofs-pvc
+    path: pvc-patch.yml
