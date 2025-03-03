@@ -12,6 +12,8 @@ spec:
     force: true
     remediation:
       retries: 3
+  driftDetection:
+    mode: enabled
   chartRef:
     kind: OCIRepository
     name: lightmare
