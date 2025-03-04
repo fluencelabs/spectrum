@@ -30,7 +30,6 @@ spec:
   values:
     alertmanager:
       enabled: true
-      alertmanager:
       config:
         route:
             group_wait: 30s
