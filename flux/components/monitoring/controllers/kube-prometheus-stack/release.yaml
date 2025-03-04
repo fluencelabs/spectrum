@@ -29,7 +29,60 @@ spec:
   # https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
   values:
     alertmanager:
-      enabled: false
+      enabled: true
+      alertmanager:
+      config:
+        route:
+            group_wait: 30s
+            group_interval: 5m
+            repeat_interval: 12h
+            receiver: 'null'
+            routes:
+            - receiver: 'slack-all'
+        receivers:
+          - name: slack-all # temp ducktape to track alerts history
+            slack_configs:
+            - channel: "#testnet-fluence-alerts"
+              api_url: placeholder
+              send_resolved: true
+              text: '{{ template "slack.myorg.text" . }}'
+              icon_url: https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Prometheus_software_logo.svg/500px-Prometheus_software_logo.svg.png
+
+        templateFiles:
+              template_1.tmpl: |-
+                {{ define "cluster" }}{{ .ExternalURL | reReplaceAll ".*alertmanager\\.(.*)" "$1" }}{{ end }}
+          
+                {{ define "slack.myorg.text" }}
+                {{- $root := . -}}
+                {{ range .Alerts }}
+                  *Alert:* {{ .Annotations.summary }} - `{{ .Labels.severity }}`
+                  *Cluster:* {{ template "cluster" $root }}
+                  *Description:* {{ .Annotations.description }}
+                  *Graph:* <{{ .GeneratorURL }}|:chart_with_upwards_trend:>
+                  *Runbook:* <{{ .Annotations.runbook }}|:spiral_note_pad:>
+                  *Details:*
+                    {{ range .Labels.SortedPairs }} - *{{ .Name }}:* `{{ .Value }}`
+                    {{ end }}
+                {{ end }}
+                {{ end }} 
+    customRules:
+      KubeStateMetricsListErrors:
+        severity: info
+      KubeClientCertificateExpiration:
+        severity: info
+      KubeControllerManagerDown:
+        severity: info
+      KubeProxyDown: # temp, need to fix talos
+        severity: info
+      KubeSchedulerDown:  # temp, need to fix talos
+        severity: info
+      PrometheusNotConnectedToAlertmanagers:
+        severity: info
+      PrometheusDuplicateTimestamps:
+        severity: info
+      # TargetDown:
+      #   severity: info
+
     prometheusOperator:
         priorityClassName: spectrum-monitoring
     prometheus:
