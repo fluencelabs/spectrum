@@ -33,7 +33,6 @@ spec:
       alertmanagerSpec:
         secrets: [testnet-fluence-url]
       config:
-        inhibit_rules: {}
         route:
             group_wait: 30s
             group_interval: 5m
