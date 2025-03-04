@@ -30,6 +30,8 @@ spec:
   values:
     alertmanager:
       enabled: true
+      alertmanagerSpec:
+        secrets: [testnet-fluence-url]
       config:
         inhibit_rules: {}
         route:
@@ -41,7 +43,7 @@ spec:
           - name: slack-all # temp ducktape to track alerts history
             slack_configs:
             - channel: "#testnet-fluence-alerts"
-              api_url: placeholder
+              api_url_file: /etc/alertmanager/secrets/testnet-fluence-url
               send_resolved: true
               text: '{{ template "slack.myorg.text" . }}'
               icon_url: https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Prometheus_software_logo.svg/500px-Prometheus_software_logo.svg.png
