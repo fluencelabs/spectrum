@@ -131,5 +131,3 @@ spec:
       priorityClassName: spectrum-monitoring
     prometheus-node-exporter:
       priorityClassName: spectrum-monitoring
-
-
