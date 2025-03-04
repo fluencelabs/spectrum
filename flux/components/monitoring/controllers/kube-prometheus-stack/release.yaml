@@ -3,7 +3,7 @@ kind: HelmRelease
 metadata:
   name: kube-prometheus-stack
 spec:
-  interval: 1h
+  interval: 5m
   chartRef:
     kind: OCIRepository
     name: kube-prometheus-stack
@@ -47,7 +47,7 @@ spec:
               text: '{{ template "slack.myorg.text" . }}'
               icon_url: https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Prometheus_software_logo.svg/500px-Prometheus_software_logo.svg.png
 
-        templateFiles:
+      templateFiles:
               template_1.tmpl: |-
                 {{ define "cluster" }}{{ .ExternalURL | reReplaceAll ".*alertmanager\\.(.*)" "$1" }}{{ end }}
           
