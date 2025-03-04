@@ -38,6 +38,8 @@ spec:
             group_interval: 5m
             repeat_interval: 12h
             receiver: 'slack-all'
+            routes:
+              - receiver: 'slack-all'
         receivers:
           - name: slack-all # temp ducktape to track alerts history
             slack_configs:
