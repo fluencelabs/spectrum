@@ -29,7 +29,7 @@ spec:
   # https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
   values:
     alertmanager:
-      enabled: false
+      enabled: true
       alertmanagerSpec:
         secrets: [
           testnet-fluence-url,
@@ -57,21 +57,54 @@ spec:
           - '/etc/alertmanager/secrets/slack-templates/*.tmpl'
       templateFiles:
               template_1.tmpl: |-
-                {{ define "cluster" }}{{ .ExternalURL | reReplaceAll ".*alertmanager\\.(.*)" "$1" }}{{ end }}
-          
-                {{ define "slack.myorg.text" }}
-                {{- $root := . -}}
-                {{ range .Alerts }}
-                  *Alert:* {{ .Annotations.summary }} - `{{ .Labels.severity }}`
-                  *Cluster:* {{- template "provider" -}} - {{- template "cluster_name" -}} - {{- template "ip_address" -}}
-                  *Description:* {{ .Annotations.description }}
-                  *Graph:* <{{ .GeneratorURL }}|:chart_with_upwards_trend:>
-                  *Runbook:* <{{ .Annotations.runbook }}|:spiral_note_pad:>
-                  *Details:*
-                    {{ range .Labels.SortedPairs }} - *{{ .Name }}:* `{{ .Value }}`
-                    {{ end }}
+                {{ define "__main_title" }}
+                  [{{ .Status | toUpper }}
+                  {{- if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{- template "provider" . -}}{{- template "cluster_name" . -}}{{ template "cluster_name" . }} {{ with .GroupLabels }} {{- .Values | join " " }} {{- end -}}
                 {{ end }}
-                {{ end }} 
+
+                {{ define "__main_text_labels" }}
+                  {{ range .Alerts }}
+                  *Cluster:* {{- template "provider" . -}}{{- template "cluster_name" . -}}{{ template "cluster_name" . }}
+                  *Summary:* {{ .Annotations.summary }}
+                  *Description:* {{ .Annotations.description }}
+                  *Since:* {{ .StartsAt.UTC.Format "02/01/06 15:04 MSK" }}
+                  *Details:*
+                    {{ range .Labels.SortedPairs }}• {{ .Name }}: `{{ .Value }}`
+                    {{ end }}{{ end }}
+                {{ end }}
+
+                {{ define "__main_body_firing" }}
+                  {{ range .Alerts }}
+                  *Summary:* {{ .Annotations.summary }}
+                  *Description:* {{ .Annotations.description }}
+                  *Since:* {{ .StartsAt.Local.Format "02/01/06 15:04 UTC" }}
+                  {{ end }}
+                {{ end }}
+
+                {{ define "__main_body_resolved" }}
+                  {{ range .Alerts }}
+                  *Message:* {{ if .Annotations.resolved }}{{ .Annotations.resolved }}{{ else }}{{ .Annotations.summary }}{{ end }}
+                  *Description:* {{ if .Annotations.resolved }}{{ .Annotations.resolved }}{{ else }}{{ .Annotations.description }}{{ end }}
+                  *Started at:* {{ .StartsAt.Local.Format "02/01/06 15:04 UTC" }}
+                  *Ended at:* {{ .EndsAt.Local.Format "02/01/06 15:04 UTC" }}
+                  {{ end }}
+                {{ end }}
+                {{ define "slack.main.title" }}{{ template "__main_title" . }}{{ end }}
+
+                {{ define "slack.main.text" }}
+                    {{ if eq (len .Alerts.Firing) 1 -}}
+                    {{ template "__main_body_firing" . }}
+                    {{- else if gt (len .Alerts.Firing) 1 -}}
+                    *Alerts:* {{ template "__main_body_firing" . }}
+                    {{- else -}}
+                    {{ template "__main_body_resolved" . }}
+                    {{- end -}}
+                {{ end }}
+
+                {{ define "slack.main.dashboard" }}{{ template "__main_dashboard" . }}{{ end }}
+                {{ define "slack.main.link" }}{{ template "__main_link" . }}{{ end }}
+                {{ define "slack.main.silence" }}{{ template "__main_silence" . }}{{ end }}
+                {{ define "slack.main.explore" }}{{ template "__main_explore" . }}{{ end }}
     customRules:
       KubeStateMetricsListErrors:
         severity: info
