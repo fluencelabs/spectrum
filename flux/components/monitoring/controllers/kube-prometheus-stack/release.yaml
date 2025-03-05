@@ -41,11 +41,13 @@ spec:
             group_wait: 30s
             group_interval: 5m
             repeat_interval: 12h
+            receiver: blackhole
             routes:
               - receiver: 'slack-all'
                 matchers:
                 - severity =~ "warning|critical"
         receivers:
+          - name: blackhole
           - name: slack-all # temp ducktape to track alerts history
             slack_configs:
             - channel: "#testnet-fluence-alerts"
