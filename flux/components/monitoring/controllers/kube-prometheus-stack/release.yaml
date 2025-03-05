@@ -29,7 +29,7 @@ spec:
   # https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
   values:
     alertmanager:
-      enabled: false
+      enabled: true
       alertmanagerSpec:
         secrets: [testnet-fluence-url]
       config:
