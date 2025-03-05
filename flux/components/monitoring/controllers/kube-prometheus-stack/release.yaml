@@ -90,7 +90,7 @@ spec:
       prometheusSpec:
         priorityClassName: spectrum-monitoring
         externalLabels:
-          cluster: {{ lookup "v1" "Service" "kube-system" "kube-dns").metadata.labels.k8s-app }}
+          cluster: "{{- lookup "v1" "Service" "kube-system" "kube-dns").metadata.labels.k8s-app }}"
         retention: 168h
         resources:
           requests:
