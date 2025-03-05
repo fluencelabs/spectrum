@@ -31,7 +31,11 @@ spec:
     alertmanager:
       enabled: true
       alertmanagerSpec:
-        secrets: [testnet-fluence-url]
+        secrets: [
+          testnet-fluence-url,
+          slack-templates
+        ]
+        
       config:
         route:
             group_wait: 30s
@@ -48,7 +52,9 @@ spec:
               send_resolved: true
               text: '{{ template "slack.myorg.text" . }}'
               icon_url: https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Prometheus_software_logo.svg/500px-Prometheus_software_logo.svg.png
-
+        templates:
+          - '/etc/alertmanager/config/*.tmpl'
+          - '/etc/alertmanager/secrets/slack-templates/*.tmpl'
       templateFiles:
               template_1.tmpl: |-
                 {{ define "cluster" }}{{ .ExternalURL | reReplaceAll ".*alertmanager\\.(.*)" "$1" }}{{ end }}
