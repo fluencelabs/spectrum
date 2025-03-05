@@ -29,7 +29,7 @@ spec:
   # https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
   values:
     alertmanager:
-      enabled: true
+      enabled: false
       alertmanagerSpec:
         secrets: [
           testnet-fluence-url,
@@ -45,7 +45,6 @@ spec:
               - receiver: 'slack-all'
                 matchers:
                 - severity =~ "warning|critical"
-
         receivers:
           - name: slack-all # temp ducktape to track alerts history
             slack_configs:
