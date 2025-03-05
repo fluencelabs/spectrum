@@ -190,7 +190,7 @@ spec:
             expr: gotk_resource_info{customresource_kind="GitRepository", ready!="True"} > 0
             for: 5m
             labels:
-              severity: major
+              severity: critical
               service: fluxcd
               exported_instance: '{{ $labels.exported_namespace }}/{{ $labels.name }}'
             annotations:
@@ -201,7 +201,7 @@ spec:
             expr: gotk_resource_info{customresource_kind="Kustomization", ready!="True"} > 0
             for: 5m
             labels:
-              severity: major
+              severity: critical
               service: fluxcd
               exported_instance: '{{ $labels.exported_namespace }}/{{ $labels.name }}'
             annotations:
@@ -212,7 +212,7 @@ spec:
             expr: gotk_resource_info{customresource_kind="ImageRepository", ready!="True"} > 0
             for: 5m
             labels:
-              severity: major
+              severity: critical
               service: fluxcd
               exported_instance: '{{ $labels.exported_namespace }}/{{ $labels.name }}'
             annotations:
@@ -223,7 +223,7 @@ spec:
             expr: gotk_resource_info{customresource_kind="HelmChart", ready!="True"} > 0
             for: 5m
             labels:
-              severity: major
+              severity: critical
               service: fluxcd
               exported_instance: '{{ $labels.exported_namespace }}/{{ $labels.name }}'
             annotations:
