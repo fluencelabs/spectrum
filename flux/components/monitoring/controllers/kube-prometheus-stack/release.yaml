@@ -79,7 +79,6 @@ spec:
                   *Details:*
                     {{ range .Labels.SortedPairs }}• {{ .Name }}: `{{ .Value }}`
                     {{ end }}{{ end }}
-                  {{ end }}
                 {{ end }}
 
                 {{ define "__main_body_resolved" }}
@@ -92,8 +91,8 @@ spec:
                   *Details:*
                     {{ range .Labels.SortedPairs }}• {{ .Name }}: `{{ .Value }}`
                     {{ end }}{{ end }}
-                  {{ end }}
                 {{ end }}
+                
                 {{ define "slack.main.title" }}{{ template "__main_title" . }}{{ end }}
 
                 {{ define "slack.main.text" }}
