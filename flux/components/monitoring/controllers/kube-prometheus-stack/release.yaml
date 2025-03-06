@@ -29,7 +29,7 @@ spec:
   # https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
   values:
     alertmanager:
-      enabled: false
+      enabled: true
       alertmanagerSpec:
         priorityClassName: spectrum-monitoring
         secrets: [
@@ -45,7 +45,7 @@ spec:
               - severity
             group_wait: 30s
             group_interval: 5m
-            repeat_interval: 12h
+            repeat_interval: 7d
             receiver: blackhole
             routes:
               - receiver: 'slack-all'
