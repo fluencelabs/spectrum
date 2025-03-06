@@ -1,0 +1,95 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: vgpu-device-manager
+  labels:
+    app: vgpu-device-manager
+spec:
+  selector:
+    matchLabels:
+      app: vgpu-device-manager
+  template:
+    metadata:
+      labels:
+        app: vgpu-device-manager
+    spec:
+      serviceAccount: vgpu-device-manager
+      serviceAccountName: vgpu-device-manager
+      containers:
+      - name: vgpu-device-manager
+        image: nvcr.io/nvidia/cloud-native/vgpu-device-manager:v0.1.0
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.namespace
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: CONFIG_FILE
+          value: "/vgpu-devices-config/config.yaml"
+        - name: DEFAULT_VGPU_CONFIG
+          value: "default"
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /vgpu-devices-config
+          name: vgpu-devices-config
+        - mountPath: /sys
+          name: host-sys
+      volumes:
+      - name: vgpu-devices-config
+        configMap:
+          name: vgpu-devices-config
+      - name: host-sys
+        hostPath:
+          path: /sys
+          type: Directory
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: vgpu-device-manager
+  namespace: default
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: vgpu-device-manager
+rules:
+- apiGroups:
+  - config.openshift.io
+  resources:
+  - clusterversions
+  verbs:
+  - get
+  - list
+- apiGroups:
+  - ""
+  resources:
+  - nodes
+  - pods
+  - pods/eviction
+  verbs:
+  - get
+  - list
+  - watch
+  - update
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: vgpu-device-manager
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: vgpu-device-manager
+subjects:
+- kind: ServiceAccount
+  name: vgpu-device-manager
+  namespace: default

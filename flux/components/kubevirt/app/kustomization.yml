@@ -31,3 +31,9 @@ patches:
           developerConfiguration: 
             featureGates:
               - CPUManager
+              - GPU
+          permittedHostDevices:
+            pciHostDevices:
+            - pciVendorSelector: "10DE:20F1"
+              resourceName: "nvidia.com/A100"
+              externalResourceProvider: true
