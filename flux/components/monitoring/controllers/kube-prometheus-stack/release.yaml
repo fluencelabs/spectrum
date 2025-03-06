@@ -91,7 +91,6 @@ spec:
                   *Details:*
                     {{ range .Labels.SortedPairs }}• {{ .Name }}: `{{ .Value }}`
                     {{ end }}{{ end }}
-                    Expression: {{ .GeneratorURL }}
                     Runbook: {{ .Annotations.runbook_url }}
                 {{ end }}
 
@@ -105,7 +104,6 @@ spec:
                   *Details:*
                     {{ range .Labels.SortedPairs }}• {{ .Name }}: `{{ .Value }}`
                     {{ end }}{{ end }}
-                    Expression: `{{ .GeneratorURL }}`
                     Runbook: {{ .Annotations.runbook_url }}
                 {{ end }}
 
