@@ -147,7 +147,7 @@ spec:
     prometheus:
       prometheusSpec:
         priorityClassName: spectrum-monitoring
-        retention: 168h
+        retention: 200h
         resources:
           requests:
             cpu: 200m
