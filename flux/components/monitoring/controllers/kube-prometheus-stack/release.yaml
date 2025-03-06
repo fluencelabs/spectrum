@@ -200,7 +200,6 @@ spec:
             labels:
               severity: critical
               service: fluxcd
-              exported_instance: '{{ $labels.exported_namespace }}/{{ $labels.name }}'
             annotations:
               summary: "HelmRelease {{ $labels.name }} in namespace {{ $labels.exported_namespace }} is not ready"
               description: "HelmRelease {{ $labels.name }} in namespace {{ $labels.exported_namespace }} is in an unready state for more than 15 minutes."
@@ -211,7 +210,6 @@ spec:
             labels:
               severity: critical
               service: fluxcd
-              exported_instance: '{{ $labels.exported_namespace }}/{{ $labels.name }}'
             annotations:
               summary: "GitRepository {{ $labels.name }} in namespace {{ $labels.exported_namespace }} sync failed"
               description: "GitRepository {{ $labels.name }} in namespace {{ $labels.exported_namespace }} has not been successfully synced for more than 15 minutes."
@@ -222,7 +220,6 @@ spec:
             labels:
               severity: critical
               service: fluxcd
-              exported_instance: '{{ $labels.exported_namespace }}/{{ $labels.name }}'
             annotations:
               summary: "Kustomization {{ $labels.name }} in namespace {{ $labels.exported_namespace }} is not applied"
               description: "Kustomization {{ $labels.name }} in namespace {{ $labels.exported_namespace }} is not successfully applied for more than 15 minutes."
@@ -233,7 +230,6 @@ spec:
             labels:
               severity: critical
               service: fluxcd
-              exported_instance: '{{ $labels.exported_namespace }}/{{ $labels.name }}'
             annotations:
               summary: "ImageRepository {{ $labels.name }} in namespace {{ $labels.exported_namespace }} sync failed"
               description: "ImageRepository {{ $labels.name }} in namespace {{ $labels.exported_namespace }} has not been successfully synced for more than 15 minutes."
@@ -244,7 +240,6 @@ spec:
             labels:
               severity: critical
               service: fluxcd
-              exported_instance: '{{ $labels.exported_namespace }}/{{ $labels.name }}'
             annotations:
               summary: "HelmChart {{ $labels.name }} in namespace {{ $labels.exported_namespace }} has failed"
               description: "HelmChart {{ $labels.name }} in namespace {{ $labels.exported_namespace }} is not ready for more than 15 minutes."
@@ -255,7 +250,6 @@ spec:
             labels:
               severity: warning
               service: fluxcd
-              exported_instance: '{{ $labels.exported_namespace }}/{{ $labels.name }}'
             annotations:
               summary: "HelmRelease {{ $labels.name }} in namespace {{ $labels.exported_namespace }} is suspended"
               description: "HelmRelease {{ $labels.name }} in namespace {{ $labels.exported_namespace }} has been suspended."
@@ -266,7 +260,6 @@ spec:
             labels:
               severity: warning
               service: fluxcd
-              exported_instance: '{{ $labels.exported_namespace }}/{{ $labels.name }}'
             annotations:
               summary: "GitRepository {{ $labels.name }} in namespace {{ $labels.exported_namespace }} is suspended"
               description: "GitRepository {{ $labels.name }} in namespace {{ $labels.exported_namespace }} has been suspended."
@@ -277,7 +270,6 @@ spec:
             labels:
               severity: warning
               service: fluxcd
-              exported_instance: '{{ $labels.exported_namespace }}/{{ $labels.name }}'
             annotations:
               summary: "Kustomization {{ $labels.name }} in namespace {{ $labels.exported_namespace }} is suspended"
               description: "Kustomization {{ $labels.name }} in namespace {{ $labels.exported_namespace }} has been suspended."
@@ -288,7 +280,6 @@ spec:
             labels:
               severity: warning
               service: fluxcd
-              exported_instance: '{{ $labels.exported_namespace }}/{{ $labels.name }}'
             annotations:
               summary: "ImageRepository {{ $labels.name }} in namespace {{ $labels.exported_namespace }} is suspended"
               description: "ImageRepository {{ $labels.name }} in namespace {{ $labels.exported_namespace }} has been suspended."
@@ -299,7 +290,6 @@ spec:
             labels:
               severity: warning
               service: fluxcd
-              exported_instance: '{{ $labels.exported_namespace }}/{{ $labels.name }}'
             annotations:
               summary: "HelmChart {{ $labels.name }} in namespace {{ $labels.exported_namespace }} is suspended"
               description: "HelmChart {{ $labels.name }} in namespace {{ $labels.exported_namespace }} has been suspended."
