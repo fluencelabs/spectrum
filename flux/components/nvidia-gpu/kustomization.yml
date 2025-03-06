@@ -4,5 +4,6 @@ namespace: nvidia
 resources:
   - namespace.yml
   - kubevirt-gpu-device-plugin
-  - vgpu-device-plugin
+  # - vgpu-device-plugin
   - node-feature-discovery
+  - nvidia-device-plugin
