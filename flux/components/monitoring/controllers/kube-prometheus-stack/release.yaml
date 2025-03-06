@@ -135,8 +135,6 @@ spec:
         severity: info
       PrometheusDuplicateTimestamps:
         severity: info
-      TargetDown:
-        severity: info
       PrometheusRuleFailures:
         severity: info
       KubeProxyDown:
