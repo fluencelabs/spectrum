@@ -29,7 +29,7 @@ spec:
   # https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
   values:
     alertmanager:
-      enabled: false
+      enabled: true
       alertmanagerSpec:
         secrets: [
           slack-main,
@@ -60,7 +60,7 @@ spec:
           - name: slack-all 
             slack_configs:
             - channel: '#{{- template "slack_channel_main" . -}}'
-              api_url_file: /etc/alertmanager/secrets/slack-main/secret-url
+              api_url_file: /etc/alertmanager/secrets/slack-api-url/slack-all
               send_resolved: true
               title: '{{ template "slack.main.title" . }}'
               text: '{{ template "slack.main.text" . }}'
@@ -68,7 +68,7 @@ spec:
             - name: slack-fluxcd
               slack_configs:
               - channel: '#{{- template "slack_channel_flux" . -}}'
-                api_url_file: /etc/alertmanager/secrets/slack-fluxcd/secret-url
+                api_url_file: /etc/alertmanager/secrets/slack-api-url/slack-fluxcd
                 send_resolved: true
                 title: '{{ template "slack.main.title" . }}'
                 text: '{{ template "slack.main.text" . }}'
@@ -85,7 +85,7 @@ spec:
 
                 {{ define "__main_body_firing" }}
                   {{ range .Alerts }}
-                  *Cluster:* {{- template "provider" . -}}{{- template "cluster_name" . -}}-{{ template "ip_address" . }}
+                  *Cluster:*  {{- template "provider" . -}}{{- template "cluster_name" . -}}-{{ template "ip_address" . }}
                   *Summary:* {{ .Annotations.summary }}
                   *Description:* {{ .Annotations.description }}
                   *Since:* {{ .StartsAt.Local.Format "02/01/06 15:04 UTC" }}
@@ -93,11 +93,12 @@ spec:
                     {{ range .Labels.SortedPairs }}• {{ .Name }}: `{{ .Value }}`
                     {{ end }}{{ end }}
                     Expression: {{ .GeneratorURL | reReplaceAll ".*expr=" "" | reReplaceAll "&g0.*" "" | reReplaceAll "%7B" "{" | reReplaceAll "%3D" "=" | reReplaceAll "%3E" ">" | reReplaceAll "%3C" "<" | reReplaceAll "%22" "\"" | reReplaceAll "%2C" "," | reReplaceAll "%21" "!" | reReplaceAll "%7D" "}" | reReplaceAll "\\+" " " | reReplaceAll "%2A" "*" | reReplaceAll "%2F" "/" | reReplaceAll "%28" "(" | reReplaceAll "%29" ")" | reReplaceAll "%5E" "^" | reReplaceAll "%5B" "[" | reReplaceAll "%5D" "]" }}
+                    Runbook: {{ .Annotations.runbook_url }}
                 {{ end }}
 
                 {{ define "__main_body_resolved" }}
                   {{ range .Alerts }}
-                  *Cluster:* {{- template "provider" . -}}{{- template "cluster_name" . -}}-{{ template "ip_address" . }}
+                  *Cluster:*  {{- template "provider" . -}}{{- template "cluster_name" . -}}-{{ template "ip_address" . }}
                   *Message:* {{ if .Annotations.resolved }}{{ .Annotations.resolved }}{{ else }}{{ .Annotations.summary }}{{ end }}
                   *Description:* {{ if .Annotations.resolved }}{{ .Annotations.resolved }}{{ else }}{{ .Annotations.description }}{{ end }}
                   *Started at:* {{ .StartsAt.Local.Format "02/01/06 15:04 UTC" }}
@@ -106,6 +107,7 @@ spec:
                     {{ range .Labels.SortedPairs }}• {{ .Name }}: `{{ .Value }}`
                     {{ end }}{{ end }}
                     Expression: `{{ .GeneratorURL | reReplaceAll ".*expr=" "" | reReplaceAll "&g0.*" "" | reReplaceAll "%7B" "{" | reReplaceAll "%3D" "=" | reReplaceAll "%3E" ">" | reReplaceAll "%3C" "<" | reReplaceAll "%22" "\"" | reReplaceAll "%2C" "," | reReplaceAll "%21" "!" | reReplaceAll "%7D" "}" | reReplaceAll "\\+" " " | reReplaceAll "%2A" "*" | reReplaceAll "%2F" "/" | reReplaceAll "%28" "(" | reReplaceAll "%29" ")" | reReplaceAll "%5E" "^" | reReplaceAll "%5B" "[" | reReplaceAll "%5D" "]" }}`
+                    Runbook: {{ .Annotations.runbook_url }}
                 {{ end }}
 
                 {{ define "slack.main.title" }}{{ template "__main_title" . }}{{ end }}
@@ -131,9 +133,7 @@ spec:
         severity: info
       KubeControllerManagerDown:
         severity: info
-      KubeProxyDown: # temp, need to fix talos
-        severity: info
-      KubeSchedulerDown:  # temp, need to fix talos
+      KubeSchedulerDown:
         severity: info
       PrometheusNotConnectedToAlertmanagers:
         severity: info
@@ -142,6 +142,8 @@ spec:
       TargetDown:
         severity: info
       PrometheusRuleFailures:
+        severity: info
+      KubeProxyDown:
         severity: info
 
     prometheusOperator:
