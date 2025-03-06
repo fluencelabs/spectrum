@@ -28,7 +28,7 @@ spec:
             fieldRef:
               fieldPath: spec.nodeName
         - name: CONFIG_FILE
-          value: "/vgpu-devices-config/config.yaml"
+          value: "/vgpu-devices-config/config.yml"
         - name: DEFAULT_VGPU_CONFIG
           value: "default"
         securityContext:

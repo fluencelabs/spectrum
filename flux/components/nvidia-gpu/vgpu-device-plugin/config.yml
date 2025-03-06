@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: vgpu-devices-config
 data:
-  config.yaml: |
+  config.yml: |
     version: v1
     vgpu-configs:
         A2-1Q:
