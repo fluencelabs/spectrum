@@ -22,9 +22,7 @@ spec:
         imagePullPolicy: IfNotPresent
         env:
         - name: NAMESPACE
-          valueFrom:
-            fieldRef:
-              fieldPath: spec.namespace
+          value: nvidia
         - name: NODE_NAME
           valueFrom:
             fieldRef:
