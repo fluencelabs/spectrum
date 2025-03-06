@@ -29,7 +29,7 @@ spec:
   # https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
   values:
     alertmanager:
-      enabled: true
+      enabled: false
       alertmanagerSpec:
         priorityClassName: spectrum-monitoring
         secrets: [
@@ -92,6 +92,8 @@ spec:
                   *Details:*
                     {{ range .Labels.SortedPairs }}• {{ .Name }}: `{{ .Value }}`
                     {{ end }}{{ end }}
+                    Runbook: {{ if .Annotations.runbook_url }}{{ .Annotations.runbook_url }}{{ end }}
+                    Expression: {{ if .GeneratorURL }}{{ (index .Alerts 0).GeneratorURL | reReplaceAll ".*expr=" "" | reReplaceAll "&g0.*" "" | reReplaceAll "%7B" "{" | reReplaceAll "%3D" "=" | reReplaceAll "%3E" ">" | reReplaceAll "%3C" "<" | reReplaceAll "%22" "\"" | reReplaceAll "%2C" "," | reReplaceAll "%21" "!" | reReplaceAll "%7D" "}" | reReplaceAll "\\+" " " | reReplaceAll "%2A" "*" | reReplaceAll "%2F" "/" | reReplaceAll "%28" "(" | reReplaceAll "%29" ")" | reReplaceAll "%5E" "^" | reReplaceAll "%5B" "[" | reReplaceAll "%5D" "]" }}{{ end }}
                 {{ end }}
 
                 {{ define "__main_body_resolved" }}
@@ -104,6 +106,8 @@ spec:
                   *Details:*
                     {{ range .Labels.SortedPairs }}• {{ .Name }}: `{{ .Value }}`
                     {{ end }}{{ end }}
+                    Runbook: {{ if .Annotations.runbook_url }}{{ .Annotations.runbook_url }}{{ end }}
+                    Expression: {{ if .GeneratorURL }}{{ (index .Alerts 0).GeneratorURL | reReplaceAll ".*expr=" "" | reReplaceAll "&g0.*" "" | reReplaceAll "%7B" "{" | reReplaceAll "%3D" "=" | reReplaceAll "%3E" ">" | reReplaceAll "%3C" "<" | reReplaceAll "%22" "\"" | reReplaceAll "%2C" "," | reReplaceAll "%21" "!" | reReplaceAll "%7D" "}" | reReplaceAll "\\+" " " | reReplaceAll "%2A" "*" | reReplaceAll "%2F" "/" | reReplaceAll "%28" "(" | reReplaceAll "%29" ")" | reReplaceAll "%5E" "^" | reReplaceAll "%5B" "[" | reReplaceAll "%5D" "]" }}{{ end }}
                 {{ end }}
 
                 {{ define "slack.main.title" }}{{ template "__main_title" . }}{{ end }}
