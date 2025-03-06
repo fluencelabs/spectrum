@@ -91,7 +91,6 @@ spec:
                   *Details:*
                     {{ range .Labels.SortedPairs }}• {{ .Name }}: `{{ .Value }}`
                     {{ end }}{{ end }}
-                    Runbook: {{ .Annotations.runbook_url }}
                 {{ end }}
 
                 {{ define "__main_body_resolved" }}
@@ -104,7 +103,6 @@ spec:
                   *Details:*
                     {{ range .Labels.SortedPairs }}• {{ .Name }}: `{{ .Value }}`
                     {{ end }}{{ end }}
-                    Runbook: {{ .Annotations.runbook_url }}
                 {{ end }}
 
                 {{ define "slack.main.title" }}{{ template "__main_title" . }}{{ end }}
