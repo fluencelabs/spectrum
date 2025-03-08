@@ -23,7 +23,7 @@ spec:
     operator:
       image:
         repository: "fluencelabs/lightmare"
-        tag: "0.3.1@sha256:3d0672342051251348379ae9cd7cc2fecd8a34ba8970182e5111733321d2300b"
+        tag: "0.3.2@sha256:dfce2c7c0148e555069f8c37fad05bfe7b4978cf54370702331e8b62c7764871"
       config:
         ccp:
           image:
