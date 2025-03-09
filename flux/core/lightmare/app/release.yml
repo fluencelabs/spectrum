@@ -29,3 +29,4 @@ spec:
           image:
             repository: "fluencelabs/ccp-cu-worker"
             tag: "0.16.4@sha256:b5260b38d576b7b0d037cec1821391691be9d4b1c3026d9cd28ad88da0a9b0e1"
+          memory: 4128 mib
