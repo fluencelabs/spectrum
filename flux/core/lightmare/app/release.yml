@@ -30,4 +30,4 @@ spec:
         ccp:
           image:
             repository: "fluencelabs/ccp-cu-worker"
-            tag: "0.16.3@sha256:ed447bfa1a38fa26e256b3ef641438fa8f09ff688a5654a3ce42fdb5569ca6bd"
+            tag: "0.16.2"
