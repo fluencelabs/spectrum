@@ -29,7 +29,7 @@ spec:
   # https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
   values:
     alertmanager:
-      enabled: true
+      enabled: false
       alertmanagerSpec:
         priorityClassName: spectrum-monitoring
         secrets: [
@@ -79,12 +79,12 @@ spec:
               template_1.tmpl: |-
                 {{ define "__main_title" }}
                   [{{ .Status | toUpper }}
-                  {{- if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{- template "provider" . -}}-{{- template "cluster_name" . -}}-{{- template "ip_address" . -}} {{ with .GroupLabels }} {{- .Values | join " " }} {{- end -}}
+                  {{- if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{- template "provider" . -}}-{{- template "cluster_name" . -}}-{{ template "ip_address" . }} {{ with .GroupLabels }} {{- .Values | join " " }} {{- end -}}
                 {{ end }}
 
                 {{ define "__main_body_firing" }}
                   {{ range .Alerts }}
-                  *Cluster:* {{ template "provider" . }}-{{- template "cluster_name" . -}}-{{- template "ip_address" . -}}
+                  *Cluster:* {{ template "provider" . }}-{{- template "cluster_name" . -}}-{{ template "ip_address" . }}
                   *Summary:* {{ .Annotations.summary }}
                   *Description:* {{ .Annotations.description }}
                   *Since:* {{ .StartsAt.Local.Format "02/01/06 15:04 UTC" }}
