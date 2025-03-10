@@ -35,8 +35,7 @@ spec:
         secrets: [
           slack-api-url,
           slack-templates
-        ]
-        
+        ]  
       config:
         route:
             group_by:
@@ -80,12 +79,12 @@ spec:
               template_1.tmpl: |-
                 {{ define "__main_title" }}
                   [{{ .Status | toUpper }}
-                  {{- if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{- template "provider" . -}}-{{- template "cluster_name" . -}}-{{- template "ip_address" . -}} {{ with .GroupLabels }} {{- .Values | join " " }} {{- end -}}
+                  {{- if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{- template "provider" . -}}-{{- template "cluster_name" . -}}-{{ template "ip_address" . }} {{ with .GroupLabels }} {{- .Values | join " " }} {{- end -}}
                 {{ end }}
 
                 {{ define "__main_body_firing" }}
                   {{ range .Alerts }}
-                  *Cluster:* {{ template "provider" . }}-{{- template "cluster_name" . -}}-{{- template "ip_address" . -}}
+                  *Cluster:* {{ template "provider" . }}-{{- template "cluster_name" . -}}-{{ template "ip_address" . }}
                   *Summary:* {{ .Annotations.summary }}
                   *Description:* {{ .Annotations.description }}
                   *Since:* {{ .StartsAt.Local.Format "02/01/06 15:04 UTC" }}
@@ -96,7 +95,7 @@ spec:
 
                 {{ define "__main_body_resolved" }}
                   {{ range .Alerts }}
-                  *Cluster:* {{ template "provider" . }}-{{- template "cluster_name" . -}}-{{- template "ip_address" . -}}
+                  *Cluster:* {{ template "provider" . }}-{{- template "cluster_name" . -}}-{{ template "ip_address" . }}
                   *Message:* {{ if .Annotations.resolved }}{{ .Annotations.resolved }}{{ else }}{{ .Annotations.summary }}{{ end }}
                   *Description:* {{ if .Annotations.resolved }}{{ .Annotations.resolved }}{{ else }}{{ .Annotations.description }}{{ end }}
                   *Started at:* {{ .StartsAt.Local.Format "02/01/06 15:04 UTC" }}
