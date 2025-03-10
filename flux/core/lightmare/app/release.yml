@@ -28,5 +28,5 @@ spec:
         ccp:
           image:
             repository: "fluencelabs/ccp-cu-worker"
-            tag: "0.16.6@sha256:d27c5393a448194e78f002ddd7cefbc65b3b2a384c26b7859cf5b6dd37fc360a"
+            tag: "0.16.7@sha256:6306c0925d648c5f245a8bc979a6c6f43b1107768fa5c89b37663b11832cabdc"
           memory: 4128 mib
