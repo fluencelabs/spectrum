@@ -1,14 +1,14 @@
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
-  name: kube-prometheus-stack-flux-system
+  name: flux-system
   labels:
     app.kubernetes.io/part-of: spectrum-monitoring
     app.kubernetes.io/component: flux
     release: kube-prometheus-stack # required for kube-prom-stack to parse the ruleset
 spec:
   groups:
-  - name: kube-prometheus-stack-flux-system
+  - name: flux-system
     rules:
     - alert: HelmReleaseNotReady
       expr: gotk_resource_info{customresource_kind="HelmRelease", ready!="True"} > 0
