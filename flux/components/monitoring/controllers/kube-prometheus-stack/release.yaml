@@ -29,14 +29,13 @@ spec:
   # https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
   values:
     alertmanager:
-      enabled: true
+      enabled: false
       alertmanagerSpec:
         priorityClassName: spectrum-monitoring
         secrets: [
           slack-api-url,
           slack-templates
-        ]
-        
+        ]  
       config:
         route:
             group_by:
@@ -96,7 +95,7 @@ spec:
 
                 {{ define "__main_body_resolved" }}
                   {{ range .Alerts }}
-                  *Cluster:* {{ template "provider" . }}-{{- template "cluster_name" . -}}-{{- template "ip_address" . -}}
+                  *Cluster:* {{ template "provider" . }}-{{- template "cluster_name" . -}}-{{ template "ip_address" . }}
                   *Message:* {{ if .Annotations.resolved }}{{ .Annotations.resolved }}{{ else }}{{ .Annotations.summary }}{{ end }}
                   *Description:* {{ if .Annotations.resolved }}{{ .Annotations.resolved }}{{ else }}{{ .Annotations.description }}{{ end }}
                   *Started at:* {{ .StartsAt.Local.Format "02/01/06 15:04 UTC" }}
