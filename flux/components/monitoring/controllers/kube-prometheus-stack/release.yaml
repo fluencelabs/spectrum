@@ -3,7 +3,7 @@ kind: HelmRelease
 metadata:
   name: kube-prometheus-stack
 spec:
-  interval: 1h
+  interval: 5m
   chartRef:
     kind: OCIRepository
     name: kube-prometheus-stack
@@ -29,18 +29,129 @@ spec:
   # https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
   values:
     alertmanager:
-      enabled: false
+      enabled: true
+      alertmanagerSpec:
+        priorityClassName: spectrum-monitoring
+        secrets: [
+          slack-api-url,
+          slack-templates
+        ]
+        
+      config:
+        route:
+            group_by:
+              - alertname
+              - namespace
+              - severity
+            group_wait: 30s
+            group_interval: 5m
+            repeat_interval: 7d
+            receiver: blackhole
+            routes:
+              - receiver: 'slack-all'
+                matchers:
+                - service != "fluxcd"
+                - severity =~ "warning|critical"
+              - receiver: 'slack-fluxcd'
+                matchers:
+                - service = "fluxcd"
+        receivers:
+          - name: blackhole
+          - name: slack-all 
+            slack_configs:
+            - channel: '#{{- template "slack_channel_main" . -}}'
+              api_url_file: /etc/alertmanager/secrets/slack-api-url/slack-all
+              send_resolved: true
+              title: '{{ template "slack.main.title" . }}'
+              text: '{{ template "slack.main.text" . }}'
+              icon_url: https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Prometheus_software_logo.svg/500px-Prometheus_software_logo.svg.png
+          - name: slack-fluxcd
+            slack_configs:
+            - channel: '#{{- template "slack_channel_flux" . -}}'
+              api_url_file: /etc/alertmanager/secrets/slack-api-url/slack-fluxcd
+              send_resolved: true
+              title: '{{ template "slack.main.title" . }}'
+              text: '{{ template "slack.main.text" . }}'
+              icon_url: https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Prometheus_software_logo.svg/500px-Prometheus_software_logo.svg.png
+        templates:
+          - '/etc/alertmanager/config/*.tmpl'
+          - '/etc/alertmanager/secrets/slack-templates/*.tmpl'
+      templateFiles:
+              template_1.tmpl: |-
+                {{ define "__main_title" }}
+                  [{{ .Status | toUpper }}
+                  {{- if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{- template "provider" . -}}-{{- template "cluster_name" . -}}-{{- template "ip_address" . -}} {{ with .GroupLabels }} {{- .Values | join " " }} {{- end -}}
+                {{ end }}
+
+                {{ define "__main_body_firing" }}
+                  {{ range .Alerts }}
+                  *Cluster:* {{ template "provider" . }}-{{- template "cluster_name" . -}}-{{- template "ip_address" . -}}
+                  *Summary:* {{ .Annotations.summary }}
+                  *Description:* {{ .Annotations.description }}
+                  *Since:* {{ .StartsAt.Local.Format "02/01/06 15:04 UTC" }}
+                  *Details:*
+                    {{ range .Labels.SortedPairs }}• {{ .Name }}: `{{ .Value }}`
+                    {{ end }}{{ end }}
+                {{ end }}
+
+                {{ define "__main_body_resolved" }}
+                  {{ range .Alerts }}
+                  *Cluster:* {{ template "provider" . }}-{{- template "cluster_name" . -}}-{{- template "ip_address" . -}}
+                  *Message:* {{ if .Annotations.resolved }}{{ .Annotations.resolved }}{{ else }}{{ .Annotations.summary }}{{ end }}
+                  *Description:* {{ if .Annotations.resolved }}{{ .Annotations.resolved }}{{ else }}{{ .Annotations.description }}{{ end }}
+                  *Started at:* {{ .StartsAt.Local.Format "02/01/06 15:04 UTC" }}
+                  *Ended at:* {{ .EndsAt.Local.Format "02/01/06 15:04 UTC" }}
+                  *Details:*
+                    {{ range .Labels.SortedPairs }}• {{ .Name }}: `{{ .Value }}`
+                    {{ end }}{{ end }}
+                {{ end }}
+
+                {{ define "slack.main.title" }}{{ template "__main_title" . }}{{ end }}
+
+                {{ define "slack.main.text" }}
+                    {{ if eq (len .Alerts.Firing) 1 -}}
+                    {{ template "__main_body_firing" . }}
+                    {{- else if gt (len .Alerts.Firing) 1 -}}
+                    *Alerts:* {{ template "__main_body_firing" . }}
+                    {{- else -}}
+                    {{ template "__main_body_resolved" . }}
+                    {{- end -}}
+                {{ end }}
+
+                {{ define "slack.main.dashboard" }}{{ template "__main_dashboard" . }}{{ end }}
+                {{ define "slack.main.link" }}{{ template "__main_link" . }}{{ end }}
+                {{ define "slack.main.silence" }}{{ template "__main_silence" . }}{{ end }}
+                {{ define "slack.main.explore" }}{{ template "__main_explore" . }}{{ end }}
+    customRules:
+      KubeStateMetricsListErrors:
+        severity: info
+      KubeClientCertificateExpiration:
+        severity: info
+      KubeControllerManagerDown:
+        severity: info
+      KubeSchedulerDown:
+        severity: info
+      PrometheusNotConnectedToAlertmanagers:
+        severity: info
+      PrometheusDuplicateTimestamps:
+        severity: info
+      PrometheusRuleFailures:
+        severity: info
+      KubeProxyDown:
+        severity: info
+
     prometheusOperator:
         priorityClassName: spectrum-monitoring
     prometheus:
       prometheusSpec:
         priorityClassName: spectrum-monitoring
-        retention: 168h
+        retention: 200h
         resources:
           requests:
             cpu: 200m
             memory: 200Mi
 
+        ruleSelectorNilUsesHelmValues: false
         serviceMonitorNamespaceSelector: {}
         serviceMonitorSelector:
           matchExpressions:
