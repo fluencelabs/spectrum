@@ -23,10 +23,10 @@ spec:
     operator:
       image:
         repository: "fluencelabs/lightmare"
-        tag: "0.3.3@sha256:e1a4e2ac236206c514a3a954bcd012e4779da306996a94dc992612a3ecf6f0c0"
+        tag: "0.3.4@sha256:571e514cb2858655e518c2f1577b735c31b001722b08095fef117506e6379daf"
       config:
         ccp:
           image:
             repository: "fluencelabs/ccp-cu-worker"
-            tag: "0.16.7@sha256:6306c0925d648c5f245a8bc979a6c6f43b1107768fa5c89b37663b11832cabdc"
-          memory: 4128 mib
+            tag: "0.16.12@sha256:82699d5fe834175c911fc064223ff09810a33274d12a6ac355dc36fdbd4743b6"
+          memory: 2.48 gib
