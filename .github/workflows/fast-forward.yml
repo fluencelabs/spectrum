@@ -1,0 +1,49 @@
+name: Fast Forward Merge
+
+on:
+  workflow_call:
+    inputs:
+      env:
+        type: string
+        required: true
+      source:
+        type: string
+        required: true
+    secrets:
+      token:
+        required: true
+
+jobs:
+  merge:
+    name: Fast forward merge
+    environment: ${{ inputs.env }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout target branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.env }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Fetch source tag/branch
+        run: |
+          git fetch origin ${{ inputs.source }}
+
+      - name: Check fast-forward merge possibility
+        run: |
+          # Ensure that the target branch is an ancestor of the source branch/tag
+          if git merge-base --is-ancestor ${{ inputs.env }} ${{ inputs.source }}; then
+            echo "Fast-forward merge possible."
+          else
+            echo "Error: The merge is not a fast-forward merge. Exiting."
+            exit 1
+          fi
+
+      - name: Merge source tag/branch into target branch
+        run: |
+          git merge --ff-only ${{ inputs.source }}
+
+      - name: Push changes
+        run: |
+          git push origin ${{ inputs.env }}
