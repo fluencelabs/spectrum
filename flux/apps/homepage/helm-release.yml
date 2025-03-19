@@ -15,7 +15,7 @@ spec:
         namespace: flux-system
   values:
     image:
-      tag: v0.10.9
+      tag: v1.0.4
       repository: ghcr.io/gethomepage/homepage
     serviceAccount:
       create: true
