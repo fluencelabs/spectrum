@@ -19,6 +19,9 @@
     "terraform-modules/talos": {
       "component": "terraform-module-talos",
       "extra-files": ["/examples/talos/main.tf"]
+    },
+    "flux": {
+      "component": "spectrum"
     }
   }
 }

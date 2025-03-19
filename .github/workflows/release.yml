@@ -12,6 +12,10 @@ jobs:
   release-please:
     runs-on: ubuntu-latest
 
+    outputs:
+      spectrum-release-created: ${{ steps.release.outputs['flux--release_created'] }}
+      spectrum-tag: ${{ steps.release.outputs['flux--tag_name'] }}
+
     steps:
       - name: Run release-please
         id: release
@@ -27,3 +31,25 @@ jobs:
         env:
           RELEASE_PLEASE_OUTPUT: ${{ toJSON(steps.release.outputs) }}
         run: echo "${RELEASE_PLEASE_OUTPUT}" | jq
+
+  testnet:
+    if: needs.release-please.outputs.spectrum-release-created
+    needs: release-please
+    uses: ./.github/workflows/deploy.yml
+    with:
+      env: testnet
+      source: ${{ needs.release-please.outputs.spectrum-tag }}
+    secrets:
+      token: ${{ secrets.FLUENCEBOT_RELEASE_PLEASE_PAT }}
+
+  mainnet:
+    if: needs.release-please.outputs.spectrum-release-created
+    needs:
+      - release-please
+      - testnet
+    uses: ./.github/workflows/deploy.yml
+    with:
+      env: mainnet
+      source: ${{ needs.release-please.outputs.spectrum-tag }}
+    secrets:
+      token: ${{ secrets.FLUENCEBOT_RELEASE_PLEASE_PAT }}

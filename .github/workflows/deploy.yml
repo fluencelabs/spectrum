@@ -1,0 +1,37 @@
+name: Deploy flux changes
+
+on:
+  workflow_call:
+    inputs:
+      env:
+        required: true
+        type: string
+    secrets:
+      token:
+        required: true
+
+jobs:
+  deploy:
+    name: Merge to canary branch
+    uses: ./.github/workflows/fast-forward.yml
+    with:
+      env: ${{ inputs.env }}-canary
+    secrets:
+      token: ${{ secrets.token }}
+  
+  # TODO
+  # tests:
+  #   needs: deploy
+  #   name: Run smoke tests
+  #   uses: ./.github/workflows/tests.yml
+  #   with:
+  #     env: ${{ inputs.env }}
+
+  merge:
+    needs: deploy
+    name: Merge to release branch
+    uses: ./.github/workflows/fast-forward.yml
+    with:
+      env: ${{ inputs.env }}
+    secrets:
+      token: ${{ secrets.token }}
