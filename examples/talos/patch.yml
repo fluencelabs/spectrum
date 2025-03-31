@@ -1,4 +1,11 @@
 machine:
+  time:
+    servers:
+      - time.cloudflare.com
+  kubelet:
+    extraArgs:
+      # fill manually
+      max-pods: "<CPU cores * 3 + 150>"
   install:
     diskSelector:
       # ❯ talosctl get --talosconfig talosconfig -i -n 154.42.3.58 disk nvme8n1 -o yaml
@@ -45,7 +52,7 @@ machine:
           miimon: 100
           lacpRate: slow
           xmitHashPolicy: layer3+4
-          deviceSelectors:
+          interfaces:
             # ❯ talosctl get --talosconfig talosconfig -i -n 154.42.3.58 link
             # NODE   NAMESPACE   TYPE         ID              VERSION   TYPE       KIND     HW ADDR                                           OPER STATE   LINK STATE
             #        network     LinkStatus   bond0           1         ether      bond     b2:10:98:b2:d5:25                                 down         false
@@ -61,5 +68,5 @@ machine:
             #        network     LinkStatus   sit0            1         sit        sit      00:00:00:00                                       down         false
             #        network     LinkStatus   teql0           1         void                                                                  down         false
             #        network     LinkStatus   tunl0           1         ipip       ipip     00:00:00:00                                       down         false
-            - permanentAddr: 04:3f:72:dc:2e:3c
-            - permanentAddr: 04:3f:72:dc:2e:3d
+            - enp68s0f0np0
+            - enp68s1f0np0

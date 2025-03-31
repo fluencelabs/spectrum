@@ -29,8 +29,7 @@ module "talos" {
       name      = "cp-0"
       server_ip = "1.2.3.4"
       config_patches = [
-        file("${path.root}/patches/base.yml"),
-        file("${path.root}/patches/cp-0.yml"),
+        file("${path.root}/patch.yml"),
       ]
     },
   ]
