@@ -1,8 +1,0 @@
-machine:
-  time:
-    servers:
-      - time.cloudflare.com
-  kubelet:
-    extraArgs:
-      # fill manually
-      max-pods: "<CPU cores * 3 + 150>"
