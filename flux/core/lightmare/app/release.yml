@@ -23,7 +23,7 @@ spec:
     operator:
       image:
         repository: "docker.fluence.dev/lightmare"
-        tag: "main-730fcd4-1804-1@sha256:53856a382ff8f87babef4c3e1bef1128d2ca3c2c8eb86fc264c4d812353eec35"
+        tag: "fix-cloud-init-5630a13-1806-1@sha256:e44ed53aa51678c05d3876e46267656a003ed61be8bda0fdfc3121807c14c3d4"
       config:
         ccp:
           image:
