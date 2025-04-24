@@ -22,11 +22,11 @@ spec:
   values:
     operator:
       image:
-        repository: "docker.fluence.dev/lightmare"
-        tag: "main-730fcd4-1804-1@sha256:53856a382ff8f87babef4c3e1bef1128d2ca3c2c8eb86fc264c4d812353eec35"
+        repository: "fluencelabs/lightmare"
+        tag: "0.4.0@sha256:b8fe219089f5c4d46463dcc4e0df746e37524e4cf7f97ed3b94979a5ae4bfe8a"
       config:
         ccp:
           image:
             repository: "fluencelabs/ccp-cu-worker"
-            tag: "0.16.12@sha256:82699d5fe834175c911fc064223ff09810a33274d12a6ac355dc36fdbd4743b6"
+            tag: "0.17.0@sha256:e2704500147b4c385e1047728e8158c6e6614a519ab8c0bd27eae79aece8d2f1"
           memory: 2.48 gib
