@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/fluencelabs/spectrum/compare/spectrum-v0.1.1...spectrum-v0.1.2) (2025-04-30)
+
+
+### Bug Fixes
+
+* revert ccp ([#205](https://github.com/fluencelabs/spectrum/issues/205)) ([22c657f](https://github.com/fluencelabs/spectrum/commit/22c657f781f596c8f0a73399ed5bebf4ab59b45d))
+
 ## [0.1.1](https://github.com/fluencelabs/spectrum/compare/spectrum-v0.1.0...spectrum-v0.1.1) (2025-04-24)
 
 
