@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.2.2](https://github.com/fluencelabs/spectrum/compare/terraform-module-talos-v0.2.1...terraform-module-talos-v0.2.2) (2025-05-09)
+
+
+### Features
+
+* Update talos provider version to 0.8 (1.10.x) ([#214](https://github.com/fluencelabs/spectrum/issues/214)) ([1625703](https://github.com/fluencelabs/spectrum/commit/162570395e819756c1e9c8d3620c69e867123e05))
+
+
+### Bug Fixes
+
+* bind kube-scheduler and kube-controller on 0.0.0.0 to collect metrics ([e9f4203](https://github.com/fluencelabs/spectrum/commit/e9f4203c33c1581c845f076f835f6a291a45540c))
+* dependency on serviceMonitor when monitoring component is not enabled ([e9f4203](https://github.com/fluencelabs/spectrum/commit/e9f4203c33c1581c845f076f835f6a291a45540c))
+
 ## [0.2.1](https://github.com/fluencelabs/spectrum/compare/terraform-module-talos-v0.2.0...terraform-module-talos-v0.2.1) (2025-01-23)
 
 
