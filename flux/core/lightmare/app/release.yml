@@ -23,7 +23,7 @@ spec:
     operator:
       image:
         repository: "docker.fluence.dev/lightmare"
-        tag: "fix-ccp-metrics-0e448e0-1861-1@sha256:674d2bd388d0f5b6c3111a13b2763650f51037074f647c3c21607d23fec4c6a1"
+        tag: "feature-pdev-97-cff75f2-1868-1@sha256:4a815d27872e4655a20da6cba5765fb49f1976a23b67adfc018c3937cfd4ec7f"
       config:
         ccp:
           image:
