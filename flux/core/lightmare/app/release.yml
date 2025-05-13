@@ -23,7 +23,7 @@ spec:
     operator:
       image:
         repository: "docker.fluence.dev/lightmare"
-        tag: "faet-introduce-retries-in-heart-9f4f2e0-1857-1@sha256:0145a26ee6659ff872f45952fdadac5793ae37e9581b358397ba09916bc5e5d6"
+        tag: "fix-ccp-metrics-0e448e0-1861-1@sha256:674d2bd388d0f5b6c3111a13b2763650f51037074f647c3c21607d23fec4c6a1"
       config:
         ccp:
           image:
