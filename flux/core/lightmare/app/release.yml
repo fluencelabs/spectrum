@@ -22,8 +22,8 @@ spec:
   values:
     operator:
       image:
-        repository: "fluencelabs/lightmare"
-        tag: "0.4.3@sha256:a80b294e51966c4e48f35534b45d99303967662f3a56fe1884c17375f7bf36e4"
+        repository: "docker.fluence.dev/lightmare"
+        tag: "feature-ovn-637cd84-1996-1@sha256:49f6e156945319e7e053f544c4a8e44db49661075220c420745cc379ac69ae09"
       config:
         ccp:
           image:
