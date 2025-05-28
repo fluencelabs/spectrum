@@ -10,10 +10,9 @@ generatorOptions:
     app.kubernetes.io/part-of: spectrum-monitoring
     app.kubernetes.io/component: lightmare
 commonAnnotations:
-  grafana_folder: "lightmare"
+  grafana_folder: "Lightmare"
 
-# tbd
-# configMapGenerator:
-#   - name: dashboards-k8s-lightmare
-#     files:
-#       - *.json
+configMapGenerator:
+  - name: dashboards-lightmare
+    files:
+      - dashboards/lightmare.json
