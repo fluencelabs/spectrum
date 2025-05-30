@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.6](https://github.com/fluencelabs/spectrum/compare/spectrum-v0.1.5...spectrum-v0.1.6) (2025-05-30)
+
+
+### Features
+
+* adding lightmare grafana dashboard ([#230](https://github.com/fluencelabs/spectrum/issues/230)) ([1bb5277](https://github.com/fluencelabs/spectrum/commit/1bb527710bab2f3998376bb1f7c7deead67f4dff))
+
+
+### Bug Fixes
+
+* update lightmare to 0.4.4 ([#237](https://github.com/fluencelabs/spectrum/issues/237)) ([b823cf6](https://github.com/fluencelabs/spectrum/commit/b823cf6aeee33b85029174de348e1cc8a94b28a2))
+
 ## [0.1.5](https://github.com/fluencelabs/spectrum/compare/spectrum-v0.1.4...spectrum-v0.1.5) (2025-05-20)
 
 
