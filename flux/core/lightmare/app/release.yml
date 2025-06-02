@@ -21,6 +21,8 @@ spec:
       optional: false
   values:
     operator:
+      podAnnotations:
+        restartedAt: "2025-06-02T10:00:00Z"
       image:
         repository: "fluencelabs/lightmare"
         tag: "0.4.4@sha256:f023a07ec81de6a2d1e31c7af901c6add86dfae018482b337f29455d6e3ac527"
