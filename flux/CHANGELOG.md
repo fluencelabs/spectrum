@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.7](https://github.com/fluencelabs/spectrum/compare/spectrum-v0.1.6...spectrum-v0.1.7) (2025-06-02)
+
+
+### Bug Fixes
+
+* Add annotation to force restart ligthmare ([#238](https://github.com/fluencelabs/spectrum/issues/238)) ([7a537f7](https://github.com/fluencelabs/spectrum/commit/7a537f76fb45ce9d64df85775fdfaab98d6eeaa6))
+
 ## [0.1.6](https://github.com/fluencelabs/spectrum/compare/spectrum-v0.1.5...spectrum-v0.1.6) (2025-05-30)
 
 
