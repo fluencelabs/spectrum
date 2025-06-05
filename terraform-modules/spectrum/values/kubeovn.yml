@@ -1,0 +1,7 @@
+MASTER_NODES_LABEL: "node-role.kubernetes.io/control-plane"
+cni_conf:
+  MOUNT_LOCAL_BIN_DIR: false
+
+OPENVSWITCH_DIR: "/var/lib/openvswitch"
+OVN_DIR: "/var/lib/ovn"
+DISABLE_MODULES_MANAGEMENT: true

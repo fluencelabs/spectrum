@@ -1,5 +1,5 @@
 resource "helm_release" "flux" {
-  depends_on       = [helm_release.cilium]
+  depends_on       = [helm_release.kubeovn]
   name             = "flux"
   chart            = "flux2"
   repository       = "https://fluxcd-community.github.io/helm-charts/"
