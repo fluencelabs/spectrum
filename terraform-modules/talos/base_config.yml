@@ -2,8 +2,8 @@ machine:
   network:
     hostname: ${hostname}
   kubelet:
-    extraArgs:
-      rotate-server-certificates: true
+    # extraArgs:
+    #   rotate-server-certificates: true
     extraConfig:
       cpuManagerPolicy: "static"
       cpuManagerPolicyOptions:
@@ -14,8 +14,6 @@ cluster:
   network:
     cni:
       name: none
-  proxy:
-    disabled: true
 
   controllerManager:
     # for prometheus to scrape

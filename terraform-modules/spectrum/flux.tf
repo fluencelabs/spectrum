@@ -49,9 +49,9 @@ resource "helm_release" "flux-sync" {
 
   values = [
     templatefile("${path.module}/templates/flux-sync.yml", {
-      network    = var.network
-      cluster    = var.cluster
-      variables  = var.flux_variables
+      network   = var.network
+      cluster   = var.cluster
+      variables = var.flux_variables
     })
   ]
 }
