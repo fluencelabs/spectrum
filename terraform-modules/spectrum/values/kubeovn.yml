@@ -1,4 +1,4 @@
-MASTER_NODES: "46.166.160.16"
+MASTER_NODES: "10.2.10.25"
 MASTER_NODES_LABEL: "node-role.kubernetes.io/control-plane"
 cni_conf:
   MOUNT_LOCAL_BIN_DIR: false

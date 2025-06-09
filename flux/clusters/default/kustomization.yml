@@ -4,6 +4,6 @@ resources:
   - ../../core/local-path-provisioner
   - ../../core/metrics-server
   - ../../core/kubelet-serving-cert-approver
-  - ../../core/monitoring-prerequisites
-  - ../../components/monitoring
+  # - ../../core/monitoring-prerequisites
+  # - ../../components/monitoring
   - ../../components/multus

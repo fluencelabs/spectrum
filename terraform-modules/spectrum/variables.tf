@@ -19,7 +19,12 @@ variable "provider_network_spec" {
 
 variable "subnets" {
   type = list(object({
-    cidr    = string
-    gateway = string
+    cidr       = string
+    gateway    = string
+    excludeIps = list(string)
   }))
+}
+
+variable "vlan" {
+  type = number
 }

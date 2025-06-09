@@ -54,6 +54,21 @@ resource "kubectl_manifest" "vpc" {
   })
 }
 
+resource "kubectl_manifest" "vlan" {
+  depends_on = [helm_release.kubeovn]
+  yaml_body = yamlencode({
+    apiVersion = "kubeovn.io/v1"
+    kind       = "Vlan"
+    metadata = {
+      name = tostring(var.vlan)
+    }
+    spec = {
+      id       = var.vlan
+      provider = "underlay"
+    }
+  })
+}
+
 resource "kubectl_manifest" "subnets" {
   depends_on = [helm_release.kubeovn]
 
@@ -75,6 +90,8 @@ resource "kubectl_manifest" "subnets" {
       cidrBlock           = each.value.cidr
       disableGatewayCheck = true
       gateway             = each.value.gateway
+      excludeIps          = each.value.excludeIps
+      vlan                = tostring(var.vlan)
     }
   })
 }
