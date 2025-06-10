@@ -26,9 +26,9 @@ spec:
     operator:
       image:
         repository: "docker.fluence.dev/lightmare"
-        tag: feature-ovn-3a0c470-2036-1
+        tag: feature-ovn-3bc95b7-2038-1
       config:
-        cni: "Ovn"
+        cni: ovn
         ccp:
           image:
             repository: "fluencelabs/ccp-cu-worker"
