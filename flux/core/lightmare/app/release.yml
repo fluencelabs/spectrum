@@ -11,6 +11,9 @@ spec:
   upgrade:
     remediation:
       retries: 3
+  uninstall:
+    remediation:
+      retries: 0
   chartRef:
     kind: OCIRepository
     name: lightmare
@@ -25,7 +28,7 @@ spec:
         repository: "docker.fluence.dev/lightmare"
         tag: feature-ovn-3a0c470-2036-1
       config:
-        cni: "ovn"
+        cni: "Ovn"
         ccp:
           image:
             repository: "fluencelabs/ccp-cu-worker"
