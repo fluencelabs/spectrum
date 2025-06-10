@@ -25,6 +25,7 @@ spec:
         repository: "docker.fluence.dev/lightmare"
         tag: "feature-ovn-7db7a6a-2032-1"
       config:
+        cni: "ovn"
         ccp:
           image:
             repository: "fluencelabs/ccp-cu-worker"
