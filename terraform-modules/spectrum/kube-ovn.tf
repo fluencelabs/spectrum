@@ -88,7 +88,6 @@ resource "kubectl_manifest" "subnets" {
       protocol            = "IPv4"
       provider            = "public.kube-system.ovn"
       cidrBlock           = each.value.cidr
-      disableGatewayCheck = true
       gateway             = each.value.gateway
       excludeIps          = each.value.excludeIps
       vlan                = tostring(var.vlan)
