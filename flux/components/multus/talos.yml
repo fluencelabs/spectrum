@@ -7,6 +7,14 @@ spec:
   template:
     spec:
       volumes:
-      - name: host-run-netns
-        hostPath:
-          path: /var/run/netns/
+        - name: host-run-netns
+          hostPath:
+            path: /var/run/netns/
+      initContainers:
+        - name: install-multus-binary
+          command:
+            - "/usr/src/multus-cni/bin/install_multus"
+            - "-d"
+            - "/host/opt/cni/bin"
+            - "-t"
+            - "thick"
