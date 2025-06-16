@@ -7,4 +7,4 @@ spec:
   interval: 5m0s
   url: oci://registry-1.docker.io/fluencelabs/lightmare-chart-test
   ref:
-    tag: 0.2.3
+    tag: 0.2.4
