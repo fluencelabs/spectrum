@@ -27,4 +27,4 @@ spec:
       config:
         ccp:
           type: "mocked"
-          proof_period: "7 minutes"
+          proof_period: "10 seconds"
