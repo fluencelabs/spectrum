@@ -22,11 +22,8 @@ spec:
   values:
     operator:
       image:
-        repository: "fluencelabs/lightmare"
-        tag: "0.5.0@sha256:c34f1f844dfe0e0e312fe0d5a757f3a3cb9b35cbace9abd3f4a4386f9c88dc34"
+        repository: "docker.fluence.dev/lightmare"
+        tag: "feature-pdev-107@sha256:6e7dcf082c5fc06fb3d7fcb13c4bd4e879bcb2742a08bef8cdd2cfd79845fb51"
       config:
         ccp:
-          image:
-            repository: "fluencelabs/ccp-cu-worker"
-            tag: "0.16.12@sha256:82699d5fe834175c911fc064223ff09810a33274d12a6ac355dc36fdbd4743b6"
-          memory: 2.48 gib
+          type: "mocked"
