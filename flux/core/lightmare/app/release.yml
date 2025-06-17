@@ -23,7 +23,7 @@ spec:
     operator:
       image:
         repository: "docker.fluence.dev/lightmare"
-        tag: "feature-pdev-107@sha256:2e9d3cd73e64940c7f284db6026842b2ce1473d0fa08681abd009cd0a137bef3"
+        tag: "feature-pdev-107@sha256:805187aa0bc43075641ef8fccde64a3687bf695a26b3d6932d800d5f03954fa3"
       config:
         ccp:
           type: "mocked"
