@@ -11,6 +11,9 @@ terraform {
       source  = "gavinbunney/kubectl"
       version = "~> 1.16"
     }
+    helm = {
+      version = "~> 2"
+    }
   }
 }
 
