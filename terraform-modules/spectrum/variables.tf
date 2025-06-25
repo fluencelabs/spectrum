@@ -1,6 +1,15 @@
 variable "network" {
+  type = string
+}
+
+variable "tag" {
   type    = string
-  default = "main"
+  default = ""
+}
+
+variable "branch" {
+  type    = string
+  default = ""
 }
 
 variable "cluster" {

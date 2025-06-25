@@ -3,7 +3,11 @@ gitRepository:
     url: "https://github.com/fluencelabs/spectrum.git"
     interval: "1m"
     ref:
-      branch: ${network}
+      %{ if branch != null }
+      branch: ${branch}
+      %{ elif tag != null }
+      tag: ${tag}
+      %{ enfid }
 
 kustomization:
   spec:
@@ -11,10 +15,11 @@ kustomization:
     path: "./flux/clusters/${cluster}"
     validation: "client"
     prune: true
-    %{ if variables != null }
     postBuild:
       substitute:
+        NETWORK="${network}"
+      %{ if variables != null }
         %{ for key, value in variables }
         ${key}: ${value}
         %{ endfor }
-    %{ endif }
+      %{ endif }

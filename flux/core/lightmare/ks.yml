@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1m0s
-  path: ./flux/core/lightmare/app/overlays/${ENV}
+  path: ./flux/core/lightmare/app/overlays/${NETWORK}
   prune: true
   sourceRef:
     kind: GitRepository
