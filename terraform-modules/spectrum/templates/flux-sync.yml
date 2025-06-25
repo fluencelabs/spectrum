@@ -3,11 +3,7 @@ gitRepository:
     url: "https://github.com/fluencelabs/spectrum.git"
     interval: "1m"
     ref:
-      %{ if branch != null }
-      branch: ${branch}
-      %{ elif tag != null }
-      tag: ${tag}
-      %{ enfid }
+      ${ref_key}: ${ref_value}
 
 kustomization:
   spec:
@@ -17,9 +13,9 @@ kustomization:
     prune: true
     postBuild:
       substitute:
-        NETWORK="${network}"
-      %{ if variables != null }
+        NETWORK: "${network}"
+        %{ if variables != null }
         %{ for key, value in variables }
         ${key}: ${value}
         %{ endfor }
-      %{ endif }
+        %{ endif }

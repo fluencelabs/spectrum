@@ -26,6 +26,6 @@ output "talosconfig" {
   sensitive = true
 }
 
-output "control_plane_ips" {
+output "control_planes_ips" {
   value = join(",", [for cp in var.control_planes : cp.server_ip])
 }
