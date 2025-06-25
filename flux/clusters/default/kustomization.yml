@@ -7,3 +7,4 @@ resources:
   # - ../../core/monitoring-prerequisites
   # - ../../components/monitoring
   - ../../components/multus
+  - ../../components/kubevirt

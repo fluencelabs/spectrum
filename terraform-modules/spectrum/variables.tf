@@ -21,10 +21,14 @@ variable "subnets" {
   type = list(object({
     cidr       = string
     gateway    = string
-    excludeIps = list(string)
+    excludeIps = optional(list(string), [])
   }))
 }
 
 variable "vlan" {
   type = number
+}
+
+variable "control_planes_ips" {
+  type = string
 }

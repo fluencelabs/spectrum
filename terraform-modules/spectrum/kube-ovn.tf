@@ -3,11 +3,11 @@ resource "helm_release" "kubeovn" {
   chart      = "kube-ovn"
   repository = "https://kubeovn.github.io/kube-ovn"
   namespace  = "kube-system"
-  version    = "1.13.13"
+  version    = "1.14.0"
   wait       = true
 
   values = [
-    file("${path.module}/values/kubeovn.yml")
+    templatefile("${path.module}/templates/kubeovn.yml", { control_planes_ips : var.control_planes_ips })
   ]
 }
 
@@ -84,13 +84,13 @@ resource "kubectl_manifest" "subnets" {
       name = "subnet-${each.key}"
     }
     spec = {
-      vpc                 = "underlay"
-      protocol            = "IPv4"
-      provider            = "public.kube-system.ovn"
-      cidrBlock           = each.value.cidr
-      gateway             = each.value.gateway
-      excludeIps          = each.value.excludeIps
-      vlan                = tostring(var.vlan)
+      vpc        = "underlay"
+      protocol   = "IPv4"
+      provider   = "public.kube-system.ovn"
+      cidrBlock  = each.value.cidr
+      gateway    = each.value.gateway
+      excludeIps = each.value.excludeIps
+      vlan       = tostring(var.vlan)
     }
   })
 }
