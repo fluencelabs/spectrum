@@ -29,3 +29,5 @@ spec:
           memory: 2.48 gib
         chainAdapter:
           privateRPCTokenSecretRef: private-rpc-token-secret
+        nodes:
+          nodeSelector: peer_id
