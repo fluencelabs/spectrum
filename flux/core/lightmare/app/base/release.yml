@@ -21,7 +21,9 @@ spec:
         repository: "docker.fluence.dev/lightmare"
         tag: feature-pdev-54-73fd510-2120-1
       config:
-        cni: ovn
+        k8s:
+          cni: "ovn"
+          publicNetwork: "kube-system/public"
         ccp:
           image:
             repository: "fluencelabs/ccp-cu-worker"
