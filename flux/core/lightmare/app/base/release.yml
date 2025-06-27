@@ -19,7 +19,7 @@ spec:
     operator:
       image:
         repository: "docker.fluence.dev/lightmare"
-        tag: feature-pdev-54-73fd510-2120-1
+        tag: feature-pdev-54-28a6dd0-2132-1
       config:
         k8s:
           cni: "ovn"
@@ -31,5 +31,3 @@ spec:
           memory: 2.48 gib
         chainAdapter:
           privateRPCTokenSecretRef: private-rpc-token-secret
-        nodes:
-          nodeSelector: peer_id

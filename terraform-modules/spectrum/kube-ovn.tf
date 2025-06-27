@@ -84,13 +84,14 @@ resource "kubectl_manifest" "subnets" {
       name = "subnet-${each.key}"
     }
     spec = {
-      vpc        = "underlay"
-      protocol   = "IPv4"
-      provider   = "public.kube-system.ovn"
-      cidrBlock  = each.value.cidr
-      gateway    = each.value.gateway
-      excludeIps = each.value.excludeIps
-      vlan       = tostring(var.vlan)
+      vpc                 = "underlay"
+      protocol            = "IPv4"
+      provider            = "public.kube-system.ovn"
+      cidrBlock           = each.value.cidr
+      gateway             = each.value.gateway
+      excludeIps          = each.value.excludeIps
+      vlan                = tostring(var.vlan)
+      disableGatewayCheck = true # DELETE AFTER TESTS
     }
   })
 }
