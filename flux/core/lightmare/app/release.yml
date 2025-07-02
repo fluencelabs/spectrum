@@ -23,4 +23,4 @@ spec:
     operator:
       image:
         repository: "fluencelabs/lightmare"
-        tag: "0.7.0@sha256:1e78de11d4139fd42cb374a007041d24b6f4275a7dc33dad032ad5596bdcbcde"
+        tag: "0.7.1@sha256:1f560b61f49bdf2dce5be0381ddee076e66ec10832d59517ae2494fde9f77645"
