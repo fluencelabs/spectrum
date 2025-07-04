@@ -3,7 +3,7 @@ resource "helm_release" "kubeovn" {
   chart      = "kube-ovn"
   repository = "https://kubeovn.github.io/kube-ovn"
   namespace  = "kube-system"
-  version    = "1.14.0"
+  version    = "1.14.1"
   wait       = true
 
   values = [
