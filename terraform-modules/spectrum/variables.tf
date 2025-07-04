@@ -23,7 +23,11 @@ variable "flux_variables" {
 }
 
 variable "provider_network_spec" {
-  type = map(any)
+  type = map(object({
+    defaultInterface = string
+    customInterfaces = optional(list(map(string), []))
+    })
+  )
 }
 
 variable "subnets" {
