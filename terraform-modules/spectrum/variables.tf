@@ -23,7 +23,7 @@ variable "flux_variables" {
 }
 
 variable "provider_network_spec" {
-  type = map(string)
+  type = map(any)
 }
 
 variable "subnets" {
