@@ -25,7 +25,10 @@ variable "flux_variables" {
 variable "provider_network_spec" {
   type = object({
     defaultInterface = string
-    customInterfaces = optional(list(map(string)), [])
+    customInterfaces = optional(list(object({
+      interface = string
+      nodes     = list(string)
+    })), [])
   })
 }
 
