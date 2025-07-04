@@ -17,9 +17,10 @@ spec:
     namespace: flux-system
   values:
     operator:
+      octopus: true
       image:
-        repository: "docker.fluence.dev/lightmare"
-        tag: feature-pdev-54-28a6dd0-2132-1
+        repository: "fluencelabs/lightmare"
+        tag: 0.7.1
       config:
         k8s:
           cni: "ovn"
