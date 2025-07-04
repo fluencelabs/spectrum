@@ -91,7 +91,6 @@ resource "kubectl_manifest" "subnets" {
       gateway             = each.value.gateway
       excludeIps          = each.value.excludeIps
       vlan                = tostring(var.vlan)
-      disableGatewayCheck = true # DELETE AFTER TESTS
     }
   })
 }
