@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.1.12](https://github.com/fluencelabs/spectrum/compare/spectrum-v0.1.11...spectrum-v0.1.12) (2025-07-08)
+
+
+### Bug Fixes
+
+* update lightmare ([#257](https://github.com/fluencelabs/spectrum/issues/257)) ([dcaa34d](https://github.com/fluencelabs/spectrum/commit/dcaa34dd59dbdb2b4b68a8f289da605e02306221))
+* update lightmare ([#259](https://github.com/fluencelabs/spectrum/issues/259)) ([8694f90](https://github.com/fluencelabs/spectrum/commit/8694f90305a9c2fe7ec0a5f8dd77db5283488000))
+* update ligthmare ([8694f90](https://github.com/fluencelabs/spectrum/commit/8694f90305a9c2fe7ec0a5f8dd77db5283488000))
+
 ## [0.1.11](https://github.com/fluencelabs/spectrum/compare/spectrum-v0.1.10...spectrum-v0.1.11) (2025-07-02)
 
 
