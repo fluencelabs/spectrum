@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.13](https://github.com/fluencelabs/spectrum/compare/spectrum-v0.1.12...spectrum-v0.1.13) (2025-08-08)
+
+
+### Bug Fixes
+
+* lightmare with mocked k8s ([#262](https://github.com/fluencelabs/spectrum/issues/262)) ([0135e81](https://github.com/fluencelabs/spectrum/commit/0135e8145f5fc37bb5a1e252ccad8f9fd3a00a89))
+
 ## [0.1.12](https://github.com/fluencelabs/spectrum/compare/spectrum-v0.1.11...spectrum-v0.1.12) (2025-07-08)
 
 
