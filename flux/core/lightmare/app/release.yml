@@ -22,5 +22,5 @@ spec:
   values:
     operator:
       image:
-        repository: "docker.fluence.dev/lightmare"
-        tag: "feat-kp-adapter-mock-facb664-2202-1@sha256:71285c4b8408888283010d9236de9b623dcd2b1937619c6e8321905d5fc0150d"
+        repository: "fluencelabs/lightmare"
+        tag: "0.7.11@sha256:7dbd5ecc90f41261326ddd156bfafa6e27373c71724f096893625a138f8475c9"
