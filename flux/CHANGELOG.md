@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.14](https://github.com/fluencelabs/spectrum/compare/spectrum-v0.1.13...spectrum-v0.1.14) (2025-10-20)
+
+
+### Bug Fixes
+
+* remove ccp ([#266](https://github.com/fluencelabs/spectrum/issues/266)) ([ecfdadd](https://github.com/fluencelabs/spectrum/commit/ecfdaddc41919ed5db52e45343c9216f1dbdc5f6))
+
 ## [0.1.13](https://github.com/fluencelabs/spectrum/compare/spectrum-v0.1.12...spectrum-v0.1.13) (2025-10-20)
 
 
