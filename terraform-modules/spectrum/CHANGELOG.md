@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3](https://github.com/fluencelabs/spectrum/compare/terraform-module-spectrum-v0.1.2...terraform-module-spectrum-v0.1.3) (2025-10-20)
+
+
+### Bug Fixes
+
+* Spectrum priority class tune ([#150](https://github.com/fluencelabs/spectrum/issues/150)) ([d81ee3f](https://github.com/fluencelabs/spectrum/commit/d81ee3f6a14a8b45fcd5633ff220ce6556de1c5c))
+
 ## [0.1.2](https://github.com/fluencelabs/spectrum/compare/terraform-module-spectrum-v0.1.1...terraform-module-spectrum-v0.1.2) (2025-02-19)
 
 
